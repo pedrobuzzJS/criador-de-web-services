@@ -3,7 +3,7 @@ import React from "react";
 const Routes: React.FC = () => {
     return (
         <div>
-            <span>Ol[a</span>
+            <span>Ola</span>
         </div>
     )
 }

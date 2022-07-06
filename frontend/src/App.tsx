@@ -22,29 +22,13 @@ const App: React.FC = () => {
 
   return (
     <div>
-      <span>CEP</span>
+      {/* <span>Senha</span> */}
       <Input
-        name="cep"
-        mask="cep"
+        spanText="span bem sucedido"
+        name="Teste"
+        type="text"
         onChange={handleChange}
         placeholder="99999-999"
-      />
-
-      <span>CPF</span>
-      <Input
-        name="cpf"
-        mask="cpf"
-        onChange={handleChange}
-        placeholder="999.999.999-99"
-      />
-
-      <span>Preço</span>
-      <Input
-        name="price"
-        mask="currency"
-        prefix="R$"
-        placeholder="0,01"
-        onChange={handleChange}
       />
 
       <button className="button" onClick={() => console.log(usuario)}>

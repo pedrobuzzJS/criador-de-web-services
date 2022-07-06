@@ -19,4 +19,38 @@ model Users {
   remember_token      String
   created_at          String
   updated_at          String
+
+  @@map("tbusuarios")
+}
+
+model Cores {
+  id Int @id
+  descricao String
+  cor String
+  created_at DateTime
+  updated_at DateTime
+
+  @@map("tbcores")
+}
+
+model Acoes {
+  id Int @id
+  descricao String
+  metodo String
+  created_at DateTime
+  updated_at DateTime
+
+  @@map("tbacoes")
+}
+
+model Menus {
+  id Int @id
+  descricao String
+  icone String
+  ordem Int
+  desabilitado Boolean @default(false)
+  pai_id Int
+  acao_id Int
+
+  @@map("tbmenus")
 }

@@ -51,6 +51,51 @@ model Menus {
   desabilitado Boolean @default(false)
   pai_id Int
   acao_id Int
+  papel Int
+  permissao Int
 
   @@map("tbmenus")
+}
+
+model Papel {
+  nome Int @id
+  descricao String
+  created_at DateTime
+
+  @@map("tbpapeis")
+}
+
+model Permissao {
+  nome Int @id
+  descricao String
+  created_at DateTime
+
+  @@map("tbpermissoes")
+}
+
+model PapelPermissao {
+  papel_id Int
+  permissao_id Int
+
+  @@id([papel_id, permissao_id])
+
+  @@map("tbpapelpermissoes")
+}
+
+model UsuarioPermissao {
+  usuario_id Int
+  permissao_id Int
+
+  @@id([usuario_id, permissao_id])
+
+  @@map("tbusuariopermissoes")
+}
+
+model UsuarioPapel {
+  usuario_id Int
+  papel_id Int
+
+  @@id([usuario_id, papel_id])
+
+  @@map("tbusuariopapeis")
 }

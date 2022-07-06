@@ -1,8 +1,7 @@
 import React, { useState, useCallback } from "react";
 import Input from "./components/Inputs/InputDefault";
-import Layout from "./components/Layout";
+// import Layout from "./components/Layout";
 import GlobalStyles from "./styles/GlobalStyles"
-
 
 interface Usuario {
   cep: string;
@@ -31,7 +30,7 @@ const App: React.FC = () => {
         type="text"
         mask="cep"
         onChange={handleChange}
-        placeholder="99999-999"
+        placeholder="00000-000"
       />
 
       <button className="button" onClick={() => console.log(usuario)}>

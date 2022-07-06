@@ -1,5 +1,8 @@
 import React, { useState, useCallback } from "react";
 import Input from "./components/Inputs/InputDefault";
+import Layout from "./components/Layout";
+import GlobalStyles from "./styles/GlobalStyles"
+
 
 interface Usuario {
   cep: string;
@@ -21,12 +24,12 @@ const App: React.FC = () => {
   )
 
   return (
-    <div>
-      {/* <span>Senha</span> */}
+    <>
       <Input
         spanText="span bem sucedido"
-        name="Teste"
+        // name="Teste"
         type="text"
+        mask="cep"
         onChange={handleChange}
         placeholder="99999-999"
       />
@@ -34,7 +37,8 @@ const App: React.FC = () => {
       <button className="button" onClick={() => console.log(usuario)}>
         Salvar
       </button>
-    </div>
+      <GlobalStyles />
+    </>
   )
 };
 

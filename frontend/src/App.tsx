@@ -26,7 +26,7 @@ const App: React.FC = () => {
     <>
       <Input
         spanText="span bem sucedido"
-        // name="Teste"
+        name="cep"
         type="text"
         mask="cep"
         onChange={handleChange}

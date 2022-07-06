@@ -29,6 +29,14 @@ export function cpf(e: React.FormEvent<HTMLInputElement>) {
   return e;
 }
 
+export function email(e: React.FormEvent<HTMLInputElement>)
+{
+  let value = e.currentTarget.value;
+  if (!value.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)) {
+    return e;
+  }
+}
+
 export function nullMask(e: React.FormEvent<HTMLInputElement>) {
   return e;
 }

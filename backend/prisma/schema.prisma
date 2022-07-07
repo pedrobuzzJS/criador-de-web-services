@@ -99,3 +99,70 @@ model UsuarioPapel {
 
   @@map("tbusuariopapeis")
 }
+
+
+
+
+
+model Status {
+  id Int @id
+  descricao String
+
+  @@map("tbstatus")
+}
+
+model TipoWebService {
+  id Int @id
+  nome String
+  descricao String
+  status Int
+
+  @@map("tbtipowebservices")
+}
+
+model WebService {
+  id Int @id
+  nome String
+  descricao String
+  prover Boolean
+  consumir Boolean
+  status Int
+
+  @@map("tbwebserviced")
+}
+
+model TipoBases {
+  id Int @id
+
+  @@map("tbtipobases")
+}
+
+model Bases {
+  id Int @id
+
+  @@map("tbbases")
+}
+
+model Rotas {
+  id Int @id
+
+  @@map("tbrotas")
+}
+
+model Tabelas {
+  id Int @id
+
+  @@map("tbtabelas")
+}
+
+model Colunas {
+  id Int @id
+
+  @@map("tbcolunas")
+}
+
+model TabelaLigacao {
+  id Int @id
+
+  @@map("tbtabelaligacoes")
+}

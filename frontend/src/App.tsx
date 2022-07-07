@@ -25,12 +25,12 @@ const App: React.FC = () => {
   return (
     <>
       <Input
-        spanText="span bem sucedido"
-        name="cep"
-        type="text"
-        mask="cep"
+        spanText="E-mail"
+        // prefix="E-mail"
+        name="email"
+        type="email"
+        placeholder="E-mail"
         onChange={handleChange}
-        placeholder="00000-000"
       />
 
       <button className="button" onClick={() => console.log(usuario)}>

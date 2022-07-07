@@ -1,5 +1,6 @@
 // import cors from "cors";
-import express from "express";
+import "express-async-errors";
+import express, { Request, Response, NextFunction } from "express";
 import Routes from "./routes/index.routes";
 
 const app = express();
@@ -17,5 +18,14 @@ app.use(
 );
 
 app.use(Routes);
+
+app.use(
+    (err: Error, request: Request, response: Response, next: NextFunction) => {
+        return response.json({
+            status: "Error",
+            message: err.message,
+        })
+    }
+)
 
 export { app };

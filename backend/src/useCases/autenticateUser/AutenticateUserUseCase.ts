@@ -25,22 +25,9 @@ class AutenticateUerUseCase {
 
         const passwordMatch = await compare(password, userAlreadyExists.password);
 
-
         if (!passwordMatch) {
             throw new Error("Usuario ou senha invalido");
         }
-
-        // const token = sign({
-        //     data: 'footbar'
-        // })
-
-
-
-        // const token = sign({}, '1f1ee6a7-6b0d-4377-80fa-35c517c21cf4', {
-        //     algorithm: "HS256",
-        //     subject: userAlreadyExists.id.toString(),
-        //     expiresIn: "20s",
-        // });
 
         const token = await sign({
             id: userAlreadyExists.id,

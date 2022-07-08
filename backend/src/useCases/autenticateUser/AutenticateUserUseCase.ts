@@ -29,7 +29,7 @@ class AutenticateUerUseCase {
             throw new Error("Usuario ou senha invalido");
         }
 
-        const token = sign({}, 'pedro', {
+        const token = sign({}, '1f1ee6a7-6b0d-4377-80fa-35c517c21cf4', {
             subject: userAlreadyExists.id,
             expiresIn: "20s"
         });

@@ -1,4 +1,3 @@
-import { Users } from '@prisma/client';
 import { compare } from "bcrypt";
 import { sign } from "jsonwebtoken";
 import { client } from "../../infra/prisma/client";
@@ -19,22 +18,42 @@ class AutenticateUerUseCase {
             }
         })
 
+
         if (!userAlreadyExists) {
             throw new Error("Usuario ou senha invalido");
         }
 
-        const passwordMatch = compare(password, userAlreadyExists.password);
+        const passwordMatch = await compare(password, userAlreadyExists.password);
+
 
         if (!passwordMatch) {
             throw new Error("Usuario ou senha invalido");
         }
 
-        const token = sign({}, 'pedro', {
-            subject: userAlreadyExists.id,
-            expiresIn: "20s"
-        });
+        // const token = sign({
+        //     data: 'footbar'
+        // })
 
-        return { token };
+
+
+        // const token = sign({}, '1f1ee6a7-6b0d-4377-80fa-35c517c21cf4', {
+        //     algorithm: "HS256",
+        //     subject: userAlreadyExists.id.toString(),
+        //     expiresIn: "20s",
+        // });
+
+        const token = await sign({
+            id: userAlreadyExists.id,
+            username: userAlreadyExists.username,
+        }, '1f1ee6a7-6b0d-4377-80fa-35c517c21cf4',
+        {
+            algorithm: "HS256",
+            subject: userAlreadyExists.id.toString(),
+            expiresIn: "60s"
+        })
+
+
+        return {token};
     };
 
 }

@@ -15,10 +15,10 @@ model Users {
   name                String
   username            String @unique
   email               String @unique
-  email_verified_at   String?
+  email_verified      Boolean? @default(false)
   password            String
   remember_token      String?
-  created_at          String?
+  created_at          DateTime? @default(now())
   updated_at          String?
 
   @@map("tbusuarios")

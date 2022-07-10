@@ -23,9 +23,6 @@ class AutenticateUerUseCase {
             }
         })
 
-        console.log(userAlreadyExists);
-
-
         if (!userAlreadyExists) {
             throw new Error("Usuario ou senha invalido");
         }

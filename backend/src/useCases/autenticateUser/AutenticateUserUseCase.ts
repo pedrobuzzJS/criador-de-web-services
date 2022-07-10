@@ -15,8 +15,15 @@ class AutenticateUerUseCase {
         const userAlreadyExists = await client.users.findFirst({
             where: {
                 username
+            },
+            select: {
+                id: true,
+                username: true,
+                password: true
             }
         })
+
+        console.log(userAlreadyExists);
 
 
         if (!userAlreadyExists) {

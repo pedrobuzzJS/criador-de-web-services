@@ -15,7 +15,7 @@ model Users {
   name                String
   username            String @unique
   email               String @unique
-  email_verified      Boolean? @default(false)
+  email_verified      Boolean @default(false)
   password            String
   remember_token      String?
   created_at          DateTime? @default(now())

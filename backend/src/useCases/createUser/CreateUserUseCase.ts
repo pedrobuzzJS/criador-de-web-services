@@ -28,7 +28,7 @@ class CreateUserUseCase {
                 name,
                 username,
                 email,
-                password: passwordHash,
+                password: passwordHash
             }
         })
         

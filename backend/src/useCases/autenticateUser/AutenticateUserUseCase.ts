@@ -41,7 +41,7 @@ class AutenticateUerUseCase {
         {
             algorithm: "HS512",
             subject: userAlreadyExists.id.toString(),
-            expiresIn: "1000s"
+            expiresIn: "3600s"
         })
 
         return {token};

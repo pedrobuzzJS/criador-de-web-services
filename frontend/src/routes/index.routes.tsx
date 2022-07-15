@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import AuthContext from "../context/auth";
 
 const Routes: React.FC = () => {
-    return (
-        <div>
-            <span>Ola</span>
-        </div>
-    )
+    const {signed} = useContext(AuthContext);
+
+    return signed;
 }
 
 export default Routes;

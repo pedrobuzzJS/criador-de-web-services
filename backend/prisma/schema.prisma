@@ -20,12 +20,14 @@ model Users {
   remember_token      String?
   created_at          DateTime? @default(now())
   updated_at          String?
+  usuario_permissoes UsuarioPermissao[]
+  usuario_papeis     UsuarioPapel[]
 
   @@map("tbusuarios")
 }
 
 model Cores {
-  id Int @id
+  id Int @id @default(autoincrement())
   descricao String
   cor String
   created_at DateTime
@@ -59,24 +61,32 @@ model Menus {
 }
 
 model Papel {
-  nome Int @id
+  id Int @id
+  nome String
   descricao String
   created_at DateTime
+  usuarioPapeis UsuarioPapel[]
+  papelPermissoes PapelPermissao[]
 
   @@map("tbpapeis")
 }
 
 model Permissao {
-  nome Int @id
+  id Int @id
+  nome String
   descricao String
   created_at DateTime
+  usuario_permissoes UsuarioPermissao[]
+  pepelPermissoes PapelPermissao[]
 
   @@map("tbpermissoes")
 }
 
 model PapelPermissao {
   papel_id Int
+  papeis Papel @relation(fields: [papel_id], references: [id])
   permissao_id Int
+  permissoes Permissao @relation(fields: [permissao_id], references: [id])
 
   @@id([papel_id, permissao_id])
 
@@ -85,7 +95,9 @@ model PapelPermissao {
 
 model UsuarioPermissao {
   usuario_id Int
+  Usuario Users @relation(fields: [usuario_id], references: [id])
   permissao_id Int
+  permissao Permissao @relation(fields: [permissao_id], references: [id])
 
   @@id([usuario_id, permissao_id])
 
@@ -94,16 +106,14 @@ model UsuarioPermissao {
 
 model UsuarioPapel {
   usuario_id Int
+  Usuario Users @relation(fields: [usuario_id], references: [id])
   papel_id Int
+  Papel Papel @relation(fields: [papel_id], references: [id])
 
   @@id([usuario_id, papel_id])
 
   @@map("tbusuariopapeis")
 }
-
-
-
-
 
 model Status {
   id Int @id
@@ -129,7 +139,7 @@ model WebService {
   consumir Boolean
   status Int
 
-  @@map("tbwebserviced")
+  @@map("tbwebservices")
 }
 
 model TipoBases {

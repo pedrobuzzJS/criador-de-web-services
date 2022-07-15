@@ -1,3 +1,4 @@
+require('dotenv').config();
 import { compare } from "bcrypt";
 import { sign } from "jsonwebtoken";
 import { client } from "../../infra/prisma/client";
@@ -36,13 +37,12 @@ class AutenticateUerUseCase {
         const token = await sign({
             id: userAlreadyExists.id,
             username: userAlreadyExists.username,
-        }, '1f1ee6a7-6b0d-4377-80fa-35c517c21cf4',
+        }, `${process.env.JWT_SECRET}`,
         {
-            algorithm: "HS256",
+            algorithm: "HS512",
             subject: userAlreadyExists.id.toString(),
             expiresIn: "60s"
         })
-
 
         return {token};
     };

@@ -37,4 +37,5 @@ class CreateUserUseCase {
 
 }
 
-export { CreateUserUseCase }
+export { CreateUserUseCase };
+

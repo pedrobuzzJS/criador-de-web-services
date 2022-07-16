@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import AuthContext from "../context/auth";
 
-const Routes: React.FC = () => {
+const Routes = () => {
     const {signed} = useContext(AuthContext);
 
     return signed;

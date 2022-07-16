@@ -7,6 +7,7 @@ CREATE TABLE "tbusuarios" (
     "email_verified" BOOLEAN NOT NULL DEFAULT false,
     "password" TEXT NOT NULL,
     "remember_token" TEXT,
+    "status_id" INTEGER,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TEXT,
 
@@ -106,7 +107,10 @@ CREATE TABLE "tbstatus" (
 CREATE TABLE "tbtipowebservices" (
     "id" INTEGER NOT NULL,
     "nome" TEXT NOT NULL,
+    "sigla" TEXT NOT NULL,
     "descricao" TEXT NOT NULL,
+    "publicar" BOOLEAN NOT NULL,
+    "consumir" BOOLEAN NOT NULL,
     "status" INTEGER NOT NULL,
 
     CONSTRAINT "tbtipowebservices_pkey" PRIMARY KEY ("id")
@@ -127,6 +131,9 @@ CREATE TABLE "tbwebservices" (
 -- CreateTable
 CREATE TABLE "tbtipobases" (
     "id" INTEGER NOT NULL,
+    "nome" TEXT NOT NULL,
+    "icone" TEXT NOT NULL,
+    "status" TEXT NOT NULL,
 
     CONSTRAINT "tbtipobases_pkey" PRIMARY KEY ("id")
 );
@@ -134,6 +141,18 @@ CREATE TABLE "tbtipobases" (
 -- CreateTable
 CREATE TABLE "tbbases" (
     "id" INTEGER NOT NULL,
+    "nome" TEXT NOT NULL,
+    "user" TEXT NOT NULL,
+    "password" TEXT NOT NULL,
+    "db_connection" TEXT NOT NULL,
+    "host" TEXT NOT NULL,
+    "emp" INTEGER NOT NULL,
+    "fil" INTEGER NOT NULL,
+    "tipobase_id" INTEGER NOT NULL,
+    "url" TEXT NOT NULL,
+    "ip" TEXT NOT NULL,
+    "permissao" INTEGER NOT NULL,
+    "status" INTEGER NOT NULL,
 
     CONSTRAINT "tbbases_pkey" PRIMARY KEY ("id")
 );
@@ -148,6 +167,11 @@ CREATE TABLE "tbrotas" (
 -- CreateTable
 CREATE TABLE "tbtabelas" (
     "id" INTEGER NOT NULL,
+    "nome" TEXT NOT NULL,
+    "scheme" TEXT NOT NULL,
+    "base_id" INTEGER NOT NULL,
+    "permissao" INTEGER NOT NULL,
+    "status" INTEGER NOT NULL,
 
     CONSTRAINT "tbtabelas_pkey" PRIMARY KEY ("id")
 );
@@ -155,15 +179,24 @@ CREATE TABLE "tbtabelas" (
 -- CreateTable
 CREATE TABLE "tbcolunas" (
     "id" INTEGER NOT NULL,
+    "nome" TEXT NOT NULL,
+    "pk" TEXT NOT NULL,
+    "fk" TEXT NOT NULL,
+    "tabela_id" INTEGER NOT NULL,
+    "permissao" INTEGER NOT NULL,
+    "status" INTEGER NOT NULL,
 
     CONSTRAINT "tbcolunas_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "tbtabelaligacoes" (
-    "id" INTEGER NOT NULL,
+    "tabela_origem_id" INTEGER NOT NULL,
+    "coluna_origem_id" INTEGER NOT NULL,
+    "tabela_destino_id" INTEGER NOT NULL,
+    "coluna_destino_id" INTEGER NOT NULL,
 
-    CONSTRAINT "tbtabelaligacoes_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "tbtabelaligacoes_pkey" PRIMARY KEY ("tabela_origem_id","coluna_origem_id","tabela_destino_id","coluna_destino_id")
 );
 
 -- CreateIndex
@@ -189,3 +222,18 @@ ALTER TABLE "tbusuariopapeis" ADD CONSTRAINT "tbusuariopapeis_usuario_id_fkey" F
 
 -- AddForeignKey
 ALTER TABLE "tbusuariopapeis" ADD CONSTRAINT "tbusuariopapeis_papel_id_fkey" FOREIGN KEY ("papel_id") REFERENCES "tbpapeis"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "tbtabelas" ADD CONSTRAINT "tbtabelas_base_id_fkey" FOREIGN KEY ("base_id") REFERENCES "tbbases"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "tbtabelaligacoes" ADD CONSTRAINT "tbtabelaligacoes_tabela_origem_id_fkey" FOREIGN KEY ("tabela_origem_id") REFERENCES "tbtabelas"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "tbtabelaligacoes" ADD CONSTRAINT "tbtabelaligacoes_tabela_destino_id_fkey" FOREIGN KEY ("tabela_destino_id") REFERENCES "tbtabelas"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "tbtabelaligacoes" ADD CONSTRAINT "tbtabelaligacoes_coluna_origem_id_fkey" FOREIGN KEY ("coluna_origem_id") REFERENCES "tbcolunas"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "tbtabelaligacoes" ADD CONSTRAINT "tbtabelaligacoes_coluna_destino_id_fkey" FOREIGN KEY ("coluna_destino_id") REFERENCES "tbcolunas"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

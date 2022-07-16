@@ -11,15 +11,16 @@ datasource db {
 }
 
 model Users {
-  id                  Int @id @default(autoincrement())
-  name                String
-  username            String @unique
-  email               String @unique
-  email_verified      Boolean @default(false)
-  password            String
-  remember_token      String?
-  created_at          DateTime? @default(now())
-  updated_at          String?
+  id                 Int                @id @default(autoincrement())
+  name               String
+  username           String             @unique
+  email              String             @unique
+  email_verified     Boolean            @default(false)
+  password           String
+  remember_token     String?
+  status_id          Int?
+  created_at         DateTime?          @default(now())
+  updated_at         String?
   usuario_permissoes UsuarioPermissao[]
   usuario_papeis     UsuarioPapel[]
 
@@ -27,9 +28,9 @@ model Users {
 }
 
 model Cores {
-  id Int @id @default(autoincrement())
-  descricao String
-  cor String
+  id         Int      @id @default(autoincrement())
+  descricao  String
+  cor        String
   created_at DateTime
   updated_at DateTime
 
@@ -37,9 +38,9 @@ model Cores {
 }
 
 model Acoes {
-  id Int @id
-  descricao String
-  metodo String
+  id         Int      @id
+  descricao  String
+  metodo     String
   created_at DateTime
   updated_at DateTime
 
@@ -47,109 +48,127 @@ model Acoes {
 }
 
 model Menus {
-  id Int @id
-  descricao String
-  icone String
-  ordem Int
+  id           Int     @id
+  descricao    String
+  icone        String
+  ordem        Int
   desabilitado Boolean @default(false)
-  pai_id Int
-  acao_id Int
-  papel Int
-  permissao Int
+  pai_id       Int
+  acao_id      Int
+  papel        Int
+  permissao    Int
 
   @@map("tbmenus")
 }
 
 model Papel {
-  id Int @id
-  nome String
-  descricao String
-  created_at DateTime
-  usuarioPapeis UsuarioPapel[]
+  id              Int              @id
+  nome            String
+  descricao       String
+  created_at      DateTime
+  usuarioPapeis   UsuarioPapel[]
   papelPermissoes PapelPermissao[]
 
   @@map("tbpapeis")
 }
 
 model Permissao {
-  id Int @id
-  nome String
-  descricao String
-  created_at DateTime
+  id                 Int                @id
+  nome               String
+  descricao          String
+  created_at         DateTime
   usuario_permissoes UsuarioPermissao[]
-  pepelPermissoes PapelPermissao[]
+  pepelPermissoes    PapelPermissao[]
 
   @@map("tbpermissoes")
 }
 
 model PapelPermissao {
-  papel_id Int
-  papeis Papel @relation(fields: [papel_id], references: [id])
+  papel_id     Int
+  papeis       Papel     @relation(fields: [papel_id], references: [id])
   permissao_id Int
-  permissoes Permissao @relation(fields: [permissao_id], references: [id])
+  permissoes   Permissao @relation(fields: [permissao_id], references: [id])
 
   @@id([papel_id, permissao_id])
-
   @@map("tbpapelpermissoes")
 }
 
 model UsuarioPermissao {
-  usuario_id Int
-  Usuario Users @relation(fields: [usuario_id], references: [id])
+  usuario_id   Int
+  Usuario      Users     @relation(fields: [usuario_id], references: [id])
   permissao_id Int
-  permissao Permissao @relation(fields: [permissao_id], references: [id])
+  permissao    Permissao @relation(fields: [permissao_id], references: [id])
+
 
   @@id([usuario_id, permissao_id])
-
   @@map("tbusuariopermissoes")
 }
 
 model UsuarioPapel {
   usuario_id Int
-  Usuario Users @relation(fields: [usuario_id], references: [id])
-  papel_id Int
-  Papel Papel @relation(fields: [papel_id], references: [id])
+  Usuario    Users @relation(fields: [usuario_id], references: [id])
+  papel_id   Int
+  Papel      Papel @relation(fields: [papel_id], references: [id])
+
 
   @@id([usuario_id, papel_id])
-
   @@map("tbusuariopapeis")
 }
 
 model Status {
-  id Int @id
+  id        Int    @id
   descricao String
 
   @@map("tbstatus")
 }
 
 model TipoWebService {
-  id Int @id
-  nome String
+  id        Int     @id
+  nome      String
+  sigla     String
   descricao String
-  status Int
+  publicar  Boolean
+  consumir  Boolean
+  status    Int
 
   @@map("tbtipowebservices")
 }
 
 model WebService {
-  id Int @id
-  nome String
+  id        Int     @id
+  nome      String
   descricao String
-  prover Boolean
-  consumir Boolean
-  status Int
+  prover    Boolean
+  consumir  Boolean
+  status    Int
 
   @@map("tbwebservices")
 }
 
 model TipoBases {
-  id Int @id
+  id     Int    @id
+  nome   String
+  icone  String
+  status String
 
   @@map("tbtipobases")
 }
 
 model Bases {
-  id Int @id
+  id            Int       @id
+  nome          String
+  user          String
+  password      String
+  db_connection String
+  host          String
+  emp           Int
+  fil           Int
+  tipobase_id   Int
+  url           String
+  ip            String
+  permissao     Int
+  status        Int
+  posts         Tabelas[]
 
   @@map("tbbases")
 }
@@ -161,19 +180,44 @@ model Rotas {
 }
 
 model Tabelas {
-  id Int @id
+  id            Int             @id
+  nome          String
+  scheme        String
+  base          Bases           @relation(fields: [base_id], references: [id])
+  base_id       Int
+  permissao     Int
+  status        Int
+  TabelaOrigem  TabelaLigacao[] @relation("TabelaOrigem")
+  TabelaDestino TabelaLigacao[] @relation("TabelaDestino")
 
   @@map("tbtabelas")
 }
 
 model Colunas {
-  id Int @id
+  id            Int             @id
+  nome          String
+  pk            String
+  fk            String
+  tabela_id     Int
+  permissao     Int
+  status        Int
+  ColunaOrigem  TabelaLigacao[] @relation("ColunaOrigem")
+  ColunaDestino TabelaLigacao[] @relation("ColunaDestino")
 
   @@map("tbcolunas")
 }
 
 model TabelaLigacao {
-  id Int @id
+  tabela_origem     Tabelas @relation(name: "TabelaOrigem", fields: [tabela_origem_id], references: [id])
+  coluna_origem     Colunas @relation(name: "ColunaOrigem", fields: [coluna_origem_id], references: [id])
+  tabela_destino    Tabelas @relation(name: "TabelaDestino", fields: [tabela_destino_id], references: [id])
+  coluna_destino    Colunas @relation(name: "ColunaDestino", fields: [coluna_destino_id], references: [id])
+  tabela_origem_id  Int
+  coluna_origem_id  Int
+  tabela_destino_id Int
+  coluna_destino_id Int
 
+
+  @@id([tabela_origem_id, coluna_origem_id, tabela_destino_id, coluna_destino_id])
   @@map("tbtabelaligacoes")
 }

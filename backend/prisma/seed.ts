@@ -15,6 +15,17 @@ async function main() {
             email: "admin@admin.com",
             email_verified: false,
             password: passwordHash,
+            status: {
+              connectOrCreate: {
+                where: {
+                  id: 1
+                },
+                create: {
+                  nome: "Ativo",
+                  descricao: "Ativo"
+                }
+              }
+            }
         },
         {
             name: "Pedro Artur Buzzi Pereira",
@@ -22,6 +33,17 @@ async function main() {
             email: "admin2@admin.com",
             email_verified: false,
             password: passwordHash,
+            status: {
+              connectOrCreate: {
+                where: {
+                  id: 2
+                },
+                create: {
+                  nome: "Inativo",
+                  descricao: "Inativo"
+                }
+              }
+            }
         }
     ]
     

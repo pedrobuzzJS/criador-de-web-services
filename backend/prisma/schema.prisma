@@ -19,6 +19,7 @@ model Users {
   password           String
   remember_token     String?
   status_id          Int?
+  status             Status?            @relation(fields: [status_id], references: [id])
   created_at         DateTime?          @default(now())
   updated_at         String?
   usuario_permissoes UsuarioPermissao[]
@@ -57,6 +58,8 @@ model Menus {
   acao_id      Int
   papel        Int
   permissao    Int
+  status_id    Int?
+  status       Status? @relation(fields: [status_id], references: [id])
 
   @@map("tbmenus")
 }
@@ -99,7 +102,6 @@ model UsuarioPermissao {
   permissao_id Int
   permissao    Permissao @relation(fields: [permissao_id], references: [id])
 
-
   @@id([usuario_id, permissao_id])
   @@map("tbusuariopermissoes")
 }
@@ -110,14 +112,24 @@ model UsuarioPapel {
   papel_id   Int
   Papel      Papel @relation(fields: [papel_id], references: [id])
 
-
   @@id([usuario_id, papel_id])
   @@map("tbusuariopapeis")
 }
 
 model Status {
-  id        Int    @id
-  descricao String
+  id              Int              @id @default(autoincrement())
+  nome            String
+  descricao       String
+  Menus           Menus[]
+  Users           Users[]
+  TipoWebServises TipoWebService[]
+  Bases           Bases[]
+  Tabelas         Tabelas[]
+  TabelasLigacoes TabelaLigacao[]
+  WebServices     WebService[]
+  TipoBase        TipoBases[]
+  Rotas           Rotas[]
+  Colunas         Colunas[]
 
   @@map("tbstatus")
 }
@@ -129,7 +141,8 @@ model TipoWebService {
   descricao String
   publicar  Boolean
   consumir  Boolean
-  status    Int
+  status_id Int?
+  status    Status? @relation(fields: [status_id], references: [id])
 
   @@map("tbtipowebservices")
 }
@@ -140,16 +153,18 @@ model WebService {
   descricao String
   prover    Boolean
   consumir  Boolean
-  status    Int
+  status_id Int?
+  status    Status? @relation(fields: [status_id], references: [id])
 
   @@map("tbwebservices")
 }
 
 model TipoBases {
-  id     Int    @id
-  nome   String
-  icone  String
-  status String
+  id        Int     @id
+  nome      String
+  icone     String
+  status_id Int?
+  status    Status? @relation(fields: [status_id], references: [id])
 
   @@map("tbtipobases")
 }
@@ -167,14 +182,17 @@ model Bases {
   url           String
   ip            String
   permissao     Int
-  status        Int
   posts         Tabelas[]
+  status_id     Int?
+  status        Status?   @relation(fields: [status_id], references: [id])
 
   @@map("tbbases")
 }
 
 model Rotas {
-  id Int @id
+  id        Int     @id
+  status_id Int
+  status    Status? @relation(fields: [status_id], references: [id])
 
   @@map("tbrotas")
 }
@@ -186,9 +204,10 @@ model Tabelas {
   base          Bases           @relation(fields: [base_id], references: [id])
   base_id       Int
   permissao     Int
-  status        Int
   TabelaOrigem  TabelaLigacao[] @relation("TabelaOrigem")
   TabelaDestino TabelaLigacao[] @relation("TabelaDestino")
+  status_id     Int?
+  status        Status?         @relation(fields: [status_id], references: [id])
 
   @@map("tbtabelas")
 }
@@ -200,9 +219,10 @@ model Colunas {
   fk            String
   tabela_id     Int
   permissao     Int
-  status        Int
   ColunaOrigem  TabelaLigacao[] @relation("ColunaOrigem")
   ColunaDestino TabelaLigacao[] @relation("ColunaDestino")
+  status_id     Int?
+  status        Status?         @relation(fields: [status_id], references: [id])
 
   @@map("tbcolunas")
 }
@@ -216,7 +236,8 @@ model TabelaLigacao {
   coluna_origem_id  Int
   tabela_destino_id Int
   coluna_destino_id Int
-
+  status_id         Int?
+  status            Status? @relation(fields: [status_id], references: [id])
 
   @@id([tabela_origem_id, coluna_origem_id, tabela_destino_id, coluna_destino_id])
   @@map("tbtabelaligacoes")

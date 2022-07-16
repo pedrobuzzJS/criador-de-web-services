@@ -47,6 +47,7 @@ CREATE TABLE "tbmenus" (
     "acao_id" INTEGER NOT NULL,
     "papel" INTEGER NOT NULL,
     "permissao" INTEGER NOT NULL,
+    "status_id" INTEGER,
 
     CONSTRAINT "tbmenus_pkey" PRIMARY KEY ("id")
 );
@@ -204,6 +205,12 @@ CREATE UNIQUE INDEX "tbusuarios_username_key" ON "tbusuarios"("username");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "tbusuarios_email_key" ON "tbusuarios"("email");
+
+-- AddForeignKey
+ALTER TABLE "tbusuarios" ADD CONSTRAINT "tbusuarios_status_id_fkey" FOREIGN KEY ("status_id") REFERENCES "tbstatus"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "tbmenus" ADD CONSTRAINT "tbmenus_status_id_fkey" FOREIGN KEY ("status_id") REFERENCES "tbstatus"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "tbpapelpermissoes" ADD CONSTRAINT "tbpapelpermissoes_papel_id_fkey" FOREIGN KEY ("papel_id") REFERENCES "tbpapeis"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

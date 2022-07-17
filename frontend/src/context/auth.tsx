@@ -17,10 +17,6 @@ const AuthProvider: React.FC = ({children}) => {
         setUser(response.user);
     }
 
-    async function signOut() {
-        await setUser(null);
-    }
-
     return (
         <AuthContext.Provider value={{signed: !!user, user, singIn, signOut}}>
             {children}

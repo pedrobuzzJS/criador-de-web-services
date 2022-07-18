@@ -8,7 +8,7 @@ interface IUserRequest {
     password: string;
 }
 
-class CreateUserUseCase {
+export class CreateUserUseCase {
 
     async execute({ name, username, email, password }: IUserRequest ) {
         const userAlreadyExists = await client.users.findFirst({
@@ -36,6 +36,3 @@ class CreateUserUseCase {
     }
 
 }
-
-export { CreateUserUseCase };
-

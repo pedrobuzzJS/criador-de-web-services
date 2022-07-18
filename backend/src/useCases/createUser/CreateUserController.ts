@@ -6,9 +6,9 @@ class CreateUserController {
     static async handle(request: Request, reponse: Response) {
         const { name, username, email, password } = request.body;
 
-        const createUserController = new CreateUserUseCase();
+        const createUserUseCase = new CreateUserUseCase();
 
-        const user = await createUserController.execute({
+        const user = await createUserUseCase.execute({
             name,
             username,
             email,

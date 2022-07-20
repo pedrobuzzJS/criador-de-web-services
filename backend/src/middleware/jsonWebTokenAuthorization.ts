@@ -18,7 +18,8 @@ export function tokenAuthenticate(
     const [, token] = authToken.split(" ");
 
     try {
-        verify(token, `${process.env.JWT_SECRET}`);
+        // verify(token, `${process.env.JWT_SECRET}`);
+        verify(token, "d13bf4cd-c6f6-4164-8ab7-207fec130d21");
         return next();
     } catch(err) {
         return response.status(401).json({

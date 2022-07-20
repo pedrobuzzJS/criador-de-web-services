@@ -37,7 +37,7 @@ class AutenticateUerUseCase {
         const token = await sign({
             id: userAlreadyExists.id,
             username: userAlreadyExists.username,
-        }, `${process.env.JWT_SECRET}`,
+        }, "d13bf4cd-c6f6-4164-8ab7-207fec130d21",
         {
             algorithm: "HS512",
             subject: userAlreadyExists.id.toString(),

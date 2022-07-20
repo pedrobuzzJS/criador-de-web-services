@@ -1,4 +1,17 @@
+import { client } from "../../infra/prisma/client";
 
-class ListUserUseCase {
+export class ListUserUseCase {
+
+    async execute() {
+        const users = await client.users.findMany({
+          orderBy: {
+            id: 'desc'
+          }  
+        });
+
+        if (!users) {
+            throw new Error("Sem retorno do banco");
+        }
+    }
 
 }

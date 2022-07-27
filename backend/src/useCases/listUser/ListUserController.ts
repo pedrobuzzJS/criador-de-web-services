@@ -7,7 +7,7 @@ class ListUserController {
 
         const users = listUserUseCase.execute();
 
-        return users;
+        return {users};
 
     }
 }

@@ -1,7 +1,7 @@
 import { Router } from "express";
 import AuthencitateUserController from "../../../useCases/autenticateUser/AutenticateUserController";
 import CreateUserController from "../../../useCases/createUser/CreateUserController";
-import ListTableController from "../../../useCases/tableCase/ListTableController";
+import ListTableController from "../../../useCases/listTable/ListTableController";
 
 const Routes = Router();
 

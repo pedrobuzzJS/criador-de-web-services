@@ -49,17 +49,20 @@ model Acoes {
 }
 
 model Menus {
-  id           Int     @id
-  descricao    String
+  id           Int       @id
+  nome         String
+  parametros   String
+  rota         String?
   icone        String
+  pai_id       Int?
   ordem        Int
-  desabilitado Boolean @default(false)
-  pai_id       Int
-  acao_id      Int
-  papel        Int
-  permissao    Int
+  desabilitado Boolean   @default(false)
+  papel        Int?
+  permissao    Int?
   status_id    Int?
-  status       Status? @relation(fields: [status_id], references: [id])
+  status       Status?   @relation(fields: [status_id], references: [id])
+  created_at   DateTime? @default(now())
+  updated_at   DateTime?
 
   @@map("tbmenus")
 }
@@ -198,12 +201,12 @@ model Rotas {
 }
 
 model Tabelas {
-  id            Int             @id
+  id            Int             @id @default(autoincrement())
   nome          String
   scheme        String
-  base          Bases           @relation(fields: [base_id], references: [id])
-  base_id       Int
-  permissao     Int
+  base          Bases?          @relation(fields: [base_id], references: [id])
+  base_id       Int?
+  permissao     Int?
   TabelaOrigem  TabelaLigacao[] @relation("TabelaOrigem")
   TabelaDestino TabelaLigacao[] @relation("TabelaDestino")
   status_id     Int?

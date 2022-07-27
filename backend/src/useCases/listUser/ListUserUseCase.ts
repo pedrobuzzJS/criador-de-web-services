@@ -1,3 +1,4 @@
+import { response } from 'express';
 import { client } from "../../infra/prisma/client";
 
 export class ListUserUseCase {
@@ -12,6 +13,8 @@ export class ListUserUseCase {
         if (!users) {
             throw new Error("Sem retorno do banco");
         }
+
+        return response.json(users);
     }
 
 }

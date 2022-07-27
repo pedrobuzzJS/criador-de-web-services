@@ -1,36 +1,36 @@
 import React, { InputHTMLAttributes, useCallback, useState } from "react";
-import { currency, cep, cpf, nullMask } from "../Masks/Masks";
 import { emailValidation } from "../../FormValidations/FormValidations";
+import { cep, cpf, currency, nullMask } from "../Masks/Masks";
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-    type: "text" | "email" | "password" | "button" | "color" | "file";
-    mask?: "cpf" | "currency" | "cep";
+    type:   "text" | "email" | "password" | "button" | 
+            "color" | "file" | "cpf" | "currency" | "cep";
     prefix?: string;
     spanText?: string;
 }
 
-const Input: React.FC<InputProps> = ({ type, mask, prefix, spanText, ...props }) => {
+const Input: React.FC<InputProps> = ({ type, prefix, spanText, ...props }) => {
     const [ isFocused, setIsFocused ] = useState<Boolean>(false);
     const [ isFilled, setIsFilled ] = useState<Boolean>(false);
 
     const handleKeyUp = useCallback(
         (e: React.FormEvent<HTMLInputElement>) => {        
-            if (mask === "cep") {
+            if (type === "cep") {
                 cep(e);
             }
-            if (mask === "currency") {
+            if (type === "currency") {
                 currency(e);
             }
-            if (mask === "cpf") {
+            if (type === "cpf") {
                 cpf(e);
             }
             if (type === "email") {
                 emailValidation(e);
             }
-            if (!mask) {
+            if (!type) {
                 nullMask(e);
             }
         }, 
-        [mask]
+        [type]
     );
 
     return (

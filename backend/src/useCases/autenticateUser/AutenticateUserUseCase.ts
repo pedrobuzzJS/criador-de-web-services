@@ -9,6 +9,15 @@ interface IUserAutenticateRequest {
     // email?:string;
     password:string;
 }
+
+const colunms = {
+    id: true,
+    username: true,
+    password: true
+}
+
+const tabela = "users";
+
 class AutenticateUerUseCase {
 
     async execute({ username, password }: IUserAutenticateRequest) {
@@ -18,9 +27,7 @@ class AutenticateUerUseCase {
                 username
             },
             select: {
-                id: true,
-                username: true,
-                password: true
+                ...colunms  
             }
         })
 

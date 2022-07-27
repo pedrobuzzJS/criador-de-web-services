@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
 import axios, { AxiosRequestConfig } from "axios";
+import { useEffect, useState } from "react";
 
 const api = axios.create({
-    baseURL: 'www.google.com'
+    baseURL: 'http://localhost:3333/'
 });
 
 export function useFetch<T = unknown>(url: string, options?: AxiosRequestConfig) {

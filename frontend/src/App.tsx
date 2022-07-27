@@ -1,7 +1,7 @@
-import React, { useState, useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import Input from "./components/Inputs/InputDefault";
 // import Layout from "./components/Layout";
-import GlobalStyles from "./styles/GlobalStyles"
+import GlobalStyles from "./styles/GlobalStyles";
 
 interface Usuario {
   cep: string;
@@ -34,7 +34,7 @@ const App: React.FC = () => {
       />
 
       <button className="button" onClick={() => console.log(usuario)}>
-        Salvar
+        Enviar
       </button>
       <GlobalStyles />
     </>

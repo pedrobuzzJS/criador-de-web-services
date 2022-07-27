@@ -7,13 +7,15 @@ interface IUserRequest {
     email: string;
     password: string;
 }
-
 export class CreateUserUseCase {
 
     async execute({ name, username, email, password }: IUserRequest ) {
         const userAlreadyExists = await client.users.findFirst({
             where: {
                 username
+            },
+            select: {
+
             }
         });
 

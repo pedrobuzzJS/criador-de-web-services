@@ -39,15 +39,18 @@ CREATE TABLE "tbacoes" (
 -- CreateTable
 CREATE TABLE "tbmenus" (
     "id" INTEGER NOT NULL,
-    "descricao" TEXT NOT NULL,
+    "nome" TEXT NOT NULL,
+    "parametros" TEXT NOT NULL,
+    "rota" TEXT NOT NULL,
     "icone" TEXT NOT NULL,
+    "pai_id" INTEGER NOT NULL,
     "ordem" INTEGER NOT NULL,
     "desabilitado" BOOLEAN NOT NULL DEFAULT false,
-    "pai_id" INTEGER NOT NULL,
-    "acao_id" INTEGER NOT NULL,
-    "papel" INTEGER NOT NULL,
-    "permissao" INTEGER NOT NULL,
+    "papel" INTEGER,
+    "permissao" INTEGER,
     "status_id" INTEGER,
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "tbmenus_pkey" PRIMARY KEY ("id")
 );
@@ -98,7 +101,8 @@ CREATE TABLE "tbusuariopapeis" (
 
 -- CreateTable
 CREATE TABLE "tbstatus" (
-    "id" INTEGER NOT NULL,
+    "id" SERIAL NOT NULL,
+    "nome" TEXT NOT NULL,
     "descricao" TEXT NOT NULL,
 
     CONSTRAINT "tbstatus_pkey" PRIMARY KEY ("id")
@@ -112,7 +116,7 @@ CREATE TABLE "tbtipowebservices" (
     "descricao" TEXT NOT NULL,
     "publicar" BOOLEAN NOT NULL,
     "consumir" BOOLEAN NOT NULL,
-    "status" INTEGER NOT NULL,
+    "status_id" INTEGER,
 
     CONSTRAINT "tbtipowebservices_pkey" PRIMARY KEY ("id")
 );
@@ -124,7 +128,7 @@ CREATE TABLE "tbwebservices" (
     "descricao" TEXT NOT NULL,
     "prover" BOOLEAN NOT NULL,
     "consumir" BOOLEAN NOT NULL,
-    "status" INTEGER NOT NULL,
+    "status_id" INTEGER,
 
     CONSTRAINT "tbwebservices_pkey" PRIMARY KEY ("id")
 );
@@ -134,7 +138,7 @@ CREATE TABLE "tbtipobases" (
     "id" INTEGER NOT NULL,
     "nome" TEXT NOT NULL,
     "icone" TEXT NOT NULL,
-    "status" TEXT NOT NULL,
+    "status_id" INTEGER,
 
     CONSTRAINT "tbtipobases_pkey" PRIMARY KEY ("id")
 );
@@ -153,7 +157,7 @@ CREATE TABLE "tbbases" (
     "url" TEXT NOT NULL,
     "ip" TEXT NOT NULL,
     "permissao" INTEGER NOT NULL,
-    "status" INTEGER NOT NULL,
+    "status_id" INTEGER,
 
     CONSTRAINT "tbbases_pkey" PRIMARY KEY ("id")
 );
@@ -161,6 +165,7 @@ CREATE TABLE "tbbases" (
 -- CreateTable
 CREATE TABLE "tbrotas" (
     "id" INTEGER NOT NULL,
+    "status_id" INTEGER NOT NULL,
 
     CONSTRAINT "tbrotas_pkey" PRIMARY KEY ("id")
 );
@@ -172,7 +177,7 @@ CREATE TABLE "tbtabelas" (
     "scheme" TEXT NOT NULL,
     "base_id" INTEGER NOT NULL,
     "permissao" INTEGER NOT NULL,
-    "status" INTEGER NOT NULL,
+    "status_id" INTEGER,
 
     CONSTRAINT "tbtabelas_pkey" PRIMARY KEY ("id")
 );
@@ -185,7 +190,7 @@ CREATE TABLE "tbcolunas" (
     "fk" TEXT NOT NULL,
     "tabela_id" INTEGER NOT NULL,
     "permissao" INTEGER NOT NULL,
-    "status" INTEGER NOT NULL,
+    "status_id" INTEGER,
 
     CONSTRAINT "tbcolunas_pkey" PRIMARY KEY ("id")
 );
@@ -196,6 +201,7 @@ CREATE TABLE "tbtabelaligacoes" (
     "coluna_origem_id" INTEGER NOT NULL,
     "tabela_destino_id" INTEGER NOT NULL,
     "coluna_destino_id" INTEGER NOT NULL,
+    "status_id" INTEGER,
 
     CONSTRAINT "tbtabelaligacoes_pkey" PRIMARY KEY ("tabela_origem_id","coluna_origem_id","tabela_destino_id","coluna_destino_id")
 );
@@ -231,7 +237,31 @@ ALTER TABLE "tbusuariopapeis" ADD CONSTRAINT "tbusuariopapeis_usuario_id_fkey" F
 ALTER TABLE "tbusuariopapeis" ADD CONSTRAINT "tbusuariopapeis_papel_id_fkey" FOREIGN KEY ("papel_id") REFERENCES "tbpapeis"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "tbtipowebservices" ADD CONSTRAINT "tbtipowebservices_status_id_fkey" FOREIGN KEY ("status_id") REFERENCES "tbstatus"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "tbwebservices" ADD CONSTRAINT "tbwebservices_status_id_fkey" FOREIGN KEY ("status_id") REFERENCES "tbstatus"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "tbtipobases" ADD CONSTRAINT "tbtipobases_status_id_fkey" FOREIGN KEY ("status_id") REFERENCES "tbstatus"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "tbbases" ADD CONSTRAINT "tbbases_status_id_fkey" FOREIGN KEY ("status_id") REFERENCES "tbstatus"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "tbrotas" ADD CONSTRAINT "tbrotas_status_id_fkey" FOREIGN KEY ("status_id") REFERENCES "tbstatus"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "tbtabelas" ADD CONSTRAINT "tbtabelas_status_id_fkey" FOREIGN KEY ("status_id") REFERENCES "tbstatus"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "tbtabelas" ADD CONSTRAINT "tbtabelas_base_id_fkey" FOREIGN KEY ("base_id") REFERENCES "tbbases"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "tbcolunas" ADD CONSTRAINT "tbcolunas_status_id_fkey" FOREIGN KEY ("status_id") REFERENCES "tbstatus"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "tbtabelaligacoes" ADD CONSTRAINT "tbtabelaligacoes_status_id_fkey" FOREIGN KEY ("status_id") REFERENCES "tbstatus"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "tbtabelaligacoes" ADD CONSTRAINT "tbtabelaligacoes_tabela_origem_id_fkey" FOREIGN KEY ("tabela_origem_id") REFERENCES "tbtabelas"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

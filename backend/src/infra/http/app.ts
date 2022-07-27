@@ -1,6 +1,7 @@
+import { Response } from 'express';
 // import cors from "cors";
+import express, { NextFunction, Request } from "express";
 import "express-async-errors";
-import express, { Request, Response, NextFunction } from "express";
 import Routes from "./routes/index.routes";
 
 const app = express();
@@ -22,10 +23,10 @@ app.use(Routes);
 app.use(
     (err: Error, request: Request, response: Response, next: NextFunction) => {
         return response.json({
-            status: "Error",
+            status: response.status(500),
             message: err.message,
         })
     }
-)
+);
 
 export { app };

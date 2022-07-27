@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes, useCallback, useState } from "react";
+import React, { InputHTMLAttributes, useCallback, useRef, useState } from "react";
 import { emailValidation } from "../../FormValidations/FormValidations";
 import { cep, cpf, currency, nullMask } from "../Masks/Masks";
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -11,7 +11,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 const Input: React.FC<InputProps> = ({ type, prefix, spanText, ...props }) => {
     const [ isFocused, setIsFocused ] = useState<Boolean>(false);
     const [ isFilled, setIsFilled ] = useState<Boolean>(false);
-
+    const inputRef = useRef<HTMLInputElement>(null);
     const handleKeyUp = useCallback(
         (e: React.FormEvent<HTMLInputElement>) => {        
             if (type === "cep") {
@@ -38,7 +38,7 @@ const Input: React.FC<InputProps> = ({ type, prefix, spanText, ...props }) => {
             {spanText && <span>{spanText}</span>}
             <br />
             {prefix && <span>{prefix}</span>}
-            <input { ...props } onKeyUp={handleKeyUp} />
+            <input ref={inputRef} type={type} {...props} onKeyUp={handleKeyUp} />
         </div>
     )
 };

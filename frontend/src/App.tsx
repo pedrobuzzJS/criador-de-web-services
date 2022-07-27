@@ -32,6 +32,38 @@ const App: React.FC = () => {
         placeholder="E-mail"
         onChange={handleChange}
       />
+      <Input
+        spanText="CEP"
+        // prefix="CEP"
+        name="cep"
+        type="cep"
+        placeholder="CEP"
+        onChange={handleChange}
+      />
+      <Input
+        spanText="CPF"
+        // prefix="CPF"
+        name="cpf"
+        type="cpf"
+        placeholder="CPF"
+        onChange={handleChange}
+      />
+      <Input
+        spanText="Password"
+        // prefix="E-mail"
+        name="password"
+        type="password"
+        placeholder="Password"
+        onChange={handleChange}
+      />
+      <Input
+        spanText="File"
+        // prefix="E-mail"
+        name="file"
+        type="file"
+        placeholder="File"
+        onChange={handleChange}
+      />
 
       <button className="button" onClick={() => console.log(usuario)}>
         Enviar

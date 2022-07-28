@@ -12,6 +12,7 @@ const Input: React.FC<InputProps> = ({ type, prefix, spanText, ...props }) => {
     const [ isFocused, setIsFocused ] = useState<Boolean>(false);
     const [ isFilled, setIsFilled ] = useState<Boolean>(false);
     const inputRef = useRef<HTMLInputElement>(null);
+    
     const handleKeyUp = useCallback(
         (e: React.FormEvent<HTMLInputElement>) => {        
             if (type === "cep") {

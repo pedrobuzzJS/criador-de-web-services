@@ -1,6 +1,6 @@
 import React from "react";
+import Menu from "../Menu/Menu";
 import { Grid } from './styles';
-import Menu from "../Menu";
 
 const Layout: React.FC = () => {
     return (

@@ -1,6 +1,5 @@
 import React from "react";
-import { Menu } from "./components/Menu/styles";
-import GlobalStyles from "./styles/GlobalStyles";
+import Layout from "./components/Layout/Layout";
 
 // interface Usuario {
 //   cep: string;
@@ -23,8 +22,7 @@ const App: React.FC = () => {
 
   return (
     <>
-      <Menu />
-      <GlobalStyles />
+      <Layout />
     </>
   )
 };

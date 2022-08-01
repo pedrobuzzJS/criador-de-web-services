@@ -13,19 +13,10 @@ const Menu: React.FC = () => {
                     <a href="https://www.google.com" target="_blank">Google</a>
                 </li>
                 <li>
-                    <a href="#">Menu Coisado</a>
+                    <a href="/pagea">Page A</a>
                 </li>
                 <li>
-                    <a href="#">Menu Coisado</a>
-                </li>
-                <li>
-                    <a href="#">Menu Coisado</a>
-                </li>
-                <li>
-                    <a href="#">Menu Coisado</a>
-                </li>
-                <li>
-                    <a href="#">Menu Coisado</a>
+                    <a href="/pageb">Page B</a>
                 </li>
             </ListaMenu>
 

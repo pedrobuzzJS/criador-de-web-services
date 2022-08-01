@@ -1,5 +1,6 @@
 import React from "react";
-import Layout from "./components/Layout/Layout";
+// import Layout from "./components/Layout/Layout";
+import Menu from "./components/Menu/Menu";
 
 // interface Usuario {
 //   cep: string;
@@ -22,7 +23,7 @@ const App: React.FC = () => {
 
   return (
     <>
-      <Layout />
+      <Menu />
     </>
   )
 };

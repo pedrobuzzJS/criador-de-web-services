@@ -41,16 +41,16 @@ CREATE TABLE "tbmenus" (
     "id" INTEGER NOT NULL,
     "nome" TEXT NOT NULL,
     "parametros" TEXT NOT NULL,
-    "rota" TEXT NOT NULL,
+    "rota" TEXT,
     "icone" TEXT NOT NULL,
-    "pai_id" INTEGER NOT NULL,
+    "pai_id" INTEGER,
     "ordem" INTEGER NOT NULL,
     "desabilitado" BOOLEAN NOT NULL DEFAULT false,
     "papel" INTEGER,
     "permissao" INTEGER,
     "status_id" INTEGER,
-    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL,
+    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3),
 
     CONSTRAINT "tbmenus_pkey" PRIMARY KEY ("id")
 );
@@ -114,8 +114,6 @@ CREATE TABLE "tbtipowebservices" (
     "nome" TEXT NOT NULL,
     "sigla" TEXT NOT NULL,
     "descricao" TEXT NOT NULL,
-    "publicar" BOOLEAN NOT NULL,
-    "consumir" BOOLEAN NOT NULL,
     "status_id" INTEGER,
 
     CONSTRAINT "tbtipowebservices_pkey" PRIMARY KEY ("id")
@@ -128,6 +126,7 @@ CREATE TABLE "tbwebservices" (
     "descricao" TEXT NOT NULL,
     "prover" BOOLEAN NOT NULL,
     "consumir" BOOLEAN NOT NULL,
+    "varsao" DOUBLE PRECISION NOT NULL,
     "status_id" INTEGER,
 
     CONSTRAINT "tbwebservices_pkey" PRIMARY KEY ("id")
@@ -172,11 +171,11 @@ CREATE TABLE "tbrotas" (
 
 -- CreateTable
 CREATE TABLE "tbtabelas" (
-    "id" INTEGER NOT NULL,
+    "id" SERIAL NOT NULL,
     "nome" TEXT NOT NULL,
     "scheme" TEXT NOT NULL,
-    "base_id" INTEGER NOT NULL,
-    "permissao" INTEGER NOT NULL,
+    "base_id" INTEGER,
+    "permissao" INTEGER,
     "status_id" INTEGER,
 
     CONSTRAINT "tbtabelas_pkey" PRIMARY KEY ("id")
@@ -255,7 +254,7 @@ ALTER TABLE "tbrotas" ADD CONSTRAINT "tbrotas_status_id_fkey" FOREIGN KEY ("stat
 ALTER TABLE "tbtabelas" ADD CONSTRAINT "tbtabelas_status_id_fkey" FOREIGN KEY ("status_id") REFERENCES "tbstatus"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "tbtabelas" ADD CONSTRAINT "tbtabelas_base_id_fkey" FOREIGN KEY ("base_id") REFERENCES "tbbases"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "tbtabelas" ADD CONSTRAINT "tbtabelas_base_id_fkey" FOREIGN KEY ("base_id") REFERENCES "tbbases"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "tbcolunas" ADD CONSTRAINT "tbcolunas_status_id_fkey" FOREIGN KEY ("status_id") REFERENCES "tbstatus"("id") ON DELETE SET NULL ON UPDATE CASCADE;

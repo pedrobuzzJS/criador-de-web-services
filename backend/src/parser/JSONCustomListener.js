@@ -1,6 +1,13 @@
 import JSONListener from "./JSONListener";
 
 export default class JsonCustomListener extends JSONListener {
+
+	buildSQLFromJson(command) {
+		return {
+			command 
+		}
+	}
+
     // Enter a parse tree produced by JSONParser#json.
 	enterJson(ctx) {
 	}

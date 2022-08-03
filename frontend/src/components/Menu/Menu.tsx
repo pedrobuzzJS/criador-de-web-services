@@ -7,7 +7,6 @@ const Menu: React.FC = () => {
 
     return (
         <Container>
-
             <ListaMenu>
                 <li>
                     <a href="https://www.google.com" target="_blank">Google</a>
@@ -19,7 +18,6 @@ const Menu: React.FC = () => {
                     <a href="/pageb">Page B</a>
                 </li>
             </ListaMenu>
-
         </Container>
     )
 };

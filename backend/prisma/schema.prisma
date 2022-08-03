@@ -142,8 +142,6 @@ model TipoWebService {
   nome      String
   sigla     String
   descricao String
-  publicar  Boolean
-  consumir  Boolean
   status_id Int?
   status    Status? @relation(fields: [status_id], references: [id])
 
@@ -156,6 +154,7 @@ model WebService {
   descricao String
   prover    Boolean
   consumir  Boolean
+  varsao    Float
   status_id Int?
   status    Status? @relation(fields: [status_id], references: [id])
 

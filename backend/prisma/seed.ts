@@ -73,7 +73,7 @@ async function main() {
         status: {
           connectOrCreate: {
             where: {
-              id: 2
+              id: 1
             },
             create: {
               nome: "Ativo",

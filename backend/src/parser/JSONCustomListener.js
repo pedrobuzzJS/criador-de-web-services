@@ -4,7 +4,7 @@ export default class JsonCustomListener extends JSONListener {
 
 	buildSQLFromJson(command) {
 		return {
-			command 
+			command
 		}
 	}
 

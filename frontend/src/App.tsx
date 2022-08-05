@@ -1,14 +1,9 @@
 import React from "react";
-import Menu from "./components/Menu/Menu";
-import ToolBar from "./components/ToolBar/ToolBar";
 
 const App: React.FC = () => {
 
   return (
-    <>
-      <ToolBar />
-      <Menu />
-    </>
+    <h1>App</h1>
   )
 };
 

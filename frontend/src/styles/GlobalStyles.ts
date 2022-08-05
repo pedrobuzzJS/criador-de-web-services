@@ -9,7 +9,7 @@ export default createGlobalStyle`
 
     html, border-style, #root {
         height: 100%;
-        background-color: #eee;
+        background-color: blue;
     }
 
     *, button, input {

@@ -1,16 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import App from './App';
+import { SideBar } from './components/SideBar/SideBar';
+import { Login } from './pages/login';
+import { PageA } from "./pages/pageA";
+import { PageB } from "./pages/pageB";
 import reportWebVitals from './reportWebVitals';
 import GlobalStyles from './styles/GlobalStyles';
-
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-      <App />
+      <BrowserRouter>
+        <SideBar />
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="pagea" element={<PageA />}/>
+          <Route path="pageb" element={<PageB />}/>
+          <Route path="login" element={<Login />}/>
+        </Routes>
+      </BrowserRouter>
       <GlobalStyles />
   </React.StrictMode>,
 );

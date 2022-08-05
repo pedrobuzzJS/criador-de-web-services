@@ -1,5 +1,5 @@
 import React from "react";
 
 export const PageB: React.FC = () => {
-    return <h1>PageA</h1>
+    return <h1>PageB</h1>
 }

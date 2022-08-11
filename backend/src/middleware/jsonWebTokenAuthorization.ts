@@ -2,7 +2,7 @@ require('dotenv').config();
 import { NextFunction, Request, Response } from "express";
 import { verify } from "jsonwebtoken";
 
-export function tokenAuthenticate(
+function tokenAuthenticate(
     request: Request,
     response: Response,
     next: NextFunction
@@ -27,3 +27,5 @@ export function tokenAuthenticate(
         })
     }
 }
+
+export default tokenAuthenticate;

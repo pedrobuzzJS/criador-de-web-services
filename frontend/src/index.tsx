@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import App from './App';
 import { SideBar } from './components/SideBar/SideBar';
-import { Login } from './pages/login';
-import { PageA } from "./pages/pageA";
-import { PageB } from "./pages/pageB";
+import { Login } from './pages/Login/login';
+import { PageA } from "./pages/PageA/pageA";
+import { PageB } from "./pages/PageB/pageB";
 import reportWebVitals from './reportWebVitals';
 import GlobalStyles from './styles/GlobalStyles';
 

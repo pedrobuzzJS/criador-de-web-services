@@ -3,14 +3,22 @@ import { Response } from 'express';
 import express, { NextFunction, Request } from "express";
 import "express-async-errors";
 import Routes from "./routes/index.routes";
+import cors from 'cors';
 
 const app = express();
 
 // app.use(
 //     cors({
-
+//         origin: 'http://localhost:3334'
 //     })
 // );
+
+app.use((request: Request, response: Response, next: NextFunction) => {
+    // console.log("tentativa de acesso");
+    response.header("Access-Control-Allow-Origin", "http://localhost:3000");
+    app.use(cors());
+    next();
+});
 
 app.use(
     express.json({

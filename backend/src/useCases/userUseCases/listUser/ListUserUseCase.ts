@@ -1,5 +1,5 @@
 import { response } from 'express';
-import { client } from "../../infra/prisma/client";
+import { client } from "../../../infra/prisma/client";
 
 export class ListUserUseCase {
 

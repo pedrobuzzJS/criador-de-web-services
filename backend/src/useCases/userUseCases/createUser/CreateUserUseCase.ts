@@ -1,5 +1,5 @@
 import { hash } from "bcrypt";
-import { client } from "../../infra/prisma/client";
+import { client } from "../../../infra/prisma/client";
 
 interface IUserRequest {
     name: string;

@@ -1,4 +1,4 @@
-import { client } from "../../infra/prisma/client";
+import { client } from "../../../infra/prisma/client";
 
 export class ListMenuUseCase {
 
@@ -8,8 +8,8 @@ export class ListMenuUseCase {
             select: {
                 id: true,
                 nome: true,
-                // parametros: true,
-                // rota: true,
+                parametros: true,
+                rota: true,
                 icone: true,
                 pai_id: true,
                 ordem: true,

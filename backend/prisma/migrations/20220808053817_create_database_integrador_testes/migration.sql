@@ -40,15 +40,15 @@ CREATE TABLE "tbacoes" (
 CREATE TABLE "tbmenus" (
     "id" INTEGER NOT NULL,
     "nome" TEXT NOT NULL,
-    "parametros" TEXT NOT NULL,
+    "parametros" TEXT,
     "rota" TEXT,
     "icone" TEXT NOT NULL,
     "pai_id" INTEGER,
-    "ordem" INTEGER NOT NULL,
+    "ordem" INTEGER,
     "desabilitado" BOOLEAN NOT NULL DEFAULT false,
     "papel" INTEGER,
     "permissao" INTEGER,
-    "status_id" INTEGER,
+    "status_id" INTEGER NOT NULL,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3),
 
@@ -215,7 +215,7 @@ CREATE UNIQUE INDEX "tbusuarios_email_key" ON "tbusuarios"("email");
 ALTER TABLE "tbusuarios" ADD CONSTRAINT "tbusuarios_status_id_fkey" FOREIGN KEY ("status_id") REFERENCES "tbstatus"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "tbmenus" ADD CONSTRAINT "tbmenus_status_id_fkey" FOREIGN KEY ("status_id") REFERENCES "tbstatus"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "tbmenus" ADD CONSTRAINT "tbmenus_status_id_fkey" FOREIGN KEY ("status_id") REFERENCES "tbstatus"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "tbpapelpermissoes" ADD CONSTRAINT "tbpapelpermissoes_papel_id_fkey" FOREIGN KEY ("papel_id") REFERENCES "tbpapeis"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

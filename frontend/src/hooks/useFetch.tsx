@@ -1,9 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { useEffect, useState } from "react";
-
-const api = axios.create({
-    baseURL: 'http://localhost:3333/'
-});
+import api from "../services/api";
 
 export function useFetch<T = unknown>(url: string, options?: AxiosRequestConfig) {
     const [ data, setData ] = useState<T | null>(null);
@@ -20,8 +17,8 @@ export function useFetch<T = unknown>(url: string, options?: AxiosRequestConfig)
         } )
         .finally( () => {
             setIsFetching(false);
-        } )
-    } )
+        })
+    }, [url] )
 
-    return { data, error, isFetching };
+    return [ data, error, isFetching ];
 }

@@ -1,7 +1,7 @@
 require('dotenv').config();
 import { compare } from "bcrypt";
 import { sign } from "jsonwebtoken";
-import { client } from "../../infra/prisma/client";
+import { client } from "../../../infra/prisma/client";
 
 interface IUserAutenticateRequest {
     // name?:string;

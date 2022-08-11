@@ -51,15 +51,17 @@ model Acoes {
 model Menus {
   id           Int       @id
   nome         String
-  parametros   String
+  parametros   String?
   rota         String?
   icone        String
   pai_id       Int?
-  ordem        Int
+  // menu_pai     Menus?    @relation("SelfMenus", fields: [pai_id], references: [id])
+  // menus_pais   Menus[]   @relation("SelfMenus")
+  ordem        Int?
   desabilitado Boolean   @default(false)
   papel        Int?
   permissao    Int?
-  status_id    Int?
+  status_id    Int
   status       Status?   @relation(fields: [status_id], references: [id])
   created_at   DateTime? @default(now())
   updated_at   DateTime?

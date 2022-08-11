@@ -1,4 +1,4 @@
-import { client } from "../../infra/prisma/client";
+import { client } from "../../../infra/prisma/client";
 
 export class ListTableUseCase {
 

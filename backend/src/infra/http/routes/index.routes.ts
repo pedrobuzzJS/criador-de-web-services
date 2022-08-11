@@ -1,8 +1,9 @@
 import { Router } from "express";
-import AuthencitateUserController from "../../../useCases/autenticateUser/AutenticateUserController";
-import CreateUserController from "../../../useCases/createUser/CreateUserController";
-import ListMenuController from "../../../useCases/listMenu/ListMenuController";
-import ListTableController from "../../../useCases/listTable/ListTableController";
+import AuthencitateUserController from "../../../useCases/userUseCases/autenticateUser/AutenticateUserController";
+import CreateUserController from "../../../useCases/userUseCases/createUser/CreateUserController";
+import ListMenuController from "../../../useCases/menuUseCases/listMenu/ListMenuController";
+import ListTableController from "../../../useCases/tableUseCases/listTable/ListTableController";
+import tokenAuthenticate from "../../../middleware/jsonWebTokenAuthorization";
 
 const Routes = Router();
 

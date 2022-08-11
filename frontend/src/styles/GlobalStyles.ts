@@ -9,13 +9,17 @@ export default createGlobalStyle`
 
     html, border-style, #root {
         height: 100%;
-        background-color: blue;
+        background-color: #eee;
     }
 
     *, button, input {
         border: 0;
         outline: 0;
         font-family: 'Roboto', sans-serif;
+    }
+
+    ul {
+        list-style: none;
     }
 
     :root {

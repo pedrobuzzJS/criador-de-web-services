@@ -15,7 +15,9 @@ const app = express();
 
 app.use((request: Request, response: Response, next: NextFunction) => {
     // console.log("tentativa de acesso");
-    response.header("Access-Control-Allow-Origin", "http://localhost:3000");
+    response.header(
+        "Access-Control-Allow-Origin",
+        "http://localhost:3000");
     app.use(cors());
     next();
 });
@@ -26,7 +28,6 @@ app.use(
     })
 );
 
-app.use(Routes);
 
 app.use(
     (err: Error, request: Request, response: Response, next: NextFunction) => {
@@ -35,6 +36,8 @@ app.use(
             message: err.message,
         })
     }
-);
+    );
+    
+app.use(Routes);
 
 export { app };

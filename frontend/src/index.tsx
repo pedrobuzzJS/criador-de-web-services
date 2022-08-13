@@ -21,6 +21,7 @@ root.render(
           <Route path="pagea" element={<PageA />}/>
           <Route path="pageb" element={<PageB />}/>
           <Route path="login" element={<Login />}/>
+          <Route path="login" element={<Login />}/>
         </Routes>
       </BrowserRouter>
       <GlobalStyles />

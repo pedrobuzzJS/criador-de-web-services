@@ -31,10 +31,26 @@ export const SideBarNav = styled.nav<SideBarNavProps>`
     position: fixed;
     top: 0;
     left: ${({ sideBar }) => (sideBar ? '0%' : '-100%')};
-    transition: 350ms;
+    transition: 400ms;
     z-index: 1000;
 `;
 
 export const SidebarWrap = styled.div`
     width: 100%;
+`;
+
+export const Lista = styled.ul`
+    width: 250px;
+    height: 100vh;
+    color: #eee;
+    justify-content: space-between;
+
+    > a {
+        text-decoration: none;
+        
+        &:hover {
+            background: #333030;
+            cursor: pointer;
+        }
+    }  
 `;

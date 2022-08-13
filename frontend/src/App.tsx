@@ -5,11 +5,6 @@ import { useFetch } from "./hooks/useFetch";
 import Input from "./components/Inputs/InputDefault/InputDefault";
 
 const App: React.FC = () => {
-  const [ menu, setMenu ] = useState();
-  const [data, isFetching, error] = useFetch("menu");
-
-  console.log(data);
-
   return (
     <>
     </>

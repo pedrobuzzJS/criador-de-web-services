@@ -7,9 +7,12 @@ export default createGlobalStyle`
         box-sizing: border-box;
     }
 
-    html, border-style, #root {
+    html, body, #root {
+        max-height: 100vh;
+        max-width: 100vw;
+        
         height: 100%;
-        background-color: #eee;
+        width: 100%;
     }
 
     *, button, input {
@@ -20,6 +23,10 @@ export default createGlobalStyle`
 
     ul {
         list-style: none;
+    }
+
+    html {
+        background: #eee;
     }
 
     :root {

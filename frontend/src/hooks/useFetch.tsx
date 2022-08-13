@@ -3,14 +3,14 @@ import { useEffect, useState } from "react";
 import api from "../services/api";
 
 export function useFetch<T = unknown>(url: string, options?: AxiosRequestConfig) {
-    const [ data, setData ] = useState<T | null>(null);
+    const [ data, setData ] = useState<T | null>();
     const [ isFetching, setIsFetching ] = useState<Boolean>(true);
     const [ error, setError] = useState<Error | null>(null);
 
     useEffect( () => {
         api.get(url)
         .then( response => {
-            setData(response.data);
+            setData(response.data.data);
         } )
         .catch( err => {
             setError(err);
@@ -20,5 +20,5 @@ export function useFetch<T = unknown>(url: string, options?: AxiosRequestConfig)
         })
     }, [url] )
 
-    return [ data, error, isFetching ];
+    return { data, error, isFetching };
 }

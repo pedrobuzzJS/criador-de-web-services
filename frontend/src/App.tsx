@@ -7,6 +7,7 @@ import Input from "./components/Inputs/InputDefault/InputDefault";
 const App: React.FC = () => {
   return (
     <>
+      <h1>App</h1>
     </>
   )
 };

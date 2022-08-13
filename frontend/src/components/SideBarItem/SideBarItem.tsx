@@ -17,13 +17,9 @@ export const SideBarItem: React.FC<LinkMenu> = ({ id, nome, rota, pai_id, ...pro
         console.log(subMenu);
     }
 
-    const recursiveMenuLoad = (data: LinkMenu[]) => {
-        return null;
-    }
-
     return (
         <>
-            <StyledLink to={rota ? rota : "#" }>
+            <StyledLink to={rota || "#" }>
                 <StyledMenuText>
                     <RiIcons.RiDashboardFill />
                     <span>{nome}</span>

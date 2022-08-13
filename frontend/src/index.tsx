@@ -12,20 +12,39 @@ import GlobalStyles from './styles/GlobalStyles';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+let Components = [
+  {
+    path: "pagea",
+    component: <PageA />
+  },
+  {
+    path: "pageb",
+    component: <PageB />
+  },
+  {
+    path: "login",
+    component: <Login />
+  },
+]
+
 root.render(
-  <React.StrictMode>
+  <>
       <BrowserRouter>
         <SideBar />
         <Routes>
           <Route path="/" element={<App />} />
-          <Route path="pagea" element={<PageA />}/>
-          <Route path="pageb" element={<PageB />}/>
-          <Route path="login" element={<Login />}/>
-          <Route path="login" element={<Login />}/>
+          {
+            Components.map((item, index) => {
+              return (
+                <Route key={index} path={item.path} element={item.component}/>
+              )
+            })
+          }
         </Routes>
       </BrowserRouter>
       <GlobalStyles />
-  </React.StrictMode>,
+  </>,
 );
 
 // If you want to start measuring performance in your app, pass a function

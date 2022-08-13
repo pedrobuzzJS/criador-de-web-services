@@ -12,4 +12,5 @@ export type LinkMenu = {
     status_id?: number,
     created_at?: Date,
     updated_at?: Date,
+    filhos?: LinkMenu[]
 }

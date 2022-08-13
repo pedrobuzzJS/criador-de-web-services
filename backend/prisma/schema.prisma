@@ -55,6 +55,7 @@ model Menus {
   rota         String?
   icone        String
   pai_id       Int?
+  component    String?
   // menu_pai     Menus?    @relation("SelfMenus", fields: [pai_id], references: [id])
   // menus_pais   Menus[]   @relation("SelfMenus")
   ordem        Int?

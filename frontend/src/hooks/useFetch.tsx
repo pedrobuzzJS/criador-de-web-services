@@ -8,12 +8,13 @@ export function useFetch<T = unknown>(url: string, options?: AxiosRequestConfig)
     const [ error, setError] = useState<Error | null>(null);
 
     useEffect( () => {
+        setIsFetching(true);
         api.get(url)
         .then( response => {
             setData(response.data.data);
         } )
-        .catch( err => {
-            setError(err);
+        .catch( erro => {
+            setError(erro);
         } )
         .finally( () => {
             setIsFetching(false);

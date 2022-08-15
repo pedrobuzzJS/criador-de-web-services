@@ -12,10 +12,7 @@ import { StyledLink, StyledMenuText, StyledSubList } from "./styles";
 export const SideBarItem: React.FC<LinkMenu> = ({ id, nome, rota, pai_id, ...props }) => {
     const [ subMenu, setSubMenu ] = useState(false);
 
-    const showSubMenu = () => {
-        setSubMenu(!subMenu);
-        console.log(subMenu);
-    }
+    const showSubMenu = () => setSubMenu(!subMenu);
 
     return (
         <>

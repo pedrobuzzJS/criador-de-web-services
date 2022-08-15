@@ -33,9 +33,10 @@ export const StyledLink = styled(Link)`
     border-bottom: 1px #e1e9fc solid;
 
     &:hover {
-      background: #252831;
-      border-left: 4px solid #632ce4;
-      cursor: pointer;
+        background: #252831;
+        border-left: 4px solid #632ce4;
+        transition: 150ms;
+        cursor: pointer;
     }
 
     > svg {

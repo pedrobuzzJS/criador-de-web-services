@@ -2,6 +2,7 @@ export type LinkMenu = {
     id: number,
     nome: string,
     parametros?: string,
+    filhos?: LinkMenu[]
     rota: string,
     icone?: string,
     pai_id?: number,
@@ -12,5 +13,4 @@ export type LinkMenu = {
     status_id?: number,
     created_at?: Date,
     updated_at?: Date,
-    filhos?: LinkMenu[]
 }

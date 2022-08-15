@@ -1,10 +1,8 @@
 import React from "react";
 import { FormStyled } from "./style";
 
-const Form: React.FC = () => {
+export const FormBuilder: React.FC = () => {
     return (
-        <FormStyled />
+        <h1>Form Builder</h1>
     )
 }
-
-export default Form;

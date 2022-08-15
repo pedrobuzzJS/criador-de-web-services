@@ -6,6 +6,8 @@ import { SideBar } from './components/SideBar/SideBar';
 import { Login } from './pages/Login/login';
 import { PageA } from "./pages/PageA/pageA";
 import { PageB } from "./pages/PageB/pageB";
+import { PageNotFound } from './pages/PageNotFound/pageNotFound';
+import { FormBuilder } from './components/FormDefault/FormDefault';
 import reportWebVitals from './reportWebVitals';
 import GlobalStyles from './styles/GlobalStyles';
 
@@ -26,6 +28,10 @@ let Components = [
     path: "login",
     component: <Login />
   },
+  {
+    path: "form",
+    component: <FormBuilder />
+  },
 ]
 
 root.render(
@@ -41,6 +47,7 @@ root.render(
               )
             })
           }
+          <Route path={"*"} element={<PageNotFound />}/>
         </Routes>
       </BrowserRouter>
       <GlobalStyles />

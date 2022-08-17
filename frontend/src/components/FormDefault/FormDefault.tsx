@@ -1,8 +1,23 @@
-import React from "react";
-import { FormStyled } from "./style";
+import React, { FormHTMLAttributes, useRef, useState } from "react";
+import { Container, FormContainer } from "./style";
+import Input from "../Inputs/InputDefault/InputDefault";
 
-export const FormBuilder: React.FC = () => {
+interface FormData extends FormHTMLAttributes<HTMLFormElement> {
+
+}
+
+export const FormBuilder: React.FC<FormData> = ({...props}) => {
+    const [ fields, setFields ] = useState({});
+    const [ formData, setFormData ] = useState({});
+    const formRef = useRef<HTMLFormElement>(null);
+
     return (
-        <h1>Form Builder</h1>
-    )
+        <Container>
+            <FormContainer ref={formRef} >
+                    <Input type="text" name="texto" id="texto" placeholder="Texto"/>
+                    <Input type="password" placeholder="Password" name="senha" id="senha"/>
+                    <Input type="file" name="arquivo" id="arquivo"/>
+            </FormContainer>
+        </Container>
+    );
 }

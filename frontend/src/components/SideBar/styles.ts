@@ -7,7 +7,7 @@ interface SideBarNavProps {
 
 export const Nav = styled.div`
     background: #222324;
-    height: 45px;
+    height: 55px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -16,7 +16,7 @@ export const Nav = styled.div`
 export const NavIcon = styled(Link)`
     margin-left: 1rem;
     font-size: 1rem;
-    height: 45px;
+    height: 55px;
     display: flex;
     justify-content: flex-start;
     align-items: center;

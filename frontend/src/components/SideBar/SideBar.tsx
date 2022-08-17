@@ -33,12 +33,14 @@ export const SideBar: React.FC = () => {
                         </NavIcon>
                         <Lista>
                             {links?.map((item, index) => {
+                                console.log(item)
                                 return <SideBarItem
                                     id={item.id}
                                     key={index}
                                     nome={item.nome}
                                     rota={item.rota}
                                     pai_id={item.pai_id}
+                                    possuifilhos={item.possuifilhos}
                                 />
                             } )}
                         </Lista>

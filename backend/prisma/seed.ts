@@ -66,7 +66,7 @@ async function main() {
         }
       },
       {
-        id: 1,
+        id: 2,
         nome: "SOAP",
         sigla: "SP",
         descricao: "WebService via SOAP",
@@ -84,12 +84,12 @@ async function main() {
       }
     ];
     
-    // for (const u of userData) {
-    //   const user = await prisma.users.create({
-    //     data: u
-    //   });
-    //   console.log(`Created user with id: ${user.id}`);
-    // };
+    for (const u of userData) {
+      const user = await prisma.users.create({
+        data: u
+      });
+      console.log(`Created user with id: ${user.id}`);
+    };
 
     for (const t of tipoWebServiceData) {
       const tipoWs = await prisma.tipoWebService.create(

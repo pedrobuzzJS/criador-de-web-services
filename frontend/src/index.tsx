@@ -29,10 +29,10 @@ let Components = [
     component: <Login />
   },
   {
-    path: "form",
+    path: "formc",
     component: <FormBuilder />
   },
-]
+];
 
 root.render(
   <>

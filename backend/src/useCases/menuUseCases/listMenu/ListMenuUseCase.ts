@@ -16,6 +16,9 @@ export class ListMenuUseCase {
                 desabilitado: true,
                 permissao: true,
                 status_id: true,
+                papel: true,
+                possuifilhos: true,
+                component: true
             },
             orderBy: {
                 id: 'asc',

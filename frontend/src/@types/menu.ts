@@ -2,7 +2,9 @@ export type LinkMenu = {
     id: number,
     nome: string,
     parametros?: string,
-    filhos?: LinkMenu[]
+    filhos?: LinkMenu[],
+    possuifilhos: boolean,
+    component?: string,
     rota: string,
     icone?: string,
     pai_id?: number,

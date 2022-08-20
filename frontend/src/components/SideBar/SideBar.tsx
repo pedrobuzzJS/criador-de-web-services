@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import { IconContext } from "react-icons";
@@ -6,7 +6,8 @@ import { Nav,
          NavIcon,
          SideBarNav,
          SidebarWrap,
-         Lista
+         Lista,
+         HeaderTitle
 } from "./styles";
 import { SideBarItem } from "../SideBarItem/SideBarItem";
 import { LinkMenu } from "../../@types/menu";
@@ -14,9 +15,10 @@ import { useFetch } from "../../hooks/useFetch";
 
 export const SideBar: React.FC = () => {
     const [sideBar, setSideBar] = useState(false);
-    const { data: links, error, isFetching } = useFetch<LinkMenu[]>("menu");
-    // const [ firstLevelLink, firstLevelLink ] = useState>();
+    const { data, status } = useFetch<LinkMenu[]>("menu");
     const showSideBar = () => setSideBar(!sideBar);
+    // console.log(data ? data : '');
+    // console.log(status ? status : '');
 
     return (
         <>
@@ -25,6 +27,7 @@ export const SideBar: React.FC = () => {
                     <NavIcon to='#'>
                         <FaIcons.FaBars onClick={showSideBar} />
                     </NavIcon>
+                    <HeaderTitle>OI</HeaderTitle>
                 </Nav>
                 <SideBarNav sideBar={sideBar}> 
                     <SidebarWrap>
@@ -32,15 +35,14 @@ export const SideBar: React.FC = () => {
                             <AiIcons.AiOutlineClose onClick={showSideBar} />
                         </NavIcon>
                         <Lista>
-                            {links?.map((item, index) => {
-                                console.log(item)
+                            {data && data?.map((item, index) => {
                                 return <SideBarItem
                                     id={item.id}
                                     key={index}
                                     nome={item.nome}
-                                    rota={item.rota}
-                                    pai_id={item.pai_id}
-                                    possuifilhos={item.possuifilhos}
+                                    rota={item.rota ?? item.rota}
+                                    pai_id={item.pai_id ?? item.pai_id}
+                                    possuifilhos={item.possuifilhos ?? item.possuifilhos}
                                 />
                             } )}
                         </Lista>

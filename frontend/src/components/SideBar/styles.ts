@@ -40,7 +40,7 @@ export const SidebarWrap = styled.div`
 `;
 
 export const Lista = styled.ul`
-    width: 250px;
+    width: 100%;
     height: 100vh;
     color: #eee;
     justify-content: space-between;
@@ -53,4 +53,9 @@ export const Lista = styled.ul`
             cursor: pointer;
         }
     }  
+`;
+
+export const HeaderTitle = styled.h2`
+    color: #eee;
+    padding-left: 15px;
 `;

@@ -7,11 +7,12 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
             "color" | "file" | "cpf" | "currency" | "cep";
     prefix?: string;
     spanText?: string;
+    percent?: string;
 }
 
-const Input: React.FC<InputProps> = ({ name, type, prefix, spanText, ...props }) => {
-    const [ isFocused, setIsFocused ] = useState<Boolean>(false);
-    const [ isFilled, setIsFilled ] = useState<Boolean>(false);
+const Input: React.FC<InputProps> = ({ name, type, prefix, spanText, percent, ...props }) => {
+    // const [ isFocused, setIsFocused ] = useState<Boolean>(false);
+    // const [ isFilled, setIsFilled ] = useState<Boolean>(false);
     const inputRef = useRef<HTMLInputElement>(null);
     
     const handleKeyUp = useCallback(
@@ -36,10 +37,10 @@ const Input: React.FC<InputProps> = ({ name, type, prefix, spanText, ...props })
     );
 
     return (
-        <InputContainer>
+        <InputContainer percent={percent}>
             {spanText && <span>{spanText}</span>}
-            <br />
-            <label htmlFor={name}>{name}</label>
+            {/* <br /> */}
+            <label htmlFor={name}><span>{name}</span></label>
             {prefix && <span>{prefix}</span>}
             <input ref={inputRef} type={type} {...props} onKeyUp={handleKeyUp} />
         </InputContainer>

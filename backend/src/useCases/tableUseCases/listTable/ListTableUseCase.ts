@@ -12,7 +12,7 @@ export class ListTableUseCase {
             throw new Error("Sem Retorno da Tabelas do Sistema");
         }
 
-        return {data};
+        return data;
     }
 
 }

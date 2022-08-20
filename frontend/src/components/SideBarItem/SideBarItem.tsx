@@ -13,7 +13,7 @@ export const SideBarItem: React.FC<LinkMenu> = ({ id, nome, rota, pai_id, ...pro
 
     return (
         <>
-            <StyledLink to={rota || "#" }>
+            <StyledLink to={rota ? rota : "#" }>
                 <StyledMenuText>
                     <RiIcons.RiDashboardFill />
                     <span>{nome}</span>

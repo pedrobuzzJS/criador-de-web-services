@@ -29,7 +29,7 @@ export class ListMenuUseCase {
             throw new Error("Sem de Menus do Sistema");
         }
 
-        return {data};
+        return data;
     }
 
 }

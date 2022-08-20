@@ -51,7 +51,7 @@ class AutenticateUerUseCase {
             expiresIn: "3600s"
         })
 
-        return {token};
+        return token;
     };
 
 }

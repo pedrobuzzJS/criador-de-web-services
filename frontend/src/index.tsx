@@ -7,51 +7,29 @@ import { Login } from './pages/Login/login';
 import { PageA } from "./pages/PageA/pageA";
 import { PageB } from "./pages/PageB/pageB";
 import { PageNotFound } from './pages/PageNotFound/pageNotFound';
-import { FormBuilder } from './components/FormDefault/FormDefault';
 import reportWebVitals from './reportWebVitals';
 import GlobalStyles from './styles/GlobalStyles';
+import { Grid } from './components/Grid/Grid';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-let Components = [
-  {
-    path: "pagea",
-    component: <PageA />
-  },
-  {
-    path: "pageb",
-    component: <PageB />
-  },
-  {
-    path: "login",
-    component: <Login />
-  },
-  {
-    path: "formc",
-    component: <FormBuilder />
-  },
-];
-
 root.render(
-  <>
+  <React.StrictMode>
       <BrowserRouter>
         <SideBar />
         <Routes>
           <Route path="/" element={<App />} />
-          {
-            Components.map((item, index) => {
-              return (
-                <Route key={index} path={item.path} element={item.component}/>
-              )
-            })
-          }
+          <Route path="pagea" element={<PageA />} />
+          <Route path="pageb" element={<PageB />} />
+          <Route path="login" element={<Login />} />
+          <Route path="grd" element={<Grid />} />
           <Route path={"*"} element={<PageNotFound />}/>
         </Routes>
       </BrowserRouter>
       <GlobalStyles />
-  </>,
+  </React.StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -1,23 +1,6 @@
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
-// export const Lista = styled.ul`
-//     width: 250px;
-//     height: 100vh;
-//     color: #eee;
-//     justify-content: space-between;
-
-//     > a {
-//         text-decoration: none;
-        
-//         &:hover {
-//             background: #333030;
-//             cursor: pointer;
-//         }
-//     }
-    
-// `;
-
 export const StyledLink = styled(Link)`
     display: flex;
     color: #e1e9fc;

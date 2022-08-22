@@ -1,5 +1,5 @@
 import React, { ButtonHTMLAttributes } from "react";
-import { Container } from "../ToolBar/style";
+import { Container } from "../../ToolBar/style";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     buttonDescription: String

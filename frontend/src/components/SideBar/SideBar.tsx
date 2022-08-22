@@ -17,8 +17,6 @@ export const SideBar: React.FC = () => {
     const [sideBar, setSideBar] = useState(false);
     const { data, status } = useFetch<LinkMenu[]>("menu");
     const showSideBar = () => setSideBar(!sideBar);
-    // console.log(data ? data : '');
-    // console.log(status ? status : '');
 
     return (
         <>

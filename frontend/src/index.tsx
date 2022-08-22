@@ -9,7 +9,8 @@ import { PageB } from "./pages/PageB/pageB";
 import { PageNotFound } from './pages/PageNotFound/pageNotFound';
 import reportWebVitals from './reportWebVitals';
 import GlobalStyles from './styles/GlobalStyles';
-import { Grid } from './components/Grid/Grid';
+import { Grid } from './components/DataGrid/Grid';
+import { FormBuilder } from './components/Form/FormBuilder/FormBuilder';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -25,6 +26,7 @@ root.render(
           <Route path="pageb" element={<PageB />} />
           <Route path="login" element={<Login />} />
           <Route path="grd" element={<Grid />} />
+          <Route path="formc" element={<FormBuilder ss={''} />} />
           <Route path={"*"} element={<PageNotFound />}/>
         </Routes>
       </BrowserRouter>

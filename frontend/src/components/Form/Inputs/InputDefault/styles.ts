@@ -5,13 +5,13 @@ interface InputWidthSize {
 }
 
 export const InputContainer = styled.div<InputWidthSize>`
-    border: 3px solid darkblue;
+    /* border: 3px solid darkblue; */
     border-radius: 10%;
-    width: ${({ percent }) => (percent ? percent : '')};
+    /* width: ${({ percent }) => (percent ? percent : '')}; */
     /* width: ''; */
 
     > input {
-        width: ${({ percent }) => (percent ? percent : '')};
+        /* width: ${({ percent }) => (percent ? percent : '')}; */
     }
 
 `;

@@ -42,7 +42,7 @@ const Input: React.FC<InputProps> = ({ name, type, prefix, spanText, percent, ..
             {/* <br /> */}
             <label htmlFor={name}><span>{name}</span></label>
             {prefix && <span>{prefix}</span>}
-            <input ref={inputRef} type={type} {...props} onKeyUp={handleKeyUp} />
+            <input ref={inputRef} type={type} {...props} onKeyDown={handleKeyUp} id={name} />
         </InputContainer>
     )
 };

@@ -1,14 +1,13 @@
 import React, { ButtonHTMLAttributes } from "react";
-import { Container } from "../../ToolBar/style";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     buttonDescription: String
 }
 
-export const ButtonC: React.FC<ButtonProps> = ({ buttonDescription, ...props }) => {
+export const Button: React.FC = () => {
     return (
-        <Container>
-            <button>{buttonDescription}</button>
-        </Container>
+        <>
+            <h1>button</h1>
+        </>
     );
-}
+};

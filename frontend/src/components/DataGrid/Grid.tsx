@@ -32,6 +32,7 @@ export const Grid: React.FC = () => {
     return (
         <Container>
             {/* <DataGrid columns={columns} rows={rows} /> */}
+            <h1>Grid</h1>
         </Container>
     )
 };

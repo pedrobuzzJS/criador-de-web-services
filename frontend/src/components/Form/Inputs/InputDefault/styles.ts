@@ -1,17 +1,60 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
-interface InputWidthSize {
-    percent?: string
+interface InputCssProps {
+    percent?: string;
+    focus?: boolean | any;
 }
 
-export const InputContainer = styled.div<InputWidthSize>`
-    /* border: 3px solid darkblue; */
-    border-radius: 10%;
-    /* width: ${({ percent }) => (percent ? percent : '')}; */
-    /* width: ''; */
+export const InputContainer = styled.div<InputCssProps>`
+    border-radius: 5px;
+    width: ${({ percent }) => (percent ? percent : '')};
 
     > input {
-        /* width: ${({ percent }) => (percent ? percent : '')}; */
+        width: 95%;
+        padding: 15px;
+        margin: 10px 0px;
+        border-radius: 5px;
+        border: ${({ focus }) => (focus ? '1px solid tomato' : '1px solid gray')};
+    }
+
+    > label {
+        font-size: 12px;
+        color: gray;
+    }
+
+    span {
+        font-size: 12px;
+        padding: 3px;
+        color: red;
+        display: none;
     }
 
 `;
+
+// input{
+//     padding: 15px;
+//     margin: 10px 0px;
+//     border-radius: 5px;
+//     border: 1px solid gray;
+// }
+
+
+// label{
+//     font-size: 12px;
+//     color: gray;
+// }
+
+// span{
+//     font-size: 12px;
+//     padding: 3px;
+//     color: red;
+//     display: none;
+// }
+
+// input:invalid[focused="true"]{
+//     border: 1px solid red;
+// }
+
+// input:invalid[focused="true"] ~ span{
+//     display: block;
+// }

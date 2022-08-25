@@ -12,11 +12,14 @@ import { Nav,
 import { SideBarItem } from "../SideBarItem/SideBarItem";
 import { LinkMenu } from "../../@types/menu";
 import { useFetch } from "../../hooks/useFetch";
+import { Outlet } from "react-router-dom";
 
 export const SideBar: React.FC = () => {
     const [sideBar, setSideBar] = useState(false);
-    const { data, status } = useFetch<LinkMenu[]>("menu");
+    const { data: menus } = useFetch<LinkMenu[]>("menu");
     const showSideBar = () => setSideBar(!sideBar);
+
+    menus?.length && console.log(menus?.length);
 
     return (
         <>
@@ -33,10 +36,10 @@ export const SideBar: React.FC = () => {
                             <AiIcons.AiOutlineClose onClick={showSideBar} />
                         </NavIcon>
                         <Lista>
-                            {data && data?.map((item, index) => {
+                            {menus?.length && menus.map((item) => {
                                 return <SideBarItem
                                     id={item.id}
-                                    key={index}
+                                    key={item.id}
                                     nome={item.nome}
                                     rota={item.rota ?? item.rota}
                                     pai_id={item.pai_id ?? item.pai_id}

@@ -11,9 +11,10 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     percent?: string;
     label: string;
     id: string;
+    pixels?: string;
 }
 
-const Input: React.FC<InputProps> = ({ name, id, type, prefix, spanText, percent, label, ...props }) => {
+const Input: React.FC<InputProps> = ({ name, id, type, prefix, spanText, percent, label, pixels, ...props }) => {
     const [ isFocused, setIsFocused ] = useState<Boolean>(false);
     const [ isFilled, setIsFilled ] = useState<Boolean>(false);
     const inputRef = useRef<HTMLInputElement>(null);
@@ -48,11 +49,8 @@ const Input: React.FC<InputProps> = ({ name, id, type, prefix, spanText, percent
     );
 
     return (
-        <InputContainer percent={percent} focus={isFocused}>
-            {/* {spanText && <span>{spanText}</span>} */}
-            {/* <br /> */}
+        <InputContainer percent={percent} focus={isFocused} pixels={pixels}>
             <label htmlFor={id}>{label}</label>
-            {/* {prefix && <span>{prefix}</span>} */}
             <br />
             <input
                 ref={inputRef}

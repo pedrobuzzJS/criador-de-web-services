@@ -3,16 +3,20 @@ import styled from "styled-components";
 interface InputCssProps {
     percent?: string;
     focus?: boolean | any;
+    pixels?: string;
 }
 
 export const InputContainer = styled.div<InputCssProps>`
+    /* border: 1px solid blue; */
     border-radius: 5px;
-    width: ${({ percent }) => (percent ? percent : '')};
+    /* width: 250px; */
+    /* width: ${({ percent }) => (percent ? percent : '')}; */
+    width: ${({ pixels }) => (pixels ? pixels : '100%')};
 
     > input {
         width: 95%;
         padding: 15px;
-        margin: 10px 0px;
+        margin: 10px auto;
         border-radius: 5px;
         border: ${({ focus }) => (focus ? '1px solid tomato' : '1px solid gray')};
     }

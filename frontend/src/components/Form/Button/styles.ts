@@ -1,8 +1,10 @@
 import styled, { css } from "styled-components";
 
 interface ButtonProps {
-    size?: "big" | "smaill";
+    size?: string;
 }
+
+export const ButtonContainer = styled.div``;
 
 export const ButtonStyle = styled.button<ButtonProps>`
     background-color: pink;

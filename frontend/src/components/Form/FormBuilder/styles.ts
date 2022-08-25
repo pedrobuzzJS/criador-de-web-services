@@ -11,5 +11,10 @@ export const FormContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
     /* flex-direction: column; */
-    /* justify-content: space-between; */
+    justify-content: space-between;
+`;
+
+export const ButtonArea = styled.div`
+    display: flex;
+    justify-content: space-between;
 `;

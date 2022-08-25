@@ -1,6 +1,7 @@
-import React, { useState, FormHTMLAttributes, FormEvent, useCallback } from "react";
+import React, { useState, FormHTMLAttributes, FormEvent } from "react";
 import Input from "../Inputs/InputDefault/InputDefault";
-import { Container, FormContainer } from "./styles";
+import { Button } from "../Button/Button";
+import { ButtonArea, Container, FormContainer } from "./styles";
 interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
     ss: string
 };  
@@ -49,7 +50,8 @@ export const FormBuilder: React.FC<FormProps> = ({ ...props }) => {
                         id={"nome"}
                         onChange={handleInputChange}
                         value={findValueById(formValues, "nome")}
-                        percent="33%"
+                        pixels={"450px"}
+                        // percent="100%"
                     />
                     <Input
                         name="sobrenome"
@@ -59,7 +61,8 @@ export const FormBuilder: React.FC<FormProps> = ({ ...props }) => {
                         id={"sobrenome"}
                         onChange={handleInputChange}
                         value={findValueById(formValues, "sobrenome")}
-                        percent="33%"
+                        pixels={"450px"}
+                        // percent="100%"
                     />
                     <Input
                         name="cep"
@@ -69,7 +72,8 @@ export const FormBuilder: React.FC<FormProps> = ({ ...props }) => {
                         id={"cep"}
                         onChange={handleInputChange}
                         value={findValueById(formValues, "cep")}
-                        percent="33%"
+                        pixels={"450px"}
+                        // percent="100%"
                     />
                     <Input
                         name="cpf"
@@ -79,7 +83,8 @@ export const FormBuilder: React.FC<FormProps> = ({ ...props }) => {
                         id={"cpf"}
                         onChange={handleInputChange}
                         value={findValueById(formValues, "cpf")}
-                        percent="33%"
+                        // pixels={"450px"}
+                        // percent="100%"
                     />
                     {/* <Input
                         name="password"
@@ -99,7 +104,8 @@ export const FormBuilder: React.FC<FormProps> = ({ ...props }) => {
                         id={"idade"}
                         onChange={handleInputChange}
                         value={findValueById(formValues, "idade")}
-                        percent="50%"
+                        pixels={"450px"}
+                        // percent="100%"
                     />
 
                     {/* <div>
@@ -133,11 +139,25 @@ export const FormBuilder: React.FC<FormProps> = ({ ...props }) => {
                         <label htmlFor="bio">Bio</label>
                         <textarea name="bio" id="bio" value={findValueById(formValues, "bio")}  onChange={handleInputChange} /> */}
                     {/* </div> */}
-
-                    <button className="button" onClick={() => console.log('***', formValues)}>
-                    Enviar
-                    </button>
-                </FormContainer>  
+                </FormContainer>
+                <ButtonArea>
+                    <Button 
+                        onClick={() => console.log('***', formValues)}
+                        buttonDescription="Enviar"        // size="small"
+                    />
+                    <Button 
+                        onClick={() => console.log('***', formValues)}
+                        buttonDescription="Enviar"        // size="small"
+                    />
+                    <Button 
+                        onClick={() => console.log('***', formValues)}
+                        buttonDescription="Enviar"        // size="small"
+                    />
+                    <Button 
+                        onClick={() => console.log('***', formValues)}
+                        buttonDescription="Enviar"        // size="small"
+                    />
+                </ButtonArea>
             </form>
         </Container>
     );

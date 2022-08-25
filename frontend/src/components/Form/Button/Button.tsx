@@ -1,13 +1,21 @@
-import React, { ButtonHTMLAttributes } from "react";
+import React, { useRef, ButtonHTMLAttributes } from "react";
+import { ButtonContainer, ButtonStyle } from "./styles";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     buttonDescription: String
+    size?: "big" | "small";
 }
 
-export const Button: React.FC = () => {
+export const Button: React.FC<ButtonProps> = ({ buttonDescription, size, ...props }) => {
+    const buttonRef = useRef<HTMLButtonElement>(null);
+
     return (
-        <>
-            <h1>button</h1>
-        </>
+        <ButtonContainer>
+            <ButtonStyle size={size}>
+                <button ref={buttonRef} className="button" {...props}>
+                    {buttonDescription}
+                </button>
+            </ButtonStyle>
+        </ButtonContainer>
     );
 };

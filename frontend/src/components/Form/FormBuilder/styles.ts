@@ -10,7 +10,6 @@ export const Container = styled.div`
 export const FormContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
-    /* justify-content: space-between; */
 `;
 
 export const ButtonArea = styled.div`

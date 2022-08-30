@@ -87,11 +87,11 @@ const campos: GridFields[] = [
 ];
 
 export const MenuQuery: React.FC = () => {
-    const { data } = useFetch<LinkMenu[]>("menu");
+    const { data: Menus, loadding } = useFetch<LinkMenu[]>("menu");
 
     return (
         <>
-            <DataGrid columns={campos} data={data} />
+            <DataGrid columns={campos} data={Menus} loading={loadding} />
         </>
     );
 };

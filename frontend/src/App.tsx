@@ -8,6 +8,7 @@ import { PageB } from "./pages/PageB/pageB";
 import { PageNotFound } from "./pages/PageNotFound/pageNotFound";
 import { TesteGrid } from "./pages/TesteGrid/TesteGrid";
 import { MenuQuery } from "./pages/Menu/MenuQuery/MenuQuery";
+import { StatusQuery } from "./pages/Status/StatusQuery/StatusQuery";
 
 const App: React.FC = () => {
   return (
@@ -21,6 +22,7 @@ const App: React.FC = () => {
           <Route path="grd" element={<TesteGrid />} />
           <Route path="formc" element={<FormBuilder ss={''} />} />
           <Route path="menuconsulta" element={<MenuQuery />} />
+          <Route path="statuscontulta" element={<StatusQuery />} />
           <Route path={"*"} element={<PageNotFound />}/>
         </Routes>
       </BrowserRouter>

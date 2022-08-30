@@ -13,7 +13,7 @@ export const Button: React.FC<ButtonProps> = ({ buttonDescription, size, ...prop
         <ButtonContainer>
             <ButtonStyle size={size}>
                 <button ref={buttonRef} className="button" {...props}>
-                    {buttonDescription}
+                    <span>{buttonDescription}</span>
                 </button>
             </ButtonStyle>
         </ButtonContainer>

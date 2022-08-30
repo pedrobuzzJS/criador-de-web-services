@@ -1,4 +1,4 @@
-import React, { useState, FormHTMLAttributes, FormEvent } from "react";
+import React, { useState, FormHTMLAttributes, FormEvent, useCallback } from "react";
 import Input from "../Inputs/InputDefault/InputDefault";
 import { Button } from "../Button/Button";
 import { ButtonArea, Container, FormContainer } from "./styles";
@@ -20,23 +20,29 @@ export const FormBuilder: React.FC<FormProps> = ({ ...props }) => {
         e.preventDefault();
     }
 
-    const handleInputChange = (e: React.FormEvent<HTMLInputElement> | FormEvent<HTMLTextAreaElement>) => {
-
+    const handleInputChange = (e: React.FormEvent<HTMLInputElement>) => {
         const { name, value, type} = e.currentTarget;
-
         setFormValues({
             ...formValues,
             [name]: value,
         });
     };
 
-    const findValueById = (values: any, key: string) => {
+    const handleTextAreaChange = (e: FormEvent<HTMLTextAreaElement>) => {
+        const { name, value} = e.currentTarget;
+        setFormValues({
+            ...formValues,
+            [name]: value,
+        });
+    }
+
+    const findValueById = useCallback((values: any, key: string) => {
         if (values?.hasOwnProperty(key)) {
             const data = values[key];
             return data;
         }
         return "";
-    };
+    }, [])
 
     return (
         <Container>
@@ -50,8 +56,7 @@ export const FormBuilder: React.FC<FormProps> = ({ ...props }) => {
                         id={"nome"}
                         onChange={handleInputChange}
                         value={findValueById(formValues, "nome")}
-                        pixels={"450px"}
-                        // percent="100%"
+                        pixels={"260px"}
                     />
                     <Input
                         name="sobrenome"
@@ -61,8 +66,7 @@ export const FormBuilder: React.FC<FormProps> = ({ ...props }) => {
                         id={"sobrenome"}
                         onChange={handleInputChange}
                         value={findValueById(formValues, "sobrenome")}
-                        pixels={"450px"}
-                        // percent="100%"
+                        pixels={"260px"}
                     />
                     <Input
                         name="cep"
@@ -72,8 +76,7 @@ export const FormBuilder: React.FC<FormProps> = ({ ...props }) => {
                         id={"cep"}
                         onChange={handleInputChange}
                         value={findValueById(formValues, "cep")}
-                        pixels={"450px"}
-                        // percent="100%"
+                        pixels={"260px"}
                     />
                     <Input
                         name="cpf"
@@ -83,19 +86,8 @@ export const FormBuilder: React.FC<FormProps> = ({ ...props }) => {
                         id={"cpf"}
                         onChange={handleInputChange}
                         value={findValueById(formValues, "cpf")}
-                        // pixels={"450px"}
-                        // percent="100%"
+                        pixels={"260px"}
                     />
-                    {/* <Input
-                        name="password"
-                        type="password"
-                        placeholder="Password"
-                        label={"Senha"}
-                        id={"password"}
-                        onChange={handleInputChange}
-                        value={findValueById(formValues, "password")}
-                        percent="33%"
-                    /> */}
                     <Input
                         name="idade"
                         type="number"
@@ -104,10 +96,8 @@ export const FormBuilder: React.FC<FormProps> = ({ ...props }) => {
                         id={"idade"}
                         onChange={handleInputChange}
                         value={findValueById(formValues, "idade")}
-                        pixels={"450px"}
-                        // percent="100%"
+                        pixels={"260px"}
                     />
-
                     {/* <div>
                         <label>
                             <input
@@ -115,7 +105,6 @@ export const FormBuilder: React.FC<FormProps> = ({ ...props }) => {
                             type="radio"
                             value="cafe"
                             onChange={handleInputChange}
-                            // checked={formValues?.drink === "cafe" ?? true}
                             />
                             <span>
                                 Cafe
@@ -127,7 +116,6 @@ export const FormBuilder: React.FC<FormProps> = ({ ...props }) => {
                             type="radio"
                             value="refri"
                             onChange={handleInputChange}
-                            // checked={formValues.drink === "refri" ?? true}
                             />
                             <span>
                                 Refri
@@ -137,25 +125,14 @@ export const FormBuilder: React.FC<FormProps> = ({ ...props }) => {
 
                     <div>
                         <label htmlFor="bio">Bio</label>
-                        <textarea name="bio" id="bio" value={findValueById(formValues, "bio")}  onChange={handleInputChange} /> */}
-                    {/* </div> */}
+                        <br />
+                        <textarea name="bio" id="bio" value={findValueById(formValues, "bio")}  onChange={handleTextAreaChange} />
+                    </div> */}
                 </FormContainer>
                 <ButtonArea>
                     <Button 
                         onClick={() => console.log('***', formValues)}
-                        buttonDescription="Enviar"        // size="small"
-                    />
-                    <Button 
-                        onClick={() => console.log('***', formValues)}
-                        buttonDescription="Enviar"        // size="small"
-                    />
-                    <Button 
-                        onClick={() => console.log('***', formValues)}
-                        buttonDescription="Enviar"        // size="small"
-                    />
-                    <Button 
-                        onClick={() => console.log('***', formValues)}
-                        buttonDescription="Enviar"        // size="small"
+                        buttonDescription="Enviar"     // size="small"
                     />
                 </ButtonArea>
             </form>

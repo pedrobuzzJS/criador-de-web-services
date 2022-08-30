@@ -35,30 +35,43 @@ export const InputContainer = styled.div<InputCssProps>`
 
 `;
 
-// input{
-//     padding: 15px;
-//     margin: 10px 0px;
-//     border-radius: 5px;
-//     border: 1px solid gray;
-// }
+export const AnimatedContainer = styled.div<InputCssProps>`
+    border-radius: 5px;
+    width: ${({ pixels }) => (pixels ? pixels : '100%')};
+    /* position: relative; */
 
+    > input {
+        /* position: absolute; */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 2px solid dark;
+        border-radius: 5px;
+        font-family: inherit;
+        font-size: inherit;
+        color: white;
+        outline: none;
+        padding: 1.25rem;
+        background: none;
 
-// label{
-//     font-size: 12px;
-//     color: gray;
-// }
+        &:hover {
+            border-color: darkblue;
+        }
 
-// span{
-//     font-size: 12px;
-//     padding: 3px;
-//     color: red;
-//     display: none;
-// }
+        &:focus {
+          border-color: tomato;
+        }
+    }
 
-// input:invalid[focused="true"]{
-//     border: 1px solid red;
-// }
-
-// input:invalid[focused="true"] ~ span{
-//     display: block;
-// }
+    > label {
+        /* position: absolute; */
+        left: 1rem;
+        top: 0.8rem;
+        padding: 0 0.5rem;
+        color: white;
+        cursor: text;
+        transition: top 200ms ease-in, left 200ms ease-in, font-size 200ms ease-in;
+        background-color: none;
+    }
+`;

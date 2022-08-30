@@ -12,14 +12,11 @@ import { Nav,
 import { SideBarItem } from "../SideBarItem/SideBarItem";
 import { LinkMenu } from "../../@types/menu";
 import { useFetch } from "../../hooks/useFetch";
-import { Outlet } from "react-router-dom";
 
 export const SideBar: React.FC = () => {
     const [sideBar, setSideBar] = useState(false);
     const { data: menus } = useFetch<LinkMenu[]>("menu");
     const showSideBar = () => setSideBar(!sideBar);
-
-    menus?.length && console.log(menus?.length);
 
     return (
         <>

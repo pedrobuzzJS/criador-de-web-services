@@ -1,7 +1,7 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const Container = styled.div`
-    width: 75%;
+    width: 95%;
     margin: 50px auto;
     padding: 30px;
     background: lightgray;
@@ -10,11 +10,11 @@ export const Container = styled.div`
 export const FormContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
-    /* flex-direction: column; */
-    justify-content: space-between;
+    /* justify-content: space-between; */
 `;
 
 export const ButtonArea = styled.div`
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: center;
 `;

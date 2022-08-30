@@ -1,7 +1,7 @@
 export class Operation {
-    public static CONSULTAR = 1;
-    public static INSERIR = 2;
-    public static ALTERAR = 3;
-    public static DELETAR = 4;
-    public static VISUALIZAR = 5;
+    public static SEARCH = 1;
+    public static INSERT = 2;
+    public static ALTER = 3;
+    public static DELETE = 4;
+    public static VIEW = 5;
 }

@@ -1,10 +1,31 @@
 import React, { useState, FormHTMLAttributes, FormEvent, useCallback } from "react";
 import Input from "../Inputs/InputDefault/InputDefault";
 import { Button } from "../Button/Button";
+import { Select } from "../Inputs/Select/Select";
+import { SelectList } from "../../../Utils/SelectList";
 import { ButtonArea, Container, FormContainer } from "./styles";
 interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
     ss: string
 };  
+
+const list: SelectList[] = [
+    {
+        key: "1",
+        value: "Aston Martin",
+    },
+    {
+        key: "2",
+        value: "Lamborgini Urus",
+    },
+    {
+        key: "3",
+        value: "BMW X-6",
+    },
+    {
+        key: "4",
+        value: "Porshe Panamera",
+    },
+];
 
 export const FormBuilder: React.FC<FormProps> = ({ ...props }) => {
     const [ formValues, setFormValues ] = useState({
@@ -12,8 +33,9 @@ export const FormBuilder: React.FC<FormProps> = ({ ...props }) => {
         sobrenome: 'Buzzi Pereira',
         cep: '89164-081', 
         cpf: '105.781.649-30', 
-        // password: 'senha', 
+        password: 'senha', 
         idade: '22',
+        cars: "1"
     });
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -29,6 +51,14 @@ export const FormBuilder: React.FC<FormProps> = ({ ...props }) => {
     };
 
     const handleTextAreaChange = (e: FormEvent<HTMLTextAreaElement>) => {
+        const { name, value} = e.currentTarget;
+        setFormValues({
+            ...formValues,
+            [name]: value,
+        });
+    }
+
+    const handleSelectListInputChange = (e: FormEvent<HTMLSelectElement>) => {
         const { name, value} = e.currentTarget;
         setFormValues({
             ...formValues,
@@ -56,7 +86,7 @@ export const FormBuilder: React.FC<FormProps> = ({ ...props }) => {
                         id={"nome"}
                         onChange={handleInputChange}
                         value={findValueById(formValues, "nome")}
-                        pixels={"260px"}
+                        pixels={600}
                     />
                     <Input
                         name="sobrenome"
@@ -66,7 +96,7 @@ export const FormBuilder: React.FC<FormProps> = ({ ...props }) => {
                         id={"sobrenome"}
                         onChange={handleInputChange}
                         value={findValueById(formValues, "sobrenome")}
-                        pixels={"260px"}
+                        pixels={600}
                     />
                     <Input
                         name="cep"
@@ -76,7 +106,7 @@ export const FormBuilder: React.FC<FormProps> = ({ ...props }) => {
                         id={"cep"}
                         onChange={handleInputChange}
                         value={findValueById(formValues, "cep")}
-                        pixels={"260px"}
+                        pixels={600}
                     />
                     <Input
                         name="cpf"
@@ -86,7 +116,7 @@ export const FormBuilder: React.FC<FormProps> = ({ ...props }) => {
                         id={"cpf"}
                         onChange={handleInputChange}
                         value={findValueById(formValues, "cpf")}
-                        pixels={"260px"}
+                        pixels={600}
                     />
                     <Input
                         name="idade"
@@ -96,7 +126,26 @@ export const FormBuilder: React.FC<FormProps> = ({ ...props }) => {
                         id={"idade"}
                         onChange={handleInputChange}
                         value={findValueById(formValues, "idade")}
-                        pixels={"260px"}
+                        pixels={600}
+                    />
+                    <Input
+                        name="password"
+                        type="password"
+                        placeholder="Idade"
+                        label={"Senha"}
+                        id={"password"}
+                        onChange={handleInputChange}
+                        value={findValueById(formValues, "password")}
+                        pixels={600}
+                    />
+                    <Select 
+                        id="cars" 
+                        name="cars"
+                        label="Carros"
+                        value={findValueById(formValues, "cars")}
+                        options={list}
+                        onChange={handleSelectListInputChange}
+                        pixels={600}
                     />
                     {/* <div>
                         <label>
@@ -132,7 +181,7 @@ export const FormBuilder: React.FC<FormProps> = ({ ...props }) => {
                 <ButtonArea>
                     <Button 
                         onClick={() => console.log('***', formValues)}
-                        buttonDescription="Enviar"     // size="small"
+                        buttonDescription="Enviar"
                     />
                 </ButtonArea>
             </form>

@@ -4,8 +4,12 @@ export class ListTableUseCase {
 
     async execute() {
         
+        // const data = await client.$queryRaw`
+        //     select table_catalog, table_schema, table_name from information_schema.tables where table_schema = 'public'
+        // `;
+
         const data = await client.$queryRaw`
-            select table_catalog, table_schema, table_name from information_schema.tables where table_schema = 'public'
+            select table_catalog, table_schema, table_name from information_schema.tables
         `;
 
         if (!data) {

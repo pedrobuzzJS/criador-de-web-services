@@ -1,9 +1,11 @@
 import React from "react";
-import { DataGrid } from "../../../components/DataGrid/Grid";
+import { DataGrid } from "../../../components/DataGrid/DataGrid";
 import { GridFields } from "../../../Utils/Fields";
 import { Operation } from "../../../Utils/Operations";
 import { useFetch } from "../../../hooks/useFetch";
 import { Status } from "../../../@types/status";
+// import * as AiIcons from 'react-icons/ai';
+// import * as RiIcons from 'react-icons/ri'
 
 const Campos: GridFields[] = [
     {
@@ -24,7 +26,27 @@ const Campos: GridFields[] = [
     {
         field: "acoes",
         tittle: "Acoes",
-        description: "Acoes"
+        description: "Acoes",
+        buttons: [
+            {
+                button: "view-status",
+                action: Operation.VIEW,
+                tittle: "View",
+                icon: "RiIcons.RiDashboardFill"
+            },
+            {
+                button: "alter-status",
+                action: Operation.ALTER,
+                tittle: "Alter",
+                icon: "RiIcons.RiDashboardFill"
+            },
+            {
+                button: "delete-status",
+                action: Operation.DELETE,
+                tittle: "Delete",
+                icon: "RiIcons.RiDashboardFill"
+            },
+        ]
     },
 ];
 

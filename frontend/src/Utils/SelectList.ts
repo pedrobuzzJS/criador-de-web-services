@@ -1,10 +1,11 @@
-export interface SelectList<T = unknown> {
-    name: string;
-    key?: string;
+export interface SelectList {
+    key: string;
+    value?: string;
+    name?: string;
     selected?: boolean;
     color?: string;
     class?: string;
     disable?: boolean;
-    object?: T;
-    subList?: SelectList<T>[];
+    // object?: T;
+    // subList?: SelectList<T>[];
 }

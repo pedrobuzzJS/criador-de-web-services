@@ -1,7 +1,22 @@
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
-export const StyledLink = styled(Link)`
+interface Toggle {
+    isSubMenuOpen?: boolean
+};
+
+export const Container = styled.div<Toggle>`
+
+    > div {
+        display: ${({ isSubMenuOpen }) => (isSubMenuOpen && isSubMenuOpen === true ? 'block' : 'none')};
+    }
+`;
+
+export const OpenContainer = styled.div`
+    display: block;
+`;
+
+export const LinkContainer = styled(Link)`
     display: flex;
     color: #e1e9fc;
     justify-content: space-between;
@@ -9,11 +24,14 @@ export const StyledLink = styled(Link)`
     padding: 10;
     padding-left: 15px;
     padding-right: 15px;
-    list-style: none;
     height: 40px;
     text-decoration: none;
     font-size: 18px;
     border-bottom: 1px #e1e9fc solid;
+
+    > a {
+        width: 100%;
+    }
 
     &:hover {
         background: #252831;
@@ -33,16 +51,24 @@ export const StyledLink = styled(Link)`
     }
 `;
 
+export const ImgContainer = styled.div<Toggle>`
+    display: block;
+    padding: 5px;
+
+    > svg {
+
+        /* ${({ isSubMenuOpen }) => (isSubMenuOpen && isSubMenuOpen === true ? 'block' : 'none')}; */
+        transform: rotate(90deg);
+        transition: 350ms;
+
+        &:hover {
+            transform: rotate(180deg);
+            transition: 350ms;
+        }
+    }
+`;
+
 export const StyledMenuText = styled.div`
     display: flex;
     justify-content: space-between;
-`;
-
-interface SubSideBarDropDownToggle {
-    subMenuToggle: boolean
-}
-
-export const StyledSubList = styled.li<SubSideBarDropDownToggle>`
-    display: ${({ subMenuToggle }) => (subMenuToggle ? '' : 'none')};;
-    transition: 350ms;
 `;

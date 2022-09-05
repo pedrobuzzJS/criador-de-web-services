@@ -1,16 +1,18 @@
 import { client } from "../../../infra/prisma/client";
 
-export class ListStatusUseCase {
+export class ListTipoWebServiceUseCase {
 
     async execute(objFilters?: any) {
 
         // await console.log(objFilters.id);
         
-        const data = await client.status.findMany({
+        const data = await client.tipoWebService.findMany({
             select: {
                 id: true,
                 nome: true,
-                descricao: true
+                sigla: true,
+                descricao: true,
+                status_id: true,
             },
             // where: {
             //     id: 1
@@ -21,7 +23,7 @@ export class ListStatusUseCase {
         });
 
         if (!data) {
-            throw new Error("Sem Retorno de Status do Sistema");
+            throw new Error("Sem Retorno de Tipo de WebService do Sistema");
         }
 
         return data;

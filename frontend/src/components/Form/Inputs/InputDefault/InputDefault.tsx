@@ -2,17 +2,17 @@ import React, { InputHTMLAttributes, useCallback, useRef, useState } from "react
 import { emailValidation } from "../../FormValidations/FormValidations";
 import { cep, cpf, currency, nullMask } from "../Masks/Masks";
 
-import { InputContainer, AnimatedContainer } from "./styles";
+import { InputContainer } from "./styles";
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     name: string;
     type:   "text" | "email" | "password" | "button" | "color" | "file" | "cpf"
-            | "currency" | "cep" | "textarea" | "date" | "number";
+            | "currency" | "cep" | "date" | "number";
     prefix?: string;
     spanText?: string;
     percent?: string;
     label: string;
     id: string;
-    pixels?: string;
+    pixels?: number;
 }
 
 const Input: React.FC<InputProps> = ({ name, id, type, prefix, spanText, percent, label, pixels, ...props }) => {
@@ -50,37 +50,20 @@ const Input: React.FC<InputProps> = ({ name, id, type, prefix, spanText, percent
     );
 
     return (
-        <>
-            <InputContainer percent={percent} focus={isFocused} pixels={pixels}>
-                <label htmlFor={id}>{label}</label>
-                <br />
-                <input
-                    ref={inputRef}
-                    name={name}
-                    type={type}
-                    onKeyDown={handleKeyDown}
-                    id={id}
-                    onFocus={handleInputFocus}
-                    onBlur={handleInputBlur}
-                    {...props}
-                />
-            </InputContainer>
-            {/* <AnimatedContainer>
-                <input 
-                    ref={inputRef}
-                    name={name}
-                    type={type}
-                    onKeyDown={handleKeyDown}
-                    id={id}
-                    onFocus={handleInputFocus}
-                    onBlur={handleInputBlur}
-                    {...props}
-                />
-                <label htmlFor={id}>
-                {label}
-                </label>
-            </AnimatedContainer> */}
-        </>
+        <InputContainer percent={percent} focus={isFocused} pixels={pixels}>
+            <label htmlFor={id}>{label}</label>
+            <br />
+            <input
+                ref={inputRef}
+                name={name}
+                type={type}
+                onKeyDown={handleKeyDown}
+                id={id}
+                onFocus={handleInputFocus}
+                onBlur={handleInputBlur}
+                {...props}
+            />
+        </InputContainer>
     )
 };
 

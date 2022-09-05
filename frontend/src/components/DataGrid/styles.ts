@@ -1,22 +1,22 @@
 import styled, { css } from "styled-components";
 
 export const Container = styled.div`
-    /* padding-top: 50px; */
-    /* width: 500px; */
-    /* background: lightpink; */
     padding-top: 40px;
+    padding-bottom: 40px;
 `;
 
 export const TableContainer = styled.table`
     width: 85%;
     margin: 0 auto;
     border-collapse: collapse;
+
     th
         {
             padding: 10px;
             background: #bcbcbc;
             text-align: left;
         }
+        
     tbody {
         width: 100%;
     }

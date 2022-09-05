@@ -24,5 +24,5 @@ export interface CampoFormulario<T> {
     // comprimento: string; // visual
     maxnumber: number; // de dados
     minnumber: number; // de dados
-    listaSelecionavel?: SelectList<any>;
+    // listaSelecionavel?: SelectList<any>;
 }

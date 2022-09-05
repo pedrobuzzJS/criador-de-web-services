@@ -11,7 +11,7 @@ export function useFetch<T = unknown>(url: string, options?: AxiosRequestConfig)
     const fetch = useCallback( async () => {
         await setError(null);
         await setLoadding(true);
-        await api.get(url)
+        await api(url, options)
         .then( response => {
             const { data, status } = response;
             setData(data);

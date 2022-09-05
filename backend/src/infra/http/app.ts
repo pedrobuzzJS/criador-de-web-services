@@ -17,7 +17,7 @@ app.use((request: Request, response: Response, next: NextFunction) => {
     // console.log("tentativa de acesso");
     response.header(
         "Access-Control-Allow-Origin",
-        "http://localhost:3000");
+        "*");
     app.use(cors());
     next();
 });

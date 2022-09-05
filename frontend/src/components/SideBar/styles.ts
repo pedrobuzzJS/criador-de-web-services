@@ -39,20 +39,21 @@ export const SidebarWrap = styled.div`
     width: 100%;
 `;
 
-export const Lista = styled.ul`
+export const Lista = styled.div`
     width: 100%;
+    list-style: none;
     height: 100vh;
     color: #eee;
     justify-content: space-between;
 
-    > a {
+    /* > a {
         text-decoration: none;
         
         &:hover {
             background: #333030;
             cursor: pointer;
         }
-    }  
+    }   */
 `;
 
 export const HeaderTitle = styled.h2`

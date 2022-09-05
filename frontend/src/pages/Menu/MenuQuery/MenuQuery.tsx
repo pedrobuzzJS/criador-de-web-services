@@ -1,6 +1,6 @@
 import React from "react";
 import { LinkMenu } from "../../../@types/menu";
-import { DataGrid } from "../../../components/DataGrid/Grid";
+import { DataGrid } from "../../../components/DataGrid/DataGrid";
 import { useFetch } from "../../../hooks/useFetch";
 import { GridFields } from "../../../Utils/Fields";
 import { Operation } from "../../../Utils/Operations";

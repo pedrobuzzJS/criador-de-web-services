@@ -11,10 +11,8 @@ export const Button: React.FC<ButtonProps> = ({ buttonDescription, size, ...prop
 
     return (
         <ButtonContainer>
-            <ButtonStyle size={size}>
-                <button ref={buttonRef} className="button" {...props}>
-                    <span>{buttonDescription}</span>
-                </button>
+            <ButtonStyle size={size} ref={buttonRef} {...props}>
+                {buttonDescription}
             </ButtonStyle>
         </ButtonContainer>
     );

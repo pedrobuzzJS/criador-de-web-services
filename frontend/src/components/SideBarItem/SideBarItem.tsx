@@ -1,27 +1,62 @@
 import React, { useState } from "react";
 import { LinkMenu } from "../../@types/menu";
-// import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import * as RiIcons from 'react-icons/ri'
-// import { Lista, ListContainer, SubListContainer, SubLista } from "./styles";
-import { StyledLink, StyledMenuText } from "./styles";
+import { 
+    LinkContainer,
+    StyledMenuText,
+    Container,
+    OpenContainer,
+    ImgContainer
+} from "./styles";
 
-export const SideBarItem: React.FC<LinkMenu> = ({ id, nome, rota, pai_id, ...props }) => {
-    const [ subMenu, setSubMenu ] = useState(false);
+export const SideBarItem: React.FC<LinkMenu> = ({ id, icone, nome, pai_id, rota, filhos, possuifilhos, ...props }) => {
+    const [ isOpen, setIsOpen ] = useState<boolean>(false);
 
-    const showSubMenu = () => setSubMenu(!subMenu);
+    const openSubMenuList = () => setIsOpen(!isOpen);
 
-    return (
-        <>
-            <StyledLink to={rota ? rota : "#" }>
-                <StyledMenuText>
-                    <RiIcons.RiDashboardFill />
-                    <span>{nome}</span>
-                </StyledMenuText>
-                {pai_id === null && (
-                    <AiIcons.AiOutlineUp onClick={showSubMenu}/>
-                )}
-            </StyledLink>
-        </>
-    )
-}
+    if (filhos) {
+        return (
+            <>
+                <Container isSubMenuOpen={isOpen}>
+                    <LinkContainer to={rota || "#"}>
+                        <StyledMenuText>
+                            <RiIcons.RiDashboardFill />
+                            <span>{nome}</span>
+                            A
+                        </StyledMenuText>
+                            {filhos && (
+                                <ImgContainer isSubMenuOpen={isOpen}>
+                                    <AiIcons.AiOutlineUp onClick={openSubMenuList}/>
+                                </ImgContainer>
+                                )
+                            }
+                    </LinkContainer>
+                    { filhos.map((child, index) => 
+                    <SideBarItem
+                        key={index}
+                        id={child.id}
+                        nome={child.nome}
+                        icone={child.icone}
+                        rota={child.rota}
+                        possuifilhos={child.possuifilhos}
+                        filhos={child.filhos ?? child.filhos}
+                        pai_id={child.pai_id}
+                    />) }
+                </Container>
+            </>
+        );
+    } else {
+        return (
+            <OpenContainer>
+                <LinkContainer to={rota || "#"}>
+                    <StyledMenuText>
+                        <RiIcons.RiDashboardFill />
+                        <span>{nome}</span>
+                        B
+                    </StyledMenuText>
+                </LinkContainer>
+            </OpenContainer>
+        );
+    };
+};

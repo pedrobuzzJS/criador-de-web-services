@@ -1,7 +1,6 @@
 import React, { InputHTMLAttributes, useCallback, useRef, useState } from "react";
 import { emailValidation } from "../../FormValidations/FormValidations";
 import { cep, cpf, currency, nullMask } from "../Masks/Masks";
-
 import { InputContainer } from "./styles";
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     name: string;
@@ -13,7 +12,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     label: string;
     id: string;
     pixels?: number;
-}
+};
 
 const Input: React.FC<InputProps> = ({ name, id, type, prefix, spanText, percent, label, pixels, ...props }) => {
     const [ isFocused, setIsFocused ] = useState<Boolean>(false);

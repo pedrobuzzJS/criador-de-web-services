@@ -4,6 +4,7 @@ import { Button } from "../Button/Button";
 import { Select } from "../Inputs/Select/Select";
 import { SelectList } from "../../../Utils/SelectList";
 import { ButtonArea, Container, FormContainer } from "./styles";
+import { CheckBox } from "../Inputs/CheckBox/CheckBox";
 interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
     ss: string
 };  
@@ -146,6 +147,11 @@ export const FormBuilder: React.FC<FormProps> = ({ ...props }) => {
                         options={list}
                         onChange={handleSelectListInputChange}
                         pixels={600}
+                    />
+                    <CheckBox
+                        id="cb"
+                        name="cb"
+                        label="Caixa Selecionável"
                     />
                     {/* <div>
                         <label>

@@ -196,9 +196,13 @@ model Bases {
 }
 
 model Rotas {
-  id        Int     @id
-  status_id Int
-  status    Status? @relation(fields: [status_id], references: [id])
+  id         Int     @id
+  nome       String
+  rota       String
+  parametros String
+  metodo     String
+  status_id  Int
+  status     Status? @relation(fields: [status_id], references: [id])
 
   @@map("tbrotas")
 }

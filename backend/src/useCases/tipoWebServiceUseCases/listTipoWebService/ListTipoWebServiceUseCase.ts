@@ -3,8 +3,6 @@ import { client } from "../../../infra/prisma/client";
 export class ListTipoWebServiceUseCase {
 
     async execute(objFilters?: any) {
-
-        // await console.log(objFilters.id);
         
         const data = await client.tipoWebService.findMany({
             select: {
@@ -14,9 +12,6 @@ export class ListTipoWebServiceUseCase {
                 descricao: true,
                 status_id: true,
             },
-            // where: {
-            //     id: 1
-            // },
             orderBy: {
                 id: 'asc'
             }
@@ -24,9 +19,8 @@ export class ListTipoWebServiceUseCase {
 
         if (!data) {
             throw new Error("Sem Retorno de Tipo de WebService do Sistema");
-        }
+        };
 
         return data;
-    }
-
-}
+    };
+};

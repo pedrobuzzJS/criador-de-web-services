@@ -6,7 +6,6 @@ interface Toggle {
 };
 
 export const Container = styled.div<Toggle>`
-
     > div {
         display: ${({ isSubMenuOpen }) => (isSubMenuOpen && isSubMenuOpen === true ? 'block' : 'none')};
     }

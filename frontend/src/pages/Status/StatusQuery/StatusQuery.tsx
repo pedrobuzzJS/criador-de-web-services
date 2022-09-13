@@ -1,32 +1,34 @@
 import React from "react";
 import { DataGrid } from "../../../components/DataGrid/DataGrid";
-import { GridFields } from "../../../Utils/Fields";
+import { GridFields, FieldTypes } from "../../../Utils/Fields";
 import { Operation } from "../../../Utils/Operations";
 import { useFetch } from "../../../hooks/useFetch";
 import { Status } from "../../../@types/status";
-// import * as AiIcons from 'react-icons/ai';
-// import * as RiIcons from 'react-icons/ri'
 
 const Campos: GridFields[] = [
     {
         field: "id",
         tittle: "ID",
-        description: "ID"
+        description: "ID",
+        type: FieldTypes.TEXT
     },
     {
         field: "nome",
         tittle: "Nome",
-        description: "Nome"
+        description: "Nome",
+        type: FieldTypes.TEXT
     },
     {
         field: "descricao",
         tittle: "Descricao",
-        description: "Descricao"
+        description: "Descricao",
+        type: FieldTypes.TEXT
     },
     {
         field: "acoes",
         tittle: "Acoes",
         description: "Acoes",
+        type: FieldTypes.BUTTON,
         buttons: [
             {
                 button: "view-status",

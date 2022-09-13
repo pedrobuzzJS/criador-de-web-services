@@ -1,5 +1,5 @@
 import React from "react";
-import { GridFields } from "../../../Utils/Fields";
+import { GridFields, FieldTypes } from "../../../Utils/Fields";
 import { DataGrid } from "../../../components/DataGrid/DataGrid";
 import { Operation } from "../../../Utils/Operations";
 import { useFetch } from "../../../hooks/useFetch";
@@ -9,17 +9,20 @@ const campos: GridFields[] = [
     {
         field: "table_catalog",
         tittle: "Base de Dados",
-        description: "Base de Dados"
+        description: "Base de Dados",
+        type: FieldTypes.TEXT,
     },
     {
         field: "table_schema",
         tittle: "Schema da Tabela",
-        description: "Schema da Tabela"
+        description: "Schema da Tabela",
+        type: FieldTypes.TEXT,
     },
     {
         field: "table_name",
         tittle: "Nome da Tabela",
-        description: "Nome da Tabela"
+        description: "Nome da Tabela",
+        type: FieldTypes.TEXT,
     },
 ];
 

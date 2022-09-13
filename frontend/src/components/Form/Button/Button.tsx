@@ -2,7 +2,9 @@ import React, { useRef, ButtonHTMLAttributes } from "react";
 import { ButtonContainer, ButtonStyle } from "./styles";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-    buttonDescription: String
+    buttonDescription: String;
+    icon?: string;
+    hasBackGround?: boolean;
     size?: "big" | "small";
 }
 

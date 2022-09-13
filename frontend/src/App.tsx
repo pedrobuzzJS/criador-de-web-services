@@ -11,6 +11,7 @@ import { StatusQuery } from "./pages/Status/StatusQuery/StatusQuery";
 import { TabelasQuery } from "./pages/Tabelas/TabelasQuery/TabelasQuery";
 import { StatusMaintenance } from "./pages/Status/StatusMaintenance/StatusMaintenance";
 import { TipoWebServiceQuery } from "./pages/TipoWebService/TipoWebServiceQuery/TipoWebServiceQuery";
+import { UserQuery } from "./pages/Users/UsersQuery/UsersQuery";
 
 const App: React.FC = () => {
   return (
@@ -22,6 +23,7 @@ const App: React.FC = () => {
           <Route path="pageb" element={<PageB />} />
           <Route path="login" element={<Login />} />
           <Route path="formc" element={<FormBuilder ss={''} />} />
+          <Route path="usuario" element={<UserQuery />} />
           <Route path="menuconsulta" element={<MenuQuery />} />
           <Route path="tabelasconsulta" element={<TabelasQuery />} />
           <Route path="statuscontulta" element={<StatusQuery />} />

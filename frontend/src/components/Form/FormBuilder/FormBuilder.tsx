@@ -41,10 +41,18 @@ export const FormBuilder: React.FC<FormProps> = ({ ...props }) => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-    }
+    };
 
     const handleInputChange = (e: React.FormEvent<HTMLInputElement>) => {
         const { name, value, type} = e.currentTarget;
+        setFormValues({
+            ...formValues,
+            [name]: value,
+        });
+    };
+
+    const handleSelectListInputChange = (e: FormEvent<HTMLSelectElement>) => {
+        const { name, value} = e.currentTarget;
         setFormValues({
             ...formValues,
             [name]: value,
@@ -57,15 +65,11 @@ export const FormBuilder: React.FC<FormProps> = ({ ...props }) => {
             ...formValues,
             [name]: value,
         });
-    }
+    };
 
-    const handleSelectListInputChange = (e: FormEvent<HTMLSelectElement>) => {
-        const { name, value} = e.currentTarget;
-        setFormValues({
-            ...formValues,
-            [name]: value,
-        });
-    }
+    const handleCheckBoxChange = (e: FormEvent<HTMLInputElement>) => {
+        const { name, value } = e.currentTarget;
+    };
 
     const findValueById = useCallback((values: any, key: string) => {
         if (values?.hasOwnProperty(key)) {

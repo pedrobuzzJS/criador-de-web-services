@@ -1,13 +1,16 @@
-import { ListUserUseCase } from "./ListUserUseCase";
+import { ListUserUseCase } from './ListUserUseCase';
+import { Request, Response } from "express";
 
 class ListUserController {
-    static async handle() {
 
-        const listUserUseCase = new ListUserUseCase();
+    static async handle(request: Request, response: Response) {
 
-        const users = listUserUseCase.execute();
+        const listUserController = new ListUserUseCase();
 
-        return {users};
+        const data = await listUserController.execute();
 
+        return response.json(data);
     }
 }
+
+export default ListUserController;

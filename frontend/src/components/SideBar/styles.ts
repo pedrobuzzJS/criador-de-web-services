@@ -32,7 +32,7 @@ export const SideBarNav = styled.nav<SideBarNavProps>`
     top: 0;
     left: ${({ sideBar }) => (sideBar ? '0%' : '-100%')};
     transition: 400ms;
-    z-index: 1000;
+    /* z-index: 1000; */
 `;
 
 export const SidebarWrap = styled.div`
@@ -59,4 +59,13 @@ export const Lista = styled.div`
 export const HeaderTitle = styled.h2`
     color: #eee;
     padding-left: 15px;
+`;
+
+export const BlackHole = styled.div`
+    width: 1000%;
+    height: 100vh;
+    /* z-index: 1; */
+    background: rgba(0, 0, 0, 0.7);
+    cursor: pointer;
+;
 `;

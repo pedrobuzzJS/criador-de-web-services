@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import { IconContext } from "react-icons";
@@ -7,71 +7,41 @@ import { Nav,
          SideBarNav,
          SidebarWrap,
          Lista,
-         HeaderTitle
+         HeaderTitle,
+         BlackHole
 } from "./styles";
 import { SideBarItem } from "../SideBarItem/SideBarItem";
 import { LinkMenu } from "../../@types/menu";
 import { useFetch } from "../../hooks/useFetch";
 
-const mm: LinkMenu[] = [
-    {
-        id: 1,
-        nome: "P1",
-        icone: "<AiIcons.AiFillHome />",
-        rota: "",
-        pai_id: null,
-        possuifilhos: true,
-        filhos: [
-            {
-                id: 2,
-                nome: "P1 F1",
-                icone: "<AiIcons.AiFillHome />",
-                rota: "formc",
-                pai_id: 1,
-                possuifilhos: false,
-            },
-        ]
-    },
-    {
-        id: 3,
-        nome: "P2",
-        icone: "<AiIcons.AiFillHome />",
-        rota: "",
-        pai_id: null,
-        possuifilhos: true,
-        filhos: [
-            {
-                id: 4,
-                nome: "P2 F1",
-                icone: "<AiIcons.AiFillHome />",
-                rota: "",
-                pai_id: 3,
-                possuifilhos: true,
-                filhos: [
-                    {
-                        id: 5,
-                        nome: "F1 F2",
-                        icone: "<AiIcons.AiFillHome />",
-                        rota: "tipowebservicecontulta",
-                        pai_id: 4,
-                        possuifilhos: false,
-                    }
-                ]
-            }
-        ]
-    }
-];
-
 export const SideBar: React.FC = () => {
     const [sideBar, setSideBar] = useState(false);
     const { data: menus } = useFetch<LinkMenu[]>("menu");
     const showSideBar = () => setSideBar(!sideBar);
+   
+    let LinksTratados: LinkMenu[] = [];
 
-    console.log("***", menus);
-
-    const montaMenuList = (menuPai: LinkMenu, menuList: LinkMenu[]) => {
-        
+    const buildChildrenLinks = (linkPai: LinkMenu, linkList: LinkMenu[]) => {
+        const indexLinkPai = linkList.findIndex((link => link.pai_id === linkPai.id));
+        const linkFilhosRetorno: LinkMenu[] = [];
+        if (indexLinkPai !== 1) {
+            linkList.forEach((link, index) => {
+                if (link.pai_id === linkPai.id) {
+                    link.filhos = buildChildrenLinks(link, linkList);
+                    linkFilhosRetorno.push(link);
+                };
+            });
+        };
+        return linkFilhosRetorno;
     };
+
+    
+    menus?.forEach((link, index) => {
+        link.filhos = buildChildrenLinks(link, menus);
+        LinksTratados.push(link);
+    });
+
+    LinksTratados = LinksTratados.filter(link => link.pai_id === null);
 
     return (
         <>
@@ -84,12 +54,14 @@ export const SideBar: React.FC = () => {
                 </Nav>
                 <SideBarNav sideBar={sideBar}> 
                     <SidebarWrap>
+                        {/* {sideBar && <BlackHole onClick={showSideBar}/>} */}
                         <NavIcon to="#">
                             <AiIcons.AiOutlineClose onClick={showSideBar} />
                         </NavIcon>
                         <Lista>
-                            {mm?.length && mm?.map((item, index) => {
-                                    return <SideBarItem
+                            {LinksTratados?.length && LinksTratados?.map((item, index) => (
+                                    <SideBarItem
+                                        key={index}
                                         id={item.id}
                                         nome={item.nome}
                                         icone={item.icone}
@@ -98,13 +70,14 @@ export const SideBar: React.FC = () => {
                                         filhos={item.filhos ?? item.filhos}
                                         possuifilhos={item.possuifilhos}
                                         />
-                                    }
+                                    )
                                 )
                             }
                         </Lista>
                     </SidebarWrap>
                 </SideBarNav>
             </IconContext.Provider>
+            {sideBar && <BlackHole onClick={showSideBar}/>}
         </>
     )
 };

@@ -6,6 +6,4 @@ export interface SelectList {
     color?: string;
     class?: string;
     disable?: boolean;
-    // object?: T;
-    // subList?: SelectList<T>[];
 }

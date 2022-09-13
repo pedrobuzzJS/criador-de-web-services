@@ -23,9 +23,8 @@ export const SideBarItem: React.FC<LinkMenu> = ({ id, icone, nome, pai_id, rota,
                         <StyledMenuText>
                             <RiIcons.RiDashboardFill />
                             <span>{nome}</span>
-                            A
                         </StyledMenuText>
-                            {filhos && (
+                            {possuifilhos === true && (
                                 <ImgContainer isSubMenuOpen={isOpen}>
                                     <AiIcons.AiOutlineUp onClick={openSubMenuList}/>
                                 </ImgContainer>
@@ -33,16 +32,17 @@ export const SideBarItem: React.FC<LinkMenu> = ({ id, icone, nome, pai_id, rota,
                             }
                     </LinkContainer>
                     { filhos.map((child, index) => 
-                    <SideBarItem
-                        key={index}
-                        id={child.id}
-                        nome={child.nome}
-                        icone={child.icone}
-                        rota={child.rota}
-                        possuifilhos={child.possuifilhos}
-                        filhos={child.filhos ?? child.filhos}
-                        pai_id={child.pai_id}
-                    />) }
+                        <SideBarItem
+                            key={index}
+                            id={child.id}
+                            nome={child.nome}
+                            icone={child.icone}
+                            rota={child.rota}
+                            possuifilhos={child.possuifilhos}
+                            filhos={child.filhos ?? child.filhos}
+                            pai_id={child.pai_id}
+                        />)
+                    }
                 </Container>
             </>
         );

@@ -14,7 +14,6 @@ const app = express();
 // );
 
 app.use((request: Request, response: Response, next: NextFunction) => {
-    // console.log("tentativa de acesso");
     response.header(
         "Access-Control-Allow-Origin",
         "*");
@@ -27,7 +26,6 @@ app.use(
         type: ['application/json', 'text/plain'],
     })
 );
-
 
 app.use(
     (err: Error, request: Request, response: Response, next: NextFunction) => {

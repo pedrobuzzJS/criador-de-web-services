@@ -2,7 +2,7 @@ import { client } from "../../../infra/prisma/client";
 
 export class ListStatusUseCase {
 
-    async execute(objFilters?: any) {
+    async getAll(objFilters?: any) {
 
         // await console.log(objFilters.id);
         

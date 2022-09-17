@@ -7,7 +7,7 @@ class ListTableController {
 
         const listTableUseCase = new ListTableUseCase();
 
-        const data = await listTableUseCase.execute();
+        const data = await listTableUseCase.getAll();
 
         return response.json(data);
     }

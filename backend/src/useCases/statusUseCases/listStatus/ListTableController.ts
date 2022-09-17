@@ -10,7 +10,7 @@ class ListStatusController {
 
         const listStatusController = new ListStatusUseCase();
 
-        const data = await listStatusController.execute();
+        const data = await listStatusController.getAll();
 
         return response.json(data);
     }

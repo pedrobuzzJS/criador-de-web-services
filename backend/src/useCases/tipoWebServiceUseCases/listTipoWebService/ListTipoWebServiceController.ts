@@ -7,7 +7,7 @@ class ListTipoWebServiceController {
 
         const listStatusController = new ListTipoWebServiceUseCase();
 
-        const data = await listStatusController.execute();
+        const data = await listStatusController.getAll();
 
         return response.json(data);
     }

@@ -14,4 +14,5 @@ export interface GridFields {
 export class FieldTypes {
   public static TEXT = 1;
   public static BUTTON = 2;
+  public static BOOLEAN = 3;
 }

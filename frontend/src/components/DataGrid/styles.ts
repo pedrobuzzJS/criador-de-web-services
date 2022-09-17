@@ -41,3 +41,10 @@ export const TableRows = styled.tr<TableRowProps>`
         text-align: left;
     }
 `;
+
+export const ButtonContainerGrid = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+`;

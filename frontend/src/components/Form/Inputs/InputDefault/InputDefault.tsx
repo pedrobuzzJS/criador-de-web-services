@@ -3,15 +3,16 @@ import { emailValidation } from "../../FormValidations/FormValidations";
 import { cep, cpf, currency, nullMask } from "../Masks/Masks";
 import { InputContainer } from "./styles";
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-    name: string;
-    type:   "text" | "email" | "password" | "button" | "color" | "file" | "cpf"
-            | "currency" | "cep" | "date" | "number";
+    name: any;
+    // type:   "text" | "email" | "password" | "button" | "color" | "file" | "cpf"
+    //         | "currency" | "cep" | "date" | "number";
+    type:   any;
     prefix?: string;
     spanText?: string;
     percent?: string;
-    label: string;
-    id: string;
-    pixels?: number;
+    label: any;
+    id: any;
+    pixels?: string;
 };
 
 const Input: React.FC<InputProps> = ({ name, id, type, prefix, spanText, percent, label, pixels, ...props }) => {

@@ -1,46 +1,65 @@
-import React, { useState, FormHTMLAttributes, FormEvent, useCallback } from "react";
+import React, { useState, FormHTMLAttributes, FormEvent, useCallback, useEffect } from "react";
 import Input from "../Inputs/InputDefault/InputDefault";
 import { Button } from "../Button/Button";
-import { Select } from "../Inputs/Select/Select";
-import { SelectList } from "../../../Utils/SelectList";
+// import { Select } from "../Inputs/Select/Select";
+// import { SelectList } from "../../../Utils/SelectList";
 import { ButtonArea, Container, FormContainer } from "./styles";
-import { CheckBox } from "../Inputs/CheckBox/CheckBox";
+// import { CheckBox } from "../Inputs/CheckBox/CheckBox";
+import { FormInputs } from "../../../Utils/FormFields";
 interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
-    ss: string
+    operation: number;
+    data: any[];
+    campos: FormInputs[];
 };  
 
-const list: SelectList[] = [
-    {
-        key: "1",
-        value: "Aston Martin",
-    },
-    {
-        key: "2",
-        value: "Lamborgini Urus",
-    },
-    {
-        key: "3",
-        value: "BMW X-6",
-    },
-    {
-        key: "4",
-        value: "Porshe Panamera",
-    },
-];
+// const list: SelectList[] = [
+//     {
+//         key: "1",
+//         value: "Aston Martin",
+//     },
+//     {
+//         key: "2",
+//         value: "Lamborgini Urus",
+//     },
+//     {
+//         key: "3",
+//         value: "BMW X-6",
+//     },
+//     {
+//         key: "4",
+//         value: "Porshe Panamera",
+//     },
+// ];
 
-export const FormBuilder: React.FC<FormProps> = ({ ...props }) => {
-    const [ formValues, setFormValues ] = useState({
-        nome: 'Pedro Artur',
-        sobrenome: 'Buzzi Pereira',
-        cep: '89164-081', 
-        cpf: '105.781.649-30', 
-        password: 'senha', 
-        idade: '22',
-        cars: "1"
-    });
+export const FormBuilder: React.FC<FormProps> = ({  operation, data, campos, ...props }) => {
+    // const [ formValues, setFormValues ] = useState({
+    //     component:null,
+    //     desabilitado:false,
+    //     icone:"icone",
+    //     id:"6",
+    //     nome:"",
+    //     ordem:25,
+    //     pai_id:null,
+    //     papel:null,
+    //     parametros:"oidawodiaw",
+    //     permissao:null,
+    //     possuifilhos:true,
+    //     rota:"",
+    //     status_id:1,
+    // });
+    const [ formValues, setFormValues ] = useState({});
+    // const [ formFields, setFormFields ] = useState(campos)
+    const setFormValueInitial = useEffect( () => {
+        setFormValues({
+            ...data?.[0]
+        })
+    }, [data] )
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+        // console.log(formFields);
+        // console.log(formValues);
+        // console.log(data?.[0]);
     };
 
     const handleInputChange = (e: React.FormEvent<HTMLInputElement>) => {
@@ -49,6 +68,8 @@ export const FormBuilder: React.FC<FormProps> = ({ ...props }) => {
             ...formValues,
             [name]: value,
         });
+        console.log(formValues);
+        console.log(data?.[0]);
     };
 
     const handleSelectListInputChange = (e: FormEvent<HTMLSelectElement>) => {
@@ -71,19 +92,42 @@ export const FormBuilder: React.FC<FormProps> = ({ ...props }) => {
         const { name, value } = e.currentTarget;
     };
 
-    const findValueById = useCallback((values: any, key: string) => {
+    const findValueById = useCallback((values: any, key: any) => {
         if (values?.hasOwnProperty(key)) {
             const data = values[key];
             return data;
         }
         return "";
-    }, [])
+    }, [formValues])
 
     return (
         <Container>
             <form onSubmit={handleSubmit}>  
                 <FormContainer>
-                    <Input
+                    {campos?.map( (campo, index) => (
+                        <Input
+                            key={index}
+                            id={campo.id}
+                            name={campo.name}
+                            type={campo.type}
+                            label={campo.label}
+                            placeholder={campo.placeholder}
+                            onChange={handleInputChange}
+                            value={findValueById(formValues, campo.name)}
+                            pixels={campo.pixels?.toString()}
+                        />
+                    ) )}
+                    {/* <Input
+                        name="nodawdawme"
+                        type="text"
+                        placeholder="nodawdawme"
+                        label={"nodawdawme"} 
+                        id={"nodawdawme"}
+                        onChange={handleInputChange}
+                        value={findValueById(formValues, "nodawdawme")}
+                        pixels={"600"}
+                    /> */}
+                    {/* <Input
                         name="nome"
                         type="text"
                         placeholder="Nome"
@@ -156,37 +200,7 @@ export const FormBuilder: React.FC<FormProps> = ({ ...props }) => {
                         id="cb"
                         name="cb"
                         label="Caixa Selecionável"
-                    />
-                    {/* <div>
-                        <label>
-                            <input
-                            name="drink"
-                            type="radio"
-                            value="cafe"
-                            onChange={handleInputChange}
-                            />
-                            <span>
-                                Cafe
-                            </span>
-                        </label>
-                        <label>
-                            <input
-                            name="drink"
-                            type="radio"
-                            value="refri"
-                            onChange={handleInputChange}
-                            />
-                            <span>
-                                Refri
-                            </span>
-                        </label>
-                    </div>
-
-                    <div>
-                        <label htmlFor="bio">Bio</label>
-                        <br />
-                        <textarea name="bio" id="bio" value={findValueById(formValues, "bio")}  onChange={handleTextAreaChange} />
-                    </div> */}
+                    /> */}
                 </FormContainer>
                 <ButtonArea>
                     <Button 

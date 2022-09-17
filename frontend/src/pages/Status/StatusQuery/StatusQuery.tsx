@@ -31,22 +31,25 @@ const Campos: GridFields[] = [
         type: FieldTypes.BUTTON,
         buttons: [
             {
-                button: "view-status",
+                button: "status",
                 action: Operation.VIEW,
-                tittle: "View",
-                icon: "RiIcons.RiDashboardFill"
+                tittle: "Visualizar",
+                icon: "RiIcons.RiDashboardFill",
+                rotina: "status",
             },
             {
-                button: "alter-status",
+                button: "status",
                 action: Operation.ALTER,
-                tittle: "Alter",
-                icon: "RiIcons.RiDashboardFill"
+                tittle: "Alterar",
+                icon: "RiIcons.RiDashboardFill",
+                rotina: "status",
             },
             {
-                button: "delete-status",
+                button: "status",
                 action: Operation.DELETE,
-                tittle: "Delete",
-                icon: "RiIcons.RiDashboardFill"
+                tittle: "Deletar    ",
+                icon: "RiIcons.RiDashboardFill",
+                rotina: "status",
             },
         ]
     },

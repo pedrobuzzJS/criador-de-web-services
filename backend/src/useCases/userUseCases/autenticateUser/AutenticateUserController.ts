@@ -7,7 +7,7 @@ class AuthencitateUserController {
 
         const authenticateUserUserCase = new AutenticateUerUseCase();
 
-        const token = await authenticateUserUserCase.execute({
+        const token = await authenticateUserUserCase.getAll({
             username, 
             password
         })

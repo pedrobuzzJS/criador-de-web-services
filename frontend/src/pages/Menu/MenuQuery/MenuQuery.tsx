@@ -25,18 +25,18 @@ const campos: GridFields[] = [
         description: "parametros",
         type: FieldTypes.TEXT,
     },
-    {
-        field: "possuifilhos",
-        tittle: "Possui Filhos",
-        description: "possuifilhos",
-        type: FieldTypes.TEXT,
-    },
-    {
-        field: "component",
-        tittle: "Componente",
-        description: "component",
-        type: FieldTypes.TEXT,
-    },
+    // {
+    //     field: "possuifilhos",
+    //     tittle: "Possui Filhos",
+    //     description: "possuifilhos",
+    //     type: FieldTypes.TEXT,
+    // },
+    // {
+    //     field: "component",
+    //     tittle: "Componente",
+    //     description: "component",
+    //     type: FieldTypes.TEXT,
+    // },
     {
         field: "rota",
         tittle: "Rota",
@@ -55,30 +55,30 @@ const campos: GridFields[] = [
         description: "pai_id",
         type: FieldTypes.TEXT,
     },
-    {
-        field: "ordem",
-        tittle: "Ordem",
-        description: "ordem",
-        type: FieldTypes.TEXT,
-    },
-    {
-        field: "desabilitado",
-        tittle: "Desabilitado",
-        description: "desabilitado",
-        type: FieldTypes.TEXT,
-    },
-    {
-        field: "papel",
-        tittle: "Papel",
-        description: "papel",
-        type: FieldTypes.TEXT,
-    },
-    {
-        field: "permissao",
-        tittle: "Permissao",
-        description: "permissao",
-        type: FieldTypes.TEXT,
-    },
+    // {
+    //     field: "ordem",
+    //     tittle: "Ordem",
+    //     description: "ordem",
+    //     type: FieldTypes.TEXT,
+    // },
+    // {
+    //     field: "desabilitado",
+    //     tittle: "Desabilitado",
+    //     description: "desabilitado",
+    //     type: FieldTypes.TEXT,
+    // },
+    // {
+    //     field: "papel",
+    //     tittle: "Papel",
+    //     description: "papel",
+    //     type: FieldTypes.TEXT,
+    // },
+    // {
+    //     field: "permissao",
+    //     tittle: "Permissao",
+    //     description: "permissao",
+    //     type: FieldTypes.TEXT,
+    // },
     {
         field: "status_id",
         tittle: "Status ID",
@@ -92,9 +92,18 @@ const campos: GridFields[] = [
         type: FieldTypes.BUTTON,
         buttons: [
             {
-                button: "teste",
+                button: "menu",
+                action: Operation.SEARCH,
+                tittle: "Visualisar",
+                icon: "RiIcons.RiDashboardFill",
+                rotina: "menu",
+            },
+            {
+                button: "menu",
                 action: Operation.ALTER,
-                tittle: "teste",
+                tittle: "Alterar",
+                icon: "RiIcons.RiDashboardFill",
+                rotina: "menu",
             }
         ]
     }
@@ -104,8 +113,6 @@ export const MenuQuery: React.FC = () => {
     const { data: Menus, loadding } = useFetch<LinkMenu[]>("menu");
 
     return (
-        <>
-            <DataGrid columns={campos} data={Menus} loading={loadding} />
-        </>
+        <DataGrid columns={campos} data={Menus} loading={loadding} />
     );
 };

@@ -5,9 +5,16 @@ class ListMenuController {
 
     static async handle(request: Request, response: Response) {
 
+        const { id } = request.query;
+
         const listTableUseCase = new ListMenuUseCase();
 
-        const data = await listTableUseCase.execute();
+        if (id) {
+            const data = await listTableUseCase.getById(Number(id));
+            return response.json(data);
+        }
+        
+        const data = await listTableUseCase.getAll();
 
         return response.json(data);
     }

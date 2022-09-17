@@ -2,7 +2,7 @@ import { client } from "../../../infra/prisma/client";
 
 export class ListTipoWebServiceUseCase {
 
-    async execute(objFilters?: any) {
+    async getAll(objFilters?: any) {
         
         const data = await client.tipoWebService.findMany({
             select: {

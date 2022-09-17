@@ -1,9 +1,9 @@
 import React from "react";
-import { GridFields, FieldTypes } from "../../../Utils/Fields";
 import { DataGrid } from "../../../components/DataGrid/DataGrid";
+import { GridFields, FieldTypes } from "../../../Utils/Fields";
 import { Operation } from "../../../Utils/Operations";
 import { useFetch } from "../../../hooks/useFetch";
-import { Table } from "../../../@types/table";
+import { Tabelas } from "../../../@types/tabelas";
 
 const Campos: GridFields[] = [
     {
@@ -76,10 +76,10 @@ const Campos: GridFields[] = [
     },
 ];
 
-export const TabelasQuery: React.FC = () => {
-    const { data, loadding } = useFetch<Table[]>("table");
+export const DataDictionaryQuery: React.FC = () => {
+    const { data, loadding } = useFetch<Tabelas[]>("table");
 
     return (
-        <DataGrid columns={Campos} data={data} loading={loadding} />
+        <DataGrid columns={[]} data={data} />
     );
 };

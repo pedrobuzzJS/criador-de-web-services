@@ -8,7 +8,7 @@ class CreateUserController {
 
         const createUserUseCase = new CreateUserUseCase();
 
-        const user = await createUserUseCase.execute({
+        const user = await createUserUseCase.getAll({
             name,
             username,
             email,

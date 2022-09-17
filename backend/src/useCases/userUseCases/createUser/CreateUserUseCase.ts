@@ -9,7 +9,7 @@ interface IUserRequest {
 }
 export class CreateUserUseCase {
 
-    async execute({ name, username, email, password }: IUserRequest ) {
+    async getAll({ name, username, email, password }: IUserRequest ) {
         const userAlreadyExists = await client.users.findFirst({
             where: {
                 username

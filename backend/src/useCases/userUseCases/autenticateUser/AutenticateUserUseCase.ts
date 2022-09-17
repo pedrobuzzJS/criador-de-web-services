@@ -20,7 +20,7 @@ const tabela = "users";
 
 class AutenticateUerUseCase {
 
-    async execute({ username, password }: IUserAutenticateRequest) {
+    async getAll({ username, password }: IUserAutenticateRequest) {
 
         const userAlreadyExists = await client.users.findFirst({
             where: {

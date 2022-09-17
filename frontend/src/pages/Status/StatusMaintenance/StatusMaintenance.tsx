@@ -7,10 +7,8 @@ export const StatusMaintenance: React.FC = () => {
     const { op, id } = useParams();
     const { data, loadding } = useFetch<Status[]>("status", {
         params: {
-            objFilters: {
-                id: id,
-            },
-        }
+            id: id
+        },
     })
 
     console.log("*** parametros operacao", op);

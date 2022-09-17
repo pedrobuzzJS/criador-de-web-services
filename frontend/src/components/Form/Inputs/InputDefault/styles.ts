@@ -3,12 +3,12 @@ import styled from "styled-components";
 interface InputCssProps {
     percent?: string;
     focus?: boolean | any;
-    pixels?: number;
+    pixels?: string;
 }
 
 export const InputContainer = styled.div<InputCssProps>`
     border-radius: 5px;
-    width: ${({ pixels }) => (pixels ? pixels : '100%')};
+    width: ${({ pixels }) => (`${pixels}px` ? `${pixels}px` : '100%')};
 
     > input {
         width: 95%;

@@ -2,7 +2,7 @@ import { response } from 'express';
 import { client } from "../../../infra/prisma/client";
 
 export class ListUserUseCase {
-  async execute(objFilters?: any) {
+  async getAll(objFilters?: any) {
       const data = await client.users.findMany({
           orderBy: {
               id: 'asc'

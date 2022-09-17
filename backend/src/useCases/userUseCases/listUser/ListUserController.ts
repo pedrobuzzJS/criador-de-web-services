@@ -7,7 +7,7 @@ class ListUserController {
 
         const listUserController = new ListUserUseCase();
 
-        const data = await listUserController.execute();
+        const data = await listUserController.getAll();
 
         return response.json(data);
     }

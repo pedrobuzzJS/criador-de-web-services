@@ -32,34 +32,15 @@ interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
 // ];
 
 export const FormBuilder: React.FC<FormProps> = ({  operation, data, campos, ...props }) => {
-    // const [ formValues, setFormValues ] = useState({
-    //     component:null,
-    //     desabilitado:false,
-    //     icone:"icone",
-    //     id:"6",
-    //     nome:"",
-    //     ordem:25,
-    //     pai_id:null,
-    //     papel:null,
-    //     parametros:"oidawodiaw",
-    //     permissao:null,
-    //     possuifilhos:true,
-    //     rota:"",
-    //     status_id:1,
-    // });
     const [ formValues, setFormValues ] = useState({});
-    // const [ formFields, setFormFields ] = useState(campos)
     const setFormValueInitial = useEffect( () => {
         setFormValues({
             ...data?.[0]
         })
-    }, [data] )
+    }, [data] );
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        // console.log(formFields);
-        // console.log(formValues);
-        // console.log(data?.[0]);
     };
 
     const handleInputChange = (e: React.FormEvent<HTMLInputElement>) => {
@@ -68,8 +49,6 @@ export const FormBuilder: React.FC<FormProps> = ({  operation, data, campos, ...
             ...formValues,
             [name]: value,
         });
-        console.log(formValues);
-        console.log(data?.[0]);
     };
 
     const handleSelectListInputChange = (e: FormEvent<HTMLSelectElement>) => {
@@ -98,7 +77,7 @@ export const FormBuilder: React.FC<FormProps> = ({  operation, data, campos, ...
             return data;
         }
         return "";
-    }, [formValues])
+    }, [formValues]);
 
     return (
         <Container>

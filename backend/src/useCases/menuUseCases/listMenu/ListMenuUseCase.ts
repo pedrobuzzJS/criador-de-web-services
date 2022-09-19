@@ -1,7 +1,6 @@
 import { client } from "../../../infra/prisma/client";
 
 export class ListMenuUseCase {
-
     async getAll() {
         const data = await client.menus.findMany({
             select: {
@@ -23,13 +22,11 @@ export class ListMenuUseCase {
                 id: 'asc',
             }
         });
-
         if (!data) {
             throw new Error("Sem de Menus do Sistema");
-        }
-
+        };
         return data;
-    }
+    };
 
     async getById(id?: number) {
         const data = await client.menus.findMany({
@@ -55,12 +52,9 @@ export class ListMenuUseCase {
                 id: id
             }
         });
-
         if (!data) {
             throw new Error("Sem de Menus do Sistema");
-        }
-
+        };
         return data;
-    }
-
-}
+    };
+};

@@ -6,4 +6,4 @@ export interface SelectList {
     color?: string;
     class?: string;
     disable?: boolean;
-}
+};

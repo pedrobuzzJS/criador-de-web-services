@@ -24,7 +24,8 @@ app.use((request: Request, response: Response, next: NextFunction) => {
 app.use(
     express.json({
         type: ['application/json', 'text/plain'],
-    })
+        }
+    )
 );
 
 app.use(
@@ -32,9 +33,9 @@ app.use(
         return response.json({
             status: response.status(500),
             message: err.message,
-        })
+        });
     }
-    );
+);
     
 app.use(Routes);
 

@@ -5,6 +5,6 @@ const Routes = () => {
     const {signed} = useContext(AuthContext);
 
     return signed;
-}
+};
 
 export default Routes;

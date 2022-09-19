@@ -7,7 +7,7 @@ const ToolBar: React.FC = () => {
         <Container>
             <AiOutlineMenu />
         </Container>
-    )
-}
+    );
+};
 
 export default ToolBar;

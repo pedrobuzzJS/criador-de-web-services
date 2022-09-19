@@ -21,7 +21,6 @@ const tabela = "users";
 class AutenticateUerUseCase {
 
     async getAll({ username, password }: IUserAutenticateRequest) {
-
         const userAlreadyExists = await client.users.findFirst({
             where: {
                 username
@@ -29,18 +28,14 @@ class AutenticateUerUseCase {
             select: {
                 ...colunms  
             }
-        })
-
+        });
         if (!userAlreadyExists) {
             throw new Error("Usuario ou senha invalido");
-        }
-
+        };
         const passwordMatch = await compare(password, userAlreadyExists.password);
-
         if (!passwordMatch) {
             throw new Error("Usuario ou senha invalido");
-        }
-
+        };
         const token = await sign({
             id: userAlreadyExists.id,
             username: userAlreadyExists.username,
@@ -49,11 +44,9 @@ class AutenticateUerUseCase {
             algorithm: "HS512",
             subject: userAlreadyExists.id.toString(),
             expiresIn: "3600s"
-        })
-
+        });
         return token;
     };
-
-}
+};
 
 export { AutenticateUerUseCase };

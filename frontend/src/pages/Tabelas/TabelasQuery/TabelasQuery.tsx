@@ -55,22 +55,25 @@ const Campos: GridFields[] = [
         type: FieldTypes.BUTTON,
         buttons: [
             {
-                button: "view-status",
+                button: "tabelas",
                 action: Operation.VIEW,
                 tittle: "Visualizar",
-                icon: "RiIcons.RiDashboardFill"
+                icon: "RiIcons.RiDashboardFill",
+                rotina: "tabelas"
             },
             {
-                button: "alter-status",
+                button: "tabelas",
                 action: Operation.ALTER,
                 tittle: "Alterar",
-                icon: "RiIcons.RiDashboardFill"
+                icon: "RiIcons.RiDashboardFill",
+                rotina: "tabelas"
             },
             {
-                button: "delete-status",
+                button: "tabelas",
                 action: Operation.DELETE,
                 tittle: "Deletar    ",
-                icon: "RiIcons.RiDashboardFill"
+                icon: "RiIcons.RiDashboardFill",
+                rotina: "tabelas"
             },
         ]
     },

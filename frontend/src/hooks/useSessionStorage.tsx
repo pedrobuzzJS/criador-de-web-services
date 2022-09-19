@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-
 interface SessionStorage {
     key: string,
     value: string
-}
+};
 
 export function useLocalStorage({key, value}: SessionStorage) {
     const [ state, setState ] = useState(() => {
@@ -16,4 +15,4 @@ export function useLocalStorage({key, value}: SessionStorage) {
     }, [value, key]);
 
     return [state, setState ];
-}
+};

@@ -15,21 +15,8 @@ export const DataGrid: React.FC<GridProps> = ({ columns, data, loading, ...props
     const navigate = useNavigate();
     const [ order, setOrder ] = useState<String>('');
 
-    // const montaUrlManutencao = (url: string, operacao: number, chave: string[]) => {
-    //     let urlManutencao = '';
-    //     urlManutencao = this.rotinanome + '-' + url + '/' + operacao.toString();
-    //     if (operacao !== Operacao.INCLUIR) {
-    //       chave.forEach(valorChave => {
-    //         urlManutencao = urlManutencao + '/' + valorChave;
-    //       });
-    //     }
-    //     return urlManutencao;
-    // };
-
     const buildMaintenanceURL = useCallback( (btn: string, operation: number, key?: any) => {
         let url = btn + "-manutencao" + `/${operation}` + `/${key}`; 
-        console.log("***", btn, operation, key);
-        console.log("***", url);
         return navigate("/"+url);
     }, []);
 

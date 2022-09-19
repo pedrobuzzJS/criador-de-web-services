@@ -5,7 +5,7 @@ export function cep(e: React.FormEvent<HTMLInputElement>) {
   value = value.replace(/^(\d{5})(\d)/, "$1-$2");
   e.currentTarget.value = value;
   return e;
-}
+};
   
 export function currency(e: React.FormEvent<HTMLInputElement>) {
   let value = e.currentTarget.value;
@@ -14,7 +14,7 @@ export function currency(e: React.FormEvent<HTMLInputElement>) {
   value = value.replace(/(?=(\d{3})+(\D))\B/g, ".");  
   e.currentTarget.value = value;
   return e;
-}
+};
   
 export function cpf(e: React.FormEvent<HTMLInputElement>) {
   e.currentTarget.maxLength = 14;
@@ -25,10 +25,10 @@ export function cpf(e: React.FormEvent<HTMLInputElement>) {
     value = value.replace(/(\d{3})(\d)/, "$1.$2");
     value = value.replace(/(\d{3})(\d{2})$/, "$1-$2");
     e.currentTarget.value = value;
-  }
+  };
   return e;
-}
+};
 
 export function nullMask(e: React.FormEvent<HTMLInputElement>) {
   return e;
-}
+};

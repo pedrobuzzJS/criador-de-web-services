@@ -4,7 +4,6 @@ import { FieldTypes, GridFields  } from "../../../Utils/Fields";
 import { Operation } from "../../../Utils/Operations";
 import { useFetch } from "../../../hooks/useFetch";
 import { Users } from "../../../@types/user";
-import { Status } from "../../../@types/status";
 
 const Campos: GridFields[] = [
     {
@@ -52,23 +51,53 @@ const Campos: GridFields[] = [
         description: "status_id",
         type: FieldTypes.TEXT,
     },
-    // {
-    //     field: "created_at",
-    //     tittle: "created_at",
-    //     description: "created_at"
-    // },
-    // {
-    //     field: "updated_at",
-    //     tittle: "updated_at",
-    //     description: "updated_at"
-    // },
+    {
+        field: "created_at",
+        tittle: "created_at",
+        description: "created_at",
+        type: FieldTypes.TEXT,
+    },
+    {
+        field: "updated_at",
+        tittle: "updated_at",
+        description: "updated_at",
+        type: FieldTypes.TEXT,
+    },
+    {
+        field: "acoes",
+        tittle: "Acoes",
+        description: "Acoes",
+        type: FieldTypes.BUTTON,
+        buttons: [
+            {
+                button: "usuario",
+                action: Operation.VIEW,
+                tittle: "Visualizar",
+                icon: "RiIcons.RiDashboardFill",
+                rotina: "usuario",
+            },
+            {
+                button: "usuario",
+                action: Operation.ALTER,
+                tittle: "Alterar",
+                icon: "RiIcons.RiDashboardFill",
+                rotina: "usuario",
+            },
+            {
+                button: "usuario",
+                action: Operation.DELETE,
+                tittle: "Deletar    ",
+                icon: "RiIcons.RiDashboardFill",
+                rotina: "usuario",
+            },
+        ]
+    },
 ];
 
 export const UserQuery: React.FC = () => {
     const { data: usersFetch, loadding } = useFetch<Users[]>("usuario");
-    const { data: statusFetch } = useFetch<Status[]>("status");
 
     return (
         <DataGrid columns={Campos} data={usersFetch} loading={loadding} />
-    )
-}
+    );
+};

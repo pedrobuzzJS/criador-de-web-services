@@ -15,7 +15,7 @@ export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
     disable?: boolean;
     subList?: SelectProps[];
     label: string;
-}
+};
 
 export const Select: React.FC<SelectProps> = ({ id, name, value, options, label, pixels, ...props }) => {
     const [ isFocused, setIsFocused ] = useState<Boolean>(false);
@@ -30,8 +30,14 @@ export const Select: React.FC<SelectProps> = ({ id, name, value, options, label,
     }, []);
 
     return (
-        <SelectContainer pixels={pixels} focus={isFocused}>
-            <label htmlFor={id}>{label}</label>
+        <SelectContainer
+            pixels={pixels}
+            focus={isFocused}>
+            <label
+                htmlFor={id}
+            >
+                {label}
+            </label>
             <br />
             <select
                 ref={inputRef}
@@ -48,7 +54,12 @@ export const Select: React.FC<SelectProps> = ({ id, name, value, options, label,
                 </option>
                 {options?.map((item, index) => {
                             return (
-                                <option key={index} value={item.key}>{item.value}</option>        
+                                <option
+                                    key={index}
+                                    value={item.key}
+                                    >{
+                                    item.value}
+                                </option>        
                             )
                         }
                     )
@@ -56,4 +67,4 @@ export const Select: React.FC<SelectProps> = ({ id, name, value, options, label,
             </select>
         </SelectContainer>
     );
-}
+};

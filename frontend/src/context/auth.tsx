@@ -1,11 +1,10 @@
 import React, { createContext, useState } from "react";
-
 interface AuthContextData{
     signed: Boolean;
     user: object | null;
     // signIn(): Promise<void>;
     // signOut(): void;
-}
+};
 
 const AuthContext = createContext<AuthContextData>( {} as AuthContextData );
 
@@ -22,7 +21,7 @@ const AuthProvider: React.FC = () => {
         {/* <AuthContext.Provider value={{signed: !!user, user, singIn, signOut}}> */}
             {/* {children} */}
         </AuthContext.Provider>
-    )
-}
+    );
+};
 
 export default AuthContext;

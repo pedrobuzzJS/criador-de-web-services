@@ -18,13 +18,10 @@ export class CreateUserUseCase {
 
             }
         });
-
         if (userAlreadyExists) {
             throw new Error("Usuario existente");
-        }
-
+        };
         const passwordHash = await hash(password, 8);
-
         const user = await client.users.create({
             data: {
                 name,
@@ -32,9 +29,7 @@ export class CreateUserUseCase {
                 email,
                 password: passwordHash
             }
-        })
-        
+        });
         return user;
-    }
-
-}
+    };
+};

@@ -11,4 +11,4 @@ export interface FieldAction{
     color?: string;
     order?: number;
     disableCondition?: DisableButtonCondition;
-  }
+};

@@ -20,8 +20,7 @@ export interface FormInputs {
     id?: string;
     pixels?: string;
     list?: SelectList[]
-}
-
+};
 export class InputType {
     public static TEXT = "text";
     public static EMAIL = "email";
@@ -34,4 +33,4 @@ export class InputType {
     public static CEP = "cep";
     public static DATE = "date";
     public static NUMBER = "number";
-}
+};

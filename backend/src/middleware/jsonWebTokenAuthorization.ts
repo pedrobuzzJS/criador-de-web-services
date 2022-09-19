@@ -12,8 +12,9 @@ function tokenAuthenticate(
     if (!authToken) {
         return response.status(401).json({
             message: "Invalid Authotization",
-        })
-    }
+            }
+        );
+    };
 
     const [, token] = authToken.split(" ");
 
@@ -24,8 +25,9 @@ function tokenAuthenticate(
     } catch(err) {
         return response.status(401).json({
             message: "Invalid Token",
-        })
-    }
-}
+            }
+        );
+    };
+};
 
 export default tokenAuthenticate;

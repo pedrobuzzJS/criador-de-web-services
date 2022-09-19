@@ -12,16 +12,16 @@ datasource db {
 
 model Users {
   id                 Int                @id @default(autoincrement())
-  name               String
-  username           String             @unique
-  email              String             @unique
+  name               String             @db.VarChar(255)
+  username           String             @unique @db.VarChar(255)
+  email              String             @unique @db.VarChar(255)
   email_verified     Boolean            @default(false)
-  password           String
-  remember_token     String?
+  password           String             @db.VarChar(255)
+  remember_token     String?            @db.VarChar(255)
   status_id          Int?
   status             Status?            @relation(fields: [status_id], references: [id])
   created_at         DateTime?          @default(now())
-  updated_at         String?
+  updated_at         String?            @db.VarChar(255)
   usuario_permissoes UsuarioPermissao[]
   usuario_papeis     UsuarioPapel[]
 
@@ -30,8 +30,8 @@ model Users {
 
 model Cores {
   id         Int      @id @default(autoincrement())
-  descricao  String
-  cor        String
+  descricao  String   @db.VarChar(255)
+  cor        String   @db.VarChar(255)
   created_at DateTime
   updated_at DateTime
 
@@ -40,8 +40,8 @@ model Cores {
 
 model Acoes {
   id         Int      @id
-  descricao  String
-  metodo     String
+  descricao  String   @db.VarChar(255)
+  metodo     String   @db.VarChar(255)
   created_at DateTime
   updated_at DateTime
 
@@ -50,12 +50,12 @@ model Acoes {
 
 model Menus {
   id           Int       @id
-  nome         String
-  parametros   String?
-  rota         String?
-  icone        String
+  nome         String    @db.VarChar(255)
+  parametros   String?   @db.VarChar(255)
+  rota         String?   @db.VarChar(255)
+  icone        String    @db.VarChar(255)
   pai_id       Int?
-  component    String?
+  component    String?   @db.VarChar(255)
   possuifilhos Boolean   @default(false)
   // menu_pai     Menus?    @relation("SelfMenus", fields: [pai_id], references: [id])
   // menus_pais   Menus[]   @relation("SelfMenus")
@@ -73,8 +73,8 @@ model Menus {
 
 model Papel {
   id              Int              @id
-  nome            String
-  descricao       String
+  nome            String           @db.VarChar(255)
+  descricao       String           @db.VarChar(255)
   created_at      DateTime
   usuarioPapeis   UsuarioPapel[]
   papelPermissoes PapelPermissao[]
@@ -84,8 +84,8 @@ model Papel {
 
 model Permissao {
   id                 Int                @id
-  nome               String
-  descricao          String
+  nome               String             @db.VarChar(255)
+  descricao          String             @db.VarChar(255)
   created_at         DateTime
   usuario_permissoes UsuarioPermissao[]
   pepelPermissoes    PapelPermissao[]
@@ -125,8 +125,8 @@ model UsuarioPapel {
 
 model Status {
   id              Int              @id @default(autoincrement())
-  nome            String
-  descricao       String
+  nome            String           @db.VarChar(255)
+  descricao       String           @db.VarChar(255)
   Menus           Menus[]
   Users           Users[]
   TipoWebServises TipoWebService[]
@@ -143,9 +143,9 @@ model Status {
 
 model TipoWebService {
   id        Int     @id
-  nome      String
-  sigla     String
-  descricao String
+  nome      String  @db.VarChar(255)
+  sigla     String  @db.VarChar(255)
+  descricao String  @db.VarChar(255)
   status_id Int?
   status    Status? @relation(fields: [status_id], references: [id])
 
@@ -154,8 +154,8 @@ model TipoWebService {
 
 model WebService {
   id        Int     @id
-  nome      String
-  descricao String
+  nome      String  @db.VarChar(255)
+  descricao String  @db.VarChar(255)
   prover    Boolean
   consumir  Boolean
   varsao    Float
@@ -167,8 +167,8 @@ model WebService {
 
 model TipoBases {
   id        Int     @id
-  nome      String
-  icone     String
+  nome      String  @db.VarChar(255)
+  icone     String  @db.VarChar(255)
   status_id Int?
   status    Status? @relation(fields: [status_id], references: [id])
 
@@ -178,15 +178,15 @@ model TipoBases {
 model Bases {
   id            Int       @id
   nome          String    @db.VarChar(255)
-  user          String
-  password      String
-  db_connection String
-  host          String
+  user          String    @db.VarChar(255)
+  password      String    @db.VarChar(255)
+  db_connection String    @db.VarChar(255)
+  host          String    @db.VarChar(255)
   emp           Int
   fil           Int
   tipobase_id   Int
-  url           String
-  ip            String
+  url           String    @db.VarChar(255)
+  ip            String    @db.VarChar(255)
   permissao     Int
   posts         Tabelas[]
   status_id     Int?
@@ -197,10 +197,10 @@ model Bases {
 
 model Rotas {
   id         Int     @id
-  nome       String
-  rota       String
-  parametros String
-  metodo     String
+  nome       String  @db.VarChar(255)
+  rota       String  @db.VarChar(255)
+  parametros String  @db.VarChar(255)
+  metodo     String  @db.VarChar(255)
   status_id  Int
   status     Status? @relation(fields: [status_id], references: [id])
 
@@ -209,8 +209,8 @@ model Rotas {
 
 model Tabelas {
   id            Int             @id @default(autoincrement())
-  nome          String
-  scheme        String          @db.VarChar(150)
+  nome          String          @db.VarChar(255)
+  scheme        String          @db.VarChar(255)
   base          Bases?          @relation(fields: [base_id], references: [id])
   base_id       Int?
   permissao     Int?
@@ -224,9 +224,9 @@ model Tabelas {
 
 model Colunas {
   id            Int             @id
-  nome          String
-  pk            String
-  fk            String
+  nome          String          @db.VarChar(255)
+  pk            String          @db.VarChar(255)
+  fk            String          @db.VarChar(255)
   tabela_id     Int
   permissao     Int
   ColunaOrigem  TabelaLigacao[] @relation("ColunaOrigem")

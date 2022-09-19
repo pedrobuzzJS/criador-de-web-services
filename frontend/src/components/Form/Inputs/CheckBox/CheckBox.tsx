@@ -12,8 +12,17 @@ interface CheckBoxProps extends InputHTMLAttributes<HTMLInputElement> {
 export const CheckBox: React.FC<CheckBoxProps> = ({id, name, label, ...props}) => {
     return (
         <CheckBoxContainer>
-            <label htmlFor={id}>{label}</label>
-            <input type="checkbox" name={name} id={id} {...props} />
+            <label
+                htmlFor={id}
+                >
+                {label}
+            </label>
+            <input
+                type="checkbox"
+                name={name}
+                id={id}
+                {...props}
+            />
         </CheckBoxContainer>
     );
 };

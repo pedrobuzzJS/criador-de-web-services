@@ -2,8 +2,7 @@ import { client } from "../../../infra/prisma/client";
 
 export class ListTipoWebServiceUseCase {
 
-    async getAll(objFilters?: any) {
-        
+    async getAll() {
         const data = await client.tipoWebService.findMany({
             select: {
                 id: true,
@@ -16,11 +15,31 @@ export class ListTipoWebServiceUseCase {
                 id: 'asc'
             }
         });
-
         if (!data) {
-            throw new Error("Sem Retorno de Tipo de WebService do Sistema");
+            throw new Error("Sem de Menus do Sistema");
         };
+        return data;
+    };
 
+    async getById(id?: number) {
+        const data = await client.tipoWebService.findMany({
+            select: {
+                id: true,
+                nome: true,
+                sigla: true,
+                descricao: true,
+                status_id: true,
+            },
+            where: {
+                id: id
+            },
+            orderBy: {
+                id: 'asc'
+            }
+        });
+        if (!data) {
+            throw new Error("Sem de Menus do Sistema");
+        };
         return data;
     };
 };

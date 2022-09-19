@@ -63,4 +63,4 @@ export const StatusQuery: React.FC = () => {
             <DataGrid columns={Campos} data={status} loading={loadding} />
         </>
     );
-}
+};

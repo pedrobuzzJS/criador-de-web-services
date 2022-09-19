@@ -9,4 +9,4 @@ export class FormButton<T> {
     tipo: string;
     fecharDepois: boolean;
     parametro: any;
-  }
+};

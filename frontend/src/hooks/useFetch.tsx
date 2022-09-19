@@ -35,4 +35,4 @@ export function useFetch<T = unknown>(url: string, options?: AxiosRequestConfig)
         error,
         loadding,
     };
-}
+};

@@ -9,9 +9,12 @@ import { MenuQuery } from "./pages/Menu/MenuQuery/MenuQuery";
 import { MenuMaintenance } from "./pages/Menu/MenuMaintenance/MenuMaintenance";
 import { StatusQuery } from "./pages/Status/StatusQuery/StatusQuery";
 import { TabelasQuery } from "./pages/Tabelas/TabelasQuery/TabelasQuery";
+import { TabelasMaintenance } from "./pages/Tabelas/TabelasMaintenance/TabelasMaintenance";
 import { StatusMaintenance } from "./pages/Status/StatusMaintenance/StatusMaintenance";
 import { TipoWebServiceQuery } from "./pages/TipoWebService/TipoWebServiceQuery/TipoWebServiceQuery";
 import { UserQuery } from "./pages/Users/UsersQuery/UsersQuery";
+import { TipoWebServiceMaintenance } from "./pages/TipoWebService/TipoWebServiceMaintenance/TipoWebServiceMaintenance";
+import { UsersMaintenance } from "./pages/Users/UsersMaintenance/UsersMaintenance";
 
 const App: React.FC = () => {
   return (
@@ -22,13 +25,16 @@ const App: React.FC = () => {
           <Route path="pagea" element={<PageA />} />
           <Route path="pageb" element={<PageB />} />
           <Route path="login" element={<Login />} />
-          <Route path="usuario" element={<UserQuery />} />
+          <Route path="usuario-consulta" element={<UserQuery />} />
+          <Route path="usuario-manutencao/:op/:id" element={<UsersMaintenance />} />
           <Route path="menu-consulta" element={<MenuQuery />} />
           <Route path="menu-manutencao/:op/:id" element={<MenuMaintenance />} />
-          <Route path="dicionariodedados" element={<TabelasQuery />} />
+          <Route path="tabelas-consulta" element={<TabelasQuery />} />
+          <Route path="tabelas-manutencao/:op/:id" element={<TabelasMaintenance />} />
           <Route path="status-contulta" element={<StatusQuery />} />
+          <Route path="status-manutencao/:op/:id" element={<StatusMaintenance />} />
           <Route path="tipowebservice-contulta" element={<TipoWebServiceQuery />} />
-          <Route path="status/:op/:id" element={<StatusMaintenance />} />
+          <Route path="tipowebservice-manutencao/:op/:id" element={<TipoWebServiceMaintenance />} />
           <Route path={"*"} element={<PageNotFound />}/>
         </Routes>
       </BrowserRouter>

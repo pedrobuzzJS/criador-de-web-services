@@ -5,4 +5,4 @@ export interface Tabelas {
     base_id: number;
     permissao: number;
     status_id: number;
-}
+};

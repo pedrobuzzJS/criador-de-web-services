@@ -7,14 +7,18 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     hasBackGround?: boolean;
     size?: "big" | "small" | "prettySmall";
     color?: "pink" | "purble" | "lightblue";
-}
+};
 
 export const Button: React.FC<ButtonProps> = ({ buttonDescription, size, color, icon, hasBackGround, ...props }) => {
     const buttonRef = useRef<HTMLButtonElement>(null);
 
     return (
         <ButtonContainer>
-            <ButtonStyle size={size} ref={buttonRef} color={color} {...props}>
+            <ButtonStyle
+                size={size}
+                ref={buttonRef}
+                color={color}
+                {...props}>
                 {buttonDescription}
             </ButtonStyle>
         </ButtonContainer>

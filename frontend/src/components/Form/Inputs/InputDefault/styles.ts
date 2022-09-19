@@ -4,7 +4,7 @@ interface InputCssProps {
     percent?: string;
     focus?: boolean | any;
     pixels?: string;
-}
+};
 
 export const InputContainer = styled.div<InputCssProps>`
     border-radius: 5px;

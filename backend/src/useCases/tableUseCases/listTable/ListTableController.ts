@@ -4,13 +4,15 @@ import { ListTableUseCase } from "./ListTableUseCase";
 class ListTableController {
 
     static async handle(request: Request, response: Response) {
-
-        const listTableUseCase = new ListTableUseCase();
-
-        const data = await listTableUseCase.getAll();
-
+        const { id } = request.query;
+        const listTableController = new ListTableUseCase();
+        if (id) {
+            const data = await listTableController.getById(Number(id));
+            return response.json(data);
+        };
+        const data = await listTableController.getAll();
         return response.json(data);
-    }
-}
+    };
+};
 
 export default ListTableController;

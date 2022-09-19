@@ -3,27 +3,26 @@ import { client } from "../../../infra/prisma/client";
 export class ListTableUseCase {
 
     async getAll() {
-        
-        // const data = await client.$queryRaw`
-        //     select table_catalog, table_schema, table_name from information_schema.tables where table_schema = 'public'
-        // `;
-
-        // const data = await client.$queryRaw`
-        //     select table_catalog, table_schema, table_name from information_schema.tables
-        // `;
-        const data = await client.tabelas.findMany(
-            {
-                orderBy: {
-                    id: 'asc'
-                }
+        const data = await client.tabelas.findMany({
+            orderBy: {
+                id: 'asc'
             }
-        )
-
+        });
         if (!data) {
-            throw new Error("Sem Retorno da Tabelas do Sistema");
-        }
-
+            throw new Error("Sem de Menus do Sistema");
+        };
         return data;
-    }
+    };
 
-}
+    async getById(id?: number) {
+        const data = await client.tabelas.findMany({
+            where: {
+                id: id
+            }
+        });
+        if (!data) {
+            throw new Error("Sem de Menus do Sistema");
+        };
+        return data;
+    };
+};

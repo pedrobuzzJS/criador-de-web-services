@@ -1,5 +1,4 @@
 import { client } from "../../../infra/prisma/client";
-
 export class ListUserUseCase {
     async getAll() {
         const data = await client.users.findMany({

@@ -6,6 +6,7 @@ import { Button } from "../Button/Button";
 import { ButtonArea, Container, FormContainer } from "./styles";
 // import { CheckBox } from "../Inputs/CheckBox/CheckBox";
 import { FormInputs } from "../../../Utils/FormFields";
+import { Select } from "../Inputs/Select/Select";
 interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
     operation: number;
     data: any[];
@@ -84,17 +85,32 @@ export const FormBuilder: React.FC<FormProps> = ({  operation, data, campos, ...
             <form onSubmit={handleSubmit}>  
                 <FormContainer>
                     {campos?.map( (campo, index) => (
-                        <Input
-                            key={index}
-                            id={campo.id}
-                            name={campo.name}
-                            type={campo.type}
-                            label={campo.label}
-                            placeholder={campo.placeholder}
-                            onChange={handleInputChange}
-                            value={findValueById(formValues, campo.name)}
-                            pixels={campo.pixels?.toString()}
-                        />
+                        campo.type === "select" ?
+                            <Select
+                                key={index}
+                                id={campo.id}
+                                name={campo.name}
+                                label={campo.label}
+                                placeholder={campo.placeholder}
+                                onChange={handleSelectListInputChange}
+                                value={findValueById(formValues, campo.name)}
+                                pixels={campo.pixels?.toString()}
+                                disabled={campo.disabled}
+                                listOptions={campo.list}
+                            />
+                            :
+                            <Input
+                                key={index}
+                                id={campo.id}
+                                name={campo.name}
+                                type={campo.type}
+                                label={campo.label}
+                                placeholder={campo.placeholder}
+                                onChange={handleInputChange}
+                                value={findValueById(formValues, campo.name)}
+                                pixels={campo.pixels?.toString()}
+                                disabled={campo.disabled}
+                            />
                     ) )}
                     {/* <Input
                         name="nodawdawme"

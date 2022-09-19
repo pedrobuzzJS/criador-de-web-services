@@ -1,5 +1,4 @@
 import { client } from "../../../infra/prisma/client";
-
 export class ListMenuUseCase {
     async getAll() {
         const data = await client.menus.findMany({

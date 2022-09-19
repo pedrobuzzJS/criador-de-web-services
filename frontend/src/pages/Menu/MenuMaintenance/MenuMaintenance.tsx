@@ -91,7 +91,21 @@ const inputs: FormInputs[] = [
         placeholder: "Status",
         label: "Status", 
         pixels: "250",
-        type: InputType.TEXT,
+        type: InputType.SELECT,
+        list: [
+            {
+                key: "1",
+                value: "Ativo",
+            },
+            {
+                key: "2",
+                value: "Inativo",
+            },
+            {
+                key: "3",
+                value: "Indefinido",
+            }
+        ]
     },
     {
         id: "component",

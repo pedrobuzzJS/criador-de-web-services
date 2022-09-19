@@ -33,4 +33,8 @@ export class InputType {
     public static CEP = "cep";
     public static DATE = "date";
     public static NUMBER = "number";
+    public static CHECKBOX = "checkbox";
+    public static RADIO = "radio";
+    public static SELECT = "select";
+    public static TEXTAREA = "textarea";
 };

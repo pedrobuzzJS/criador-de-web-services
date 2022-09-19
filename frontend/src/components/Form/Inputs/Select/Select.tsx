@@ -3,21 +3,21 @@ import { SelectContainer } from "./styles";
 import { SelectList } from "../../../../Utils/SelectList";
 
 export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
-    id: string;
+    id: any;
     value: string;
-    name: string;
-    options: SelectList[];
-    pixels?: number;
-    key?: string;
+    name: any;
+    listOptions: SelectList[];
+    pixels?: string;
     selected?: boolean;
     color?: string;
     class?: string;
     disable?: boolean;
     subList?: SelectProps[];
-    label: string;
+    label: any;
+    disabled?: boolean;
 };
 
-export const Select: React.FC<SelectProps> = ({ id, name, value, options, label, pixels, ...props }) => {
+export const Select: React.FC<SelectProps> = ({ id, name, value, listOptions, label, pixels, ...props }) => {
     const [ isFocused, setIsFocused ] = useState<Boolean>(false);
     const inputRef = useRef<HTMLSelectElement>(null);
 
@@ -52,7 +52,7 @@ export const Select: React.FC<SelectProps> = ({ id, name, value, options, label,
                     disabled
                     >Selecione
                 </option>
-                {options?.map((item, index) => {
+                {listOptions?.map((item, index) => {
                             return (
                                 <option
                                     key={index}

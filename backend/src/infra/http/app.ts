@@ -7,17 +7,16 @@ import cors from 'cors';
 
 const app = express();
 
-// app.use(
-//     cors({
-//         origin: 'http://localhost:3334'
-//     })
-// );
+app.use(
+    cors({
+        origin: 'http://localhost:3000'
+    })
+);
 
 app.use((request: Request, response: Response, next: NextFunction) => {
     response.header(
         "Access-Control-Allow-Origin",
         "*");
-    app.use(cors());
     next();
 });
 

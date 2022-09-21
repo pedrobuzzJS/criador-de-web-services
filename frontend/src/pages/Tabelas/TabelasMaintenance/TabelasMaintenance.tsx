@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { FormBuilder } from "../../../components/Form/FormBuilder/FormBuilder";
 import { useFetch } from "../../../hooks/useFetch";
 import { FormInputs, InputType } from "../../../Utils/FormFields";
+import { ColunasQuery } from "../../Colunas/ColunasQuery/ColunasQuery";
 
 const inputs: FormInputs[] = [
     {
@@ -63,6 +64,9 @@ export const TabelasMaintenance: React.FC = () => {
         },
     });
     return (
-        <FormBuilder operation={Number(op)} data={data} campos={inputs} />
+        <>
+            <FormBuilder operation={Number(op)} data={data} campos={inputs} fun={() => console.log("nada")} />
+            <ColunasQuery />
+        </>
     );
 };

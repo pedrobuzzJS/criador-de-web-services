@@ -15,6 +15,10 @@ import { TipoWebServiceQuery } from "./pages/TipoWebService/TipoWebServiceQuery/
 import { UserQuery } from "./pages/Users/UsersQuery/UsersQuery";
 import { TipoWebServiceMaintenance } from "./pages/TipoWebService/TipoWebServiceMaintenance/TipoWebServiceMaintenance";
 import { UsersMaintenance } from "./pages/Users/UsersMaintenance/UsersMaintenance";
+import { ColunasQuery } from "./pages/Colunas/ColunasQuery/ColunasQuery";
+import { ColunasMaintenance } from "./pages/Colunas/ColunaMaintenance/ColunasMaintenance";
+import { BasesQuery } from "./pages/Bases/BasesQuery/BasesQuery";
+import { BasesMaintenance } from "./pages/Bases/BasesMaintenance/BasesMaintenance";
 
 const App: React.FC = () => {
   return (
@@ -35,6 +39,10 @@ const App: React.FC = () => {
           <Route path="status-manutencao/:op/:id" element={<StatusMaintenance />} />
           <Route path="tipowebservice-contulta" element={<TipoWebServiceQuery />} />
           <Route path="tipowebservice-manutencao/:op/:id" element={<TipoWebServiceMaintenance />} />
+          <Route path="colunas-consulta" element={<ColunasQuery />} />
+          <Route path="colunas-manutencao/:op/:id" element={<ColunasMaintenance />} />
+          <Route path="bases-consulta" element={<BasesQuery />} />
+          <Route path="bases-manutencao/:op/:id" element={<BasesMaintenance />} />
           <Route path={"*"} element={<PageNotFound />}/>
         </Routes>
       </BrowserRouter>

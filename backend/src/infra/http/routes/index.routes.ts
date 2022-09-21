@@ -9,10 +9,10 @@ import CreateMenuController from "../../../useCases/menuUseCases/createMenuUseCa
 import DeleteMenuController from "../../../useCases/menuUseCases/deleteMenuUseCase/DeleteMenuController";
 import UpdateMenuController from "../../../useCases/menuUseCases/updateMenuUseCase/UpdateMenuController";
 
-import ListTableController from "../../../useCases/tableUseCases/listTable/ListTableController";
-import DeleteTableController from "../../../useCases/tableUseCases/deleteTable/DeleteTableController";
-import CreateTableController from "../../../useCases/tableUseCases/createTable/CreateTableController";
-import UpdateTableController from "../../../useCases/tableUseCases/updateTable/UpdateTableController";
+import ListTableController from "../../../useCases/tabelaUseCases/listTable/ListTableController";
+import DeleteTableController from "../../../useCases/tabelaUseCases/deleteTable/DeleteTableController";
+import CreateTableController from "../../../useCases/tabelaUseCases/createTable/CreateTableController";
+import UpdateTableController from "../../../useCases/tabelaUseCases/updateTable/UpdateTableController";
 
 import ListStatusController from "../../../useCases/statusUseCases/listStatus/ListTableController";
 import UpdateStatusController from "../../../useCases/statusUseCases/updateStatus/UpdateStatusController";
@@ -23,6 +23,10 @@ import ListTipoWebServiceController from "../../../useCases/tipoWebServiceUseCas
 import DeleteTipoWebServiceController from "../../../useCases/tipoWebServiceUseCases/deleteTipoWebService/DeleteTipoWebServiceController";
 import UpdateTipoWebServiceController from "../../../useCases/tipoWebServiceUseCases/updateTipoWebService/UpdateTipoWebServiceController";
 import CreateTipoWebServiceController from "../../../useCases/tipoWebServiceUseCases/createTipoWebService/CreateTipoWebServiceController";
+
+import ListBasesController from "../../../useCases/tipoBaseUseCases/listBases/ListBaseController";
+
+import ListColunaController from "../../../useCases/colunaUseCases/listColuna/ListColunaController";
 
 const Routes = Router();
 
@@ -50,5 +54,8 @@ Routes.post("/tipowebservice", CreateTipoWebServiceController.handle);
 Routes.put("/tipowebservice", UpdateTipoWebServiceController.handle);
 Routes.delete("/tipowebservice", DeleteTipoWebServiceController.handle);
 
+Routes.get("/base", ListBasesController.handle);
+
+Routes.get("/colunas", ListColunaController.handle);
 
 export default Routes;

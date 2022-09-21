@@ -96,6 +96,6 @@ export const UsersMaintenance: React.FC = () => {
     });
 
     return (
-        <FormBuilder operation={Number(op)} data={data} campos={inputs} />
+        <FormBuilder operation={Number(op)} data={data} campos={inputs} fun={() => console.log("nada")} />
     );
 };

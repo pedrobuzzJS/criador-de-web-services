@@ -19,7 +19,7 @@ export interface FormInputs {
     name?: string;
     id?: string;
     pixels?: string;
-    list?: SelectList[]
+    list?: any
 };
 export class InputType {
     public static TEXT = "text";

@@ -223,16 +223,23 @@ model Tabelas {
 }
 
 model Colunas {
-  id            Int             @id
-  nome          String          @db.VarChar(255)
-  pk            String          @db.VarChar(255)
-  fk            String          @db.VarChar(255)
-  tabela_id     Int
-  permissao     Int
-  ColunaOrigem  TabelaLigacao[] @relation("ColunaOrigem")
-  ColunaDestino TabelaLigacao[] @relation("ColunaDestino")
-  status_id     Int?
-  status        Status?         @relation(fields: [status_id], references: [id])
+  id                  Int             @id
+  nome                String          @db.VarChar(255)
+  tipo                String?         @db.VarChar(255)
+  posicao             Int?
+  nulo                String?         @db.VarChar(255)
+  char_max            Int?
+  is_identity         String?         @db.VarChar(255)
+  is_self_referencing String?         @db.VarChar(255)
+  is_updatable        String?         @db.VarChar(255)
+  pk                  String          @db.VarChar(255)
+  fk                  String          @db.VarChar(255)
+  tabela_id           Int
+  permissao           Int
+  ColunaOrigem        TabelaLigacao[] @relation("ColunaOrigem")
+  ColunaDestino       TabelaLigacao[] @relation("ColunaDestino")
+  status_id           Int?
+  status              Status?         @relation(fields: [status_id], references: [id])
 
   @@map("tbcolunas")
 }

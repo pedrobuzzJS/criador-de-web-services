@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useFetch } from "../../../hooks/useFetch";
-import { Status } from "../../../@types/status";
+import UseStatusStore from "../../../stores/StatusStore";
 import { useParams } from "react-router-dom";
 import { FormBuilder } from "../../../components/Form/FormBuilder/FormBuilder";
 import { FormInputs, InputType } from "../../../Utils/FormFields";
+import { Button } from "../../../components/Form/Button/Button";
+import api from "../../../services/api";
 
 const inputs: FormInputs[] = [
     {
@@ -12,7 +14,7 @@ const inputs: FormInputs[] = [
         placeholder: "Código",
         label: "Código", 
         pixels: "250",
-        type: InputType.TEXT,
+        type: InputType.NUMBER,
     },
     {
         id: "nome",
@@ -40,7 +42,28 @@ export const StatusMaintenance: React.FC = () => {
         },
     });
 
+    const status = UseStatusStore(state => state.status);
+    const addStatus = UseStatusStore(state => state.addStatus)
+
+    const handleSubmit = useCallback( async (dataS: any) => {
+        try {
+            const data = JSON.stringify(dataS);
+            await api.post("status", {
+                data
+            });
+        } catch (error) {
+            
+        }
+    }, []);
+
+    const envia = () => {
+        handleSubmit(status);
+    };
+
     return (
-        <FormBuilder operation={Number(op)} data={data} campos={inputs}/>
+        <>
+            <FormBuilder operation={Number(op)} data={data} campos={inputs} fun={addStatus}/>
+            <Button onClick={envia} buttonDescription="Enviar" />
+        </>
     );
 };

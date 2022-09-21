@@ -12,7 +12,7 @@ export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
     color?: string;
     class?: string;
     disable?: boolean;
-    subList?: SelectProps[];
+    subList?: any[];
     label: any;
     disabled?: boolean;
 };

@@ -4,7 +4,7 @@ import { AxiosRequestConfig } from "axios";
 
 export function useFetch<T = unknown>(url: string, options?: AxiosRequestConfig) {
     const [ data, setData ] = useState<T | null>();
-    const [ status, setStatus ] = useState<number | null>(null);
+    const [ statusCode, setStatus ] = useState<number | null>(null);
     const [ error, setError ] = useState<Error | null>(null);
     const [ loadding, setLoadding ] = useState(false);
 
@@ -31,7 +31,7 @@ export function useFetch<T = unknown>(url: string, options?: AxiosRequestConfig)
 
     return {
         data,
-        status,
+        statusCode,
         error,
         loadding,
     };

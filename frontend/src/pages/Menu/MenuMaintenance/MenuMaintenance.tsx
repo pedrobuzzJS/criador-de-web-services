@@ -134,6 +134,6 @@ export const MenuMaintenance: React.FC = () => {
     });
 
     return (
-        <FormBuilder data={data} operation={Number(op)} campos={inputs} />
+        <FormBuilder data={data} operation={Number(op)} campos={inputs} fun={() => console.log("nada")} />
     );
 };

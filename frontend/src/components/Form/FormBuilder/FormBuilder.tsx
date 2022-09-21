@@ -1,38 +1,17 @@
 import React, { useState, FormHTMLAttributes, FormEvent, useCallback, useEffect } from "react";
 import Input from "../Inputs/InputDefault/InputDefault";
 import { Button } from "../Button/Button";
-// import { Select } from "../Inputs/Select/Select";
-// import { SelectList } from "../../../Utils/SelectList";
 import { ButtonArea, Container, FormContainer } from "./styles";
-// import { CheckBox } from "../Inputs/CheckBox/CheckBox";
 import { FormInputs } from "../../../Utils/FormFields";
 import { Select } from "../Inputs/Select/Select";
 interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
     operation: number;
     data: any[];
     campos: FormInputs[];
-};  
+    fun(data: any): void;
+};
 
-// const list: SelectList[] = [
-//     {
-//         key: "1",
-//         value: "Aston Martin",
-//     },
-//     {
-//         key: "2",
-//         value: "Lamborgini Urus",
-//     },
-//     {
-//         key: "3",
-//         value: "BMW X-6",
-//     },
-//     {
-//         key: "4",
-//         value: "Porshe Panamera",
-//     },
-// ];
-
-export const FormBuilder: React.FC<FormProps> = ({  operation, data, campos, ...props }) => {
+export const FormBuilder: React.FC<FormProps> = ({  operation, data, campos, fun, ...props }) => {
     const [ formValues, setFormValues ] = useState({});
     const setFormValueInitial = useEffect( () => {
         setFormValues({
@@ -42,14 +21,20 @@ export const FormBuilder: React.FC<FormProps> = ({  operation, data, campos, ...
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+        fun(formValues);
     };
 
-    const handleInputChange = (e: React.FormEvent<HTMLInputElement>) => {
+    const handleClick = () => {
+        // fun(formValues);
+    };
+
+    const handleInputChange = async (e: React.FormEvent<HTMLInputElement>) => {
         const { name, value, type} = e.currentTarget;
         setFormValues({
             ...formValues,
             [name]: value,
         });
+        fun(formValues);
     };
 
     const handleSelectListInputChange = (e: FormEvent<HTMLSelectElement>) => {
@@ -58,6 +43,7 @@ export const FormBuilder: React.FC<FormProps> = ({  operation, data, campos, ...
             ...formValues,
             [name]: value,
         });
+        fun(formValues);
     };
 
     const handleTextAreaChange = (e: FormEvent<HTMLTextAreaElement>) => {
@@ -66,10 +52,12 @@ export const FormBuilder: React.FC<FormProps> = ({  operation, data, campos, ...
             ...formValues,
             [name]: value,
         });
+        fun(formValues);
     };
 
     const handleCheckBoxChange = (e: FormEvent<HTMLInputElement>) => {
         const { name, value } = e.currentTarget;
+        fun(formValues);
     };
 
     const findValueById = useCallback((values: any, key: any) => {
@@ -112,94 +100,10 @@ export const FormBuilder: React.FC<FormProps> = ({  operation, data, campos, ...
                                 disabled={campo.disabled}
                             />
                     ) )}
-                    {/* <Input
-                        name="nodawdawme"
-                        type="text"
-                        placeholder="nodawdawme"
-                        label={"nodawdawme"} 
-                        id={"nodawdawme"}
-                        onChange={handleInputChange}
-                        value={findValueById(formValues, "nodawdawme")}
-                        pixels={"600"}
-                    /> */}
-                    {/* <Input
-                        name="nome"
-                        type="text"
-                        placeholder="Nome"
-                        label={"Nome"} 
-                        id={"nome"}
-                        onChange={handleInputChange}
-                        value={findValueById(formValues, "nome")}
-                        pixels={600}
-                    />
-                    <Input
-                        name="sobrenome"
-                        type="text"
-                        placeholder="Sobre-Nome"
-                        label={"Sobre-Nome"} 
-                        id={"sobrenome"}
-                        onChange={handleInputChange}
-                        value={findValueById(formValues, "sobrenome")}
-                        pixels={600}
-                    />
-                    <Input
-                        name="cep"
-                        type="cep"
-                        placeholder="CEP"
-                        label={"CEP"} 
-                        id={"cep"}
-                        onChange={handleInputChange}
-                        value={findValueById(formValues, "cep")}
-                        pixels={600}
-                    />
-                    <Input
-                        name="cpf"
-                        type="cpf"
-                        placeholder="CPF"
-                        label={"CPF"}
-                        id={"cpf"}
-                        onChange={handleInputChange}
-                        value={findValueById(formValues, "cpf")}
-                        pixels={600}
-                    />
-                    <Input
-                        name="idade"
-                        type="number"
-                        placeholder="Idade"
-                        label={"Idade"}
-                        id={"idade"}
-                        onChange={handleInputChange}
-                        value={findValueById(formValues, "idade")}
-                        pixels={600}
-                    />
-                    <Input
-                        name="password"
-                        type="password"
-                        placeholder="Idade"
-                        label={"Senha"}
-                        id={"password"}
-                        onChange={handleInputChange}
-                        value={findValueById(formValues, "password")}
-                        pixels={600}
-                    />
-                    <Select 
-                        id="cars" 
-                        name="cars"
-                        label="Carros"
-                        value={findValueById(formValues, "cars")}
-                        options={list}
-                        onChange={handleSelectListInputChange}
-                        pixels={600}
-                    />
-                    <CheckBox
-                        id="cb"
-                        name="cb"
-                        label="Caixa Selecionável"
-                    /> */}
                 </FormContainer>
                 <ButtonArea>
                     <Button 
-                        onClick={() => console.log('***', formValues)}
+                        onClick={handleClick}
                         buttonDescription="Enviar"
                     />
                 </ButtonArea>

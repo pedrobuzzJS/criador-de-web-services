@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import { ListTableUseCase } from "./ListTableUseCase";
 
 class ListTableController {
-
     static async handle(request: Request, response: Response) {
         const { id } = request.query;
         const listTableController = new ListTableUseCase();

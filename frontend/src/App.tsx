@@ -2,8 +2,6 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { SideBar } from "./components/SideBar/SideBar";
 import { Login } from "./pages/Login/login";
-import { PageA } from "./pages/PageA/pageA";
-import { PageB } from "./pages/PageB/pageB";
 import { PageNotFound } from "./pages/PageNotFound/pageNotFound";
 import { MenuQuery } from "./pages/Menu/MenuQuery/MenuQuery";
 import { MenuMaintenance } from "./pages/Menu/MenuMaintenance/MenuMaintenance";
@@ -19,6 +17,11 @@ import { ColunasQuery } from "./pages/Colunas/ColunasQuery/ColunasQuery";
 import { ColunasMaintenance } from "./pages/Colunas/ColunaMaintenance/ColunasMaintenance";
 import { BasesQuery } from "./pages/Bases/BasesQuery/BasesQuery";
 import { BasesMaintenance } from "./pages/Bases/BasesMaintenance/BasesMaintenance";
+import { TipoBaseQuery } from "./pages/TipoBase/TipoBaseQuery/TipoBaseQuery";
+import { RotasQuery } from "./pages/Rotas/RotasQuery/RotasQuery";
+import { RotasMaintenance } from "./pages/Rotas/RotasMaintenance/RotasMaintenance";
+import { CoresQuery } from "./pages/Cores/CoresQuery/CoresQuery";
+import { CoresMaintenance } from "./pages/Cores/CoresMaintenance/CoresMaintenance";
 
 const App: React.FC = () => {
   return (
@@ -26,8 +29,6 @@ const App: React.FC = () => {
       <BrowserRouter>
         <SideBar />
         <Routes>
-          <Route path="pagea" element={<PageA />} />
-          <Route path="pageb" element={<PageB />} />
           <Route path="login" element={<Login />} />
           <Route path="usuario-consulta" element={<UserQuery />} />
           <Route path="usuario-manutencao/:op/:id" element={<UsersMaintenance />} />
@@ -43,6 +44,11 @@ const App: React.FC = () => {
           <Route path="colunas-manutencao/:op/:id" element={<ColunasMaintenance />} />
           <Route path="bases-consulta" element={<BasesQuery />} />
           <Route path="bases-manutencao/:op/:id" element={<BasesMaintenance />} />
+          <Route path="tipo-base-consulta" element={<TipoBaseQuery />} />
+          <Route path="rotas-consulta" element={<RotasQuery />} />
+          <Route path="rotas-manutencao/:op/:id" element={<RotasMaintenance />} />
+          <Route path="cores-consulta" element={<CoresQuery />} />
+          <Route path="cores-manutencao/:op/:id" element={<CoresMaintenance />} />
           <Route path={"*"} element={<PageNotFound />}/>
         </Routes>
       </BrowserRouter>

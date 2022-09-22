@@ -25,4 +25,17 @@ export class ListTableUseCase {
         };
         return data;
     };
+
+    async getTable() {
+        const data = await client.$queryRaw`
+            SELECT table_name, table_schema
+                FROM information_schema.tables
+            WHERE table_schema='public'
+                AND table_type='BASE TABLE';
+        `;
+        if (!data) {
+            throw new Error("Sem de tabelas do Sistema");
+        };
+        return data;
+    }
 };

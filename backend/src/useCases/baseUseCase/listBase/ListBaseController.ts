@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { ListBasesUseCase } from "./ListBasesUseCase";
+import { ListBasesUseCase } from "./ListBaseUseCase";
 
 export default class ListBasesController {
     static async handle(request: Request, response: Response) {

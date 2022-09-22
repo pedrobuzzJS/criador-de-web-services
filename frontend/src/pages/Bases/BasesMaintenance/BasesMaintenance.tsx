@@ -18,6 +18,7 @@ const inputs: FormInputs[] = [
         label: "Código", 
         pixels: "250",
         type: InputType.TEXT,
+        disabled: true
     },
     {
         id: "nome",

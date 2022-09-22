@@ -24,54 +24,54 @@ const Campos: GridFields[] = [
         description: "user",
         type: FieldTypes.TEXT
     },
-    {
-        field: "password",
-        tittle: "password",
-        description: "password",
-        type: FieldTypes.TEXT
-    },
-    {
-        field: "db_connection",
-        tittle: "db_connection",
-        description: "db_connection",
-        type: FieldTypes.TEXT
-    },
-    {
-        field: "host",
-        tittle: "host",
-        description: "host",
-        type: FieldTypes.TEXT
-    },
-    {
-        field: "emp",
-        tittle: "emp",
-        description: "emp",
-        type: FieldTypes.TEXT
-    },
-    {
-        field: "fil",
-        tittle: "fil",
-        description: "fil",
-        type: FieldTypes.TEXT
-    },
+    // {
+    //     field: "password",
+    //     tittle: "password",
+    //     description: "password",
+    //     type: FieldTypes.TEXT
+    // },
+    // {
+    //     field: "db_connection",
+    //     tittle: "db_connection",
+    //     description: "db_connection",
+    //     type: FieldTypes.TEXT
+    // },
+    // {
+    //     field: "host",
+    //     tittle: "host",
+    //     description: "host",
+    //     type: FieldTypes.TEXT
+    // },
+    // {
+    //     field: "emp",
+    //     tittle: "emp",
+    //     description: "emp",
+    //     type: FieldTypes.TEXT
+    // },
+    // {
+    //     field: "fil",
+    //     tittle: "fil",
+    //     description: "fil",
+    //     type: FieldTypes.TEXT
+    // },
     {
         field: "tipobase_id",
         tittle: "tipobase_id",
         description: "tipobase_id",
         type: FieldTypes.TEXT
     },
-    {
-        field: "url",
-        tittle: "url",
-        description: "url",
-        type: FieldTypes.TEXT
-    },
-    {
-        field: "ip",
-        tittle: "ip",
-        description: "ip",
-        type: FieldTypes.TEXT
-    },
+    // {
+    //     field: "url",
+    //     tittle: "url",
+    //     description: "url",
+    //     type: FieldTypes.TEXT
+    // },
+    // {
+    //     field: "ip",
+    //     tittle: "ip",
+    //     description: "ip",
+    //     type: FieldTypes.TEXT
+    // },
     {
         field: "permissao",
         tittle: "permissao",

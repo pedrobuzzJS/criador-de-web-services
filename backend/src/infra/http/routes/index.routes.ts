@@ -24,9 +24,15 @@ import DeleteTipoWebServiceController from "../../../useCases/tipoWebServiceUseC
 import UpdateTipoWebServiceController from "../../../useCases/tipoWebServiceUseCases/updateTipoWebService/UpdateTipoWebServiceController";
 import CreateTipoWebServiceController from "../../../useCases/tipoWebServiceUseCases/createTipoWebService/CreateTipoWebServiceController";
 
-import ListBasesController from "../../../useCases/tipoBaseUseCases/listBases/ListBaseController";
+import ListTipoBasesController from "../../../useCases/tipoBaseUseCases/listBases/ListTipoBasesController";
+
+import ListBasesController from "../../../useCases/baseUseCase/listBase/ListBaseController";
 
 import ListColunaController from "../../../useCases/colunaUseCases/listColuna/ListColunaController";
+
+import ListRotasController from "../../../useCases/rotasUseCases/listRotas/ListRotasController";
+
+import ListCoresController from "../../../useCases/coresUseCases/listCores/ListCoresController";
 
 const Routes = Router();
 
@@ -54,8 +60,14 @@ Routes.post("/tipowebservice", CreateTipoWebServiceController.handle);
 Routes.put("/tipowebservice", UpdateTipoWebServiceController.handle);
 Routes.delete("/tipowebservice", DeleteTipoWebServiceController.handle);
 
+Routes.get("/tipo-base", ListTipoBasesController.handle);
+
 Routes.get("/base", ListBasesController.handle);
 
 Routes.get("/colunas", ListColunaController.handle);
+
+Routes.get("/rotas", ListRotasController.handle);
+
+Routes.get("/cores", ListCoresController.handle)
 
 export default Routes;

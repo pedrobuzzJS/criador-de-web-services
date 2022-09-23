@@ -22,6 +22,10 @@ import { RotasQuery } from "./pages/Rotas/RotasQuery/RotasQuery";
 import { RotasMaintenance } from "./pages/Rotas/RotasMaintenance/RotasMaintenance";
 import { CoresQuery } from "./pages/Cores/CoresQuery/CoresQuery";
 import { CoresMaintenance } from "./pages/Cores/CoresMaintenance/CoresMaintenance";
+import { AcoesQuery } from "./pages/Acoes/AcoesQuery/AcoesQuery";
+import { AcoesMaintenance } from "./pages/Acoes/AcoesMaintenance/AcoesMaintenance";
+import { WebServicesQuery } from "./pages/WebServices/WebServicesQuery/WebServicesQuery";
+import { WebServicesMaintenance } from "./pages/WebServices/WebServicesMaintenance/WebServicesMaintenance";
 
 const App: React.FC = () => {
   return (
@@ -40,7 +44,7 @@ const App: React.FC = () => {
           <Route path="status-manutencao/:op/:id" element={<StatusMaintenance />} />
           <Route path="tipowebservice-contulta" element={<TipoWebServiceQuery />} />
           <Route path="tipowebservice-manutencao/:op/:id" element={<TipoWebServiceMaintenance />} />
-          <Route path="colunas-consulta" element={<ColunasQuery />} />
+          {/* <Route path="colunas-consulta" element={<ColunasQuery />} /> */}
           <Route path="colunas-manutencao/:op/:id" element={<ColunasMaintenance />} />
           <Route path="bases-consulta" element={<BasesQuery />} />
           <Route path="bases-manutencao/:op/:id" element={<BasesMaintenance />} />
@@ -49,6 +53,10 @@ const App: React.FC = () => {
           <Route path="rotas-manutencao/:op/:id" element={<RotasMaintenance />} />
           <Route path="cores-consulta" element={<CoresQuery />} />
           <Route path="cores-manutencao/:op/:id" element={<CoresMaintenance />} />
+          <Route path="acoes-consulta" element={<AcoesQuery />} />
+          <Route path="acoes-manutencao/:op/:id" element={<AcoesMaintenance />} />
+          <Route path="webservices-consulta" element={<WebServicesQuery />} />
+          <Route path="webservices-manutencao/:op/:id" element={<WebServicesMaintenance />} />
           <Route path={"*"} element={<PageNotFound />}/>
         </Routes>
       </BrowserRouter>

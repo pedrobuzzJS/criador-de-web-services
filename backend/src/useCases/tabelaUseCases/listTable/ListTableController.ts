@@ -1,15 +1,19 @@
 import { Request, Response } from "express";
 import { ListTableUseCase } from "./ListTableUseCase";
+import { CreateTableUseCase } from './../createTable/CreateTableUseCase';
 
 class ListTableController {
     static async handle(request: Request, response: Response) {
         const { id } = request.query;
-        const listTableController = new ListTableUseCase();
+        const listTableUseCase = new ListTableUseCase();
         if (id) {
-            const data = await listTableController.getById(Number(id));
+            const data = await listTableUseCase.getById(Number(id));
             return response.json(data);
         };
-        const data = await listTableController.getAll();
+        const data = await listTableUseCase.getAll();
+        const tt = new CreateTableUseCase();
+        // tt.generateTableDictionari();
+
         return response.json(data);
     };
 };

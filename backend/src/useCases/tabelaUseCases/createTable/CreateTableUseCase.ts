@@ -1,17 +1,27 @@
 import { client } from "../../../infra/prisma/client";
-
+import { ListTableUseCase } from './../listTable/ListTableUseCase';
 export class CreateTableUseCase {
-    static async creatTables(data?: any) {
+    async creatTables(data?: any) {
         const tables = client.tabelas.create({
             data: {
-                id: 1,
-                nome: "",
-                scheme: "public",
+                nome: data.table_name,
+                scheme: data.table_schema,
                 base_id: 1,
                 permissao: 1,
                 status_id: 1,
             }
         });
         return tables;
+    };
+    
+    async generateTableDictionari() {
+        let tables: any[] = [];
+        const listtableUseCase = new ListTableUseCase();
+        tables.push(await listtableUseCase.getTable());
+        tables = tables[0];
+
+        tables.forEach((table) => {
+            this.creatTables(table);
+        });
     };
 };

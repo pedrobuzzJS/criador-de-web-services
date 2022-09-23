@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { ListColunaUseCase } from "./ListColunaUseCase";
+import { CreateColunaUseCase } from "../createColuna/CreateColunaUseCase";
 
 export default class ListColunaController {
     static async handle(request: Request, response: Response) {
@@ -10,6 +11,10 @@ export default class ListColunaController {
             return response.json(data);
         };
         const data = await listColunaUseCase.getAll();
+        const cre = new CreateColunaUseCase();
+
+        // await cre.generateColumnDic();
+
         return response.json(data);
     };
 };

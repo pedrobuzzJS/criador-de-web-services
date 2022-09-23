@@ -3,7 +3,7 @@ import { DataGrid } from "../../../components/DataGrid/DataGrid";
 import { GridFields, FieldTypes } from "../../../Utils/Fields";
 import { Operation } from "../../../Utils/Operations";
 import { useFetch } from "../../../hooks/useFetch";
-import { Cores } from "../../../@types/cores";
+import { Acoes } from "../../../@types/acoes";
 
 const Campos: GridFields[] = [
     {
@@ -19,9 +19,9 @@ const Campos: GridFields[] = [
         type: FieldTypes.TEXT
     },
     {
-        field: "cor",
-        tittle: "cor",
-        description: "cor",
+        field: "metodo",
+        tittle: "metodo",
+        description: "metodo",
         type: FieldTypes.TEXT
     },
     {
@@ -43,32 +43,32 @@ const Campos: GridFields[] = [
         type: FieldTypes.BUTTON,
         buttons: [
             {
-                button: "cores",
+                button: "acoes",
                 action: Operation.VIEW,
                 tittle: "Visualizar",
                 icon: "RiIcons.RiDashboardFill",
-                rotina: "cores",
+                rotina: "acoes",
             },
             {
-                button: "cores",
+                button: "acoes",
                 action: Operation.ALTER,
                 tittle: "Alterar",
                 icon: "RiIcons.RiDashboardFill",
-                rotina: "cores",
+                rotina: "acoes",
             },
             {
-                button: "cores",
+                button: "acoes",
                 action: Operation.DELETE,
                 tittle: "Deletar    ",
                 icon: "RiIcons.RiDashboardFill",
-                rotina: "cores",
+                rotina: "acoes",
             },
         ]
     },
 ];
 
-export const CoresQuery: React.FC = () => {
-    const { data, loadding } = useFetch<Cores[]>("cores");
+export const AcoesQuery: React.FC = () => {
+    const { data, loadding } = useFetch<Acoes[]>("acoes");
 
     return (
         <DataGrid columns={Campos} data={data} loading={loadding} />

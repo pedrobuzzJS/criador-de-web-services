@@ -16,7 +16,7 @@ export class ListColunaUseCase {
     async getById(id?: number) {
         const data = await client.colunas.findMany({
             where: {
-                id: id
+                tabela_id: id
             }
         });
         if (!data) {
@@ -25,8 +25,20 @@ export class ListColunaUseCase {
         return data;
     };
 
+    async getTableIdByTableName(table: string) {
+        const result = await client.tabelas.findMany({
+            select: {
+                id: true,
+            },
+            where: {
+                nome: table
+            }
+        });
+        return result[0]?.id;
+    };
+
     async getColunaByTableName(table: string) {
-        const data = await client.$queryRaw`
+        const columns = await client.$queryRaw`
             SELECT
                 column_name,
                 data_type,
@@ -43,9 +55,10 @@ export class ListColunaUseCase {
             WHERE table_name = ${table}
             order by ordinal_position
         `;
-        if (!data) {
+        if (!columns) {
             throw new Error("Sem de Colunas do Sistema");
         };
-        return data;
-    }
+        const id = await this.getTableIdByTableName(table);
+        return {table_id: id, table_name: table, columns};
+    };
 };

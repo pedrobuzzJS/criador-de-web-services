@@ -223,32 +223,32 @@ model Tabelas {
 }
 
 model Colunas {
-  id                  Int             @id
-  nome                String          @db.VarChar(255)
-  tipo                String?         @db.VarChar(255)
+  id                  Int     @id @default(autoincrement())
+  nome                String  @db.VarChar(255)
+  tipo                String? @db.VarChar(255)
   posicao             Int?
-  nulo                String?         @db.VarChar(255)
+  nulo                String? @db.VarChar(255)
   char_max            Int?
-  is_identity         String?         @db.VarChar(255)
-  is_self_referencing String?         @db.VarChar(255)
-  is_updatable        String?         @db.VarChar(255)
-  pk                  String          @db.VarChar(255)
-  fk                  String          @db.VarChar(255)
+  is_identity         String? @db.VarChar(255)
+  is_self_referencing String? @db.VarChar(255)
+  is_updatable        String? @db.VarChar(255)
+  pk                  String? @db.VarChar(255)
+  fk                  String? @db.VarChar(255)
   tabela_id           Int
-  permissao           Int
-  ColunaOrigem        TabelaLigacao[] @relation("ColunaOrigem")
-  ColunaDestino       TabelaLigacao[] @relation("ColunaDestino")
+  permissao           Int?
+  // ColunaOrigem        TabelaLigacao[] @relation("ColunaOrigem")
+  // ColunaDestino       TabelaLigacao[] @relation("ColunaDestino")
   status_id           Int?
-  status              Status?         @relation(fields: [status_id], references: [id])
+  status              Status? @relation(fields: [status_id], references: [id])
 
   @@map("tbcolunas")
 }
 
 model TabelaLigacao {
   tabela_origem     Tabelas @relation(name: "TabelaOrigem", fields: [tabela_origem_id], references: [id])
-  coluna_origem     Colunas @relation(name: "ColunaOrigem", fields: [coluna_origem_id], references: [id])
+  // coluna_origem     Colunas @relation(name: "ColunaOrigem", fields: [coluna_origem_id], references: [id])
   tabela_destino    Tabelas @relation(name: "TabelaDestino", fields: [tabela_destino_id], references: [id])
-  coluna_destino    Colunas @relation(name: "ColunaDestino", fields: [coluna_destino_id], references: [id])
+  // coluna_destino    Colunas @relation(name: "ColunaDestino", fields: [coluna_destino_id], references: [id])
   tabela_origem_id  Int
   coluna_origem_id  Int
   tabela_destino_id Int

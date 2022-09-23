@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { FormBuilder } from "../../../components/Form/FormBuilder/FormBuilder";
 import { useFetch } from "../../../hooks/useFetch";
@@ -58,15 +58,17 @@ const inputs: FormInputs[] = [
 
 export const TabelasMaintenance: React.FC = () => {
     const { op, id } = useParams();
-    const { data } = useFetch<any>("table", {
+    const { data } = useFetch<any[0]>("table", {
         params: {
             id: id
         },
     });
+    const tabela_id = data?.[0].id;
+
     return (
         <>
             <FormBuilder operation={Number(op)} data={data} campos={inputs} fun={() => console.log("nada")} />
-            <ColunasQuery />
+            {tabela_id && <ColunasQuery tabela_id={tabela_id} />}
         </>
     );
 };

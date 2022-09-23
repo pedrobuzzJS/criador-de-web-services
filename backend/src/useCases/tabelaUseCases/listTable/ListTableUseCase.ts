@@ -37,5 +37,5 @@ export class ListTableUseCase {
             throw new Error("Sem de tabelas do Sistema");
         };
         return data;
-    }
+    };
 };

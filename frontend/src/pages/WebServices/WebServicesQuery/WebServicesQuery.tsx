@@ -1,9 +1,9 @@
 import React from "react";
+import { WebServices } from "../../../@types/webServices";
 import { DataGrid } from "../../../components/DataGrid/DataGrid";
-import { GridFields, FieldTypes } from "../../../Utils/Fields";
-import { Operation } from "../../../Utils/Operations";
 import { useFetch } from "../../../hooks/useFetch";
-import { Cores } from "../../../@types/cores";
+import { FieldTypes, GridFields } from "../../../Utils/Fields";
+import { Operation } from "../../../Utils/Operations";
 
 const Campos: GridFields[] = [
     {
@@ -13,27 +13,39 @@ const Campos: GridFields[] = [
         type: FieldTypes.TEXT
     },
     {
+        field: "nome",
+        tittle: "nome",
+        description: "nome",
+        type: FieldTypes.TEXT
+    },
+    {
         field: "descricao",
         tittle: "descricao",
         description: "descricao",
         type: FieldTypes.TEXT
     },
     {
-        field: "cor",
-        tittle: "cor",
-        description: "cor",
+        field: "prover",
+        tittle: "prover",
+        description: "prover",
         type: FieldTypes.TEXT
     },
     {
-        field: "created_at",
-        tittle: "created_at",
-        description: "created_at",
+        field: "consumir",
+        tittle: "consumir",
+        description: "consumir",
         type: FieldTypes.TEXT
     },
     {
-        field: "updated_at",
-        tittle: "updated_at",
-        description: "updated_at",
+        field: "varsao",
+        tittle: "varsao",
+        description: "varsao",
+        type: FieldTypes.TEXT
+    },
+    {
+        field: "status_id",
+        tittle: "status_id",
+        description: "status_id",
         type: FieldTypes.TEXT
     },
     {
@@ -43,32 +55,32 @@ const Campos: GridFields[] = [
         type: FieldTypes.BUTTON,
         buttons: [
             {
-                button: "cores",
+                button: "webservices",
                 action: Operation.VIEW,
                 tittle: "Visualizar",
                 icon: "RiIcons.RiDashboardFill",
-                rotina: "cores",
+                rotina: "webservices",
             },
             {
-                button: "cores",
+                button: "webservices",
                 action: Operation.ALTER,
                 tittle: "Alterar",
                 icon: "RiIcons.RiDashboardFill",
-                rotina: "cores",
+                rotina: "webservices",
             },
             {
-                button: "cores",
+                button: "webservices",
                 action: Operation.DELETE,
                 tittle: "Deletar    ",
                 icon: "RiIcons.RiDashboardFill",
-                rotina: "cores",
+                rotina: "webservices",
             },
         ]
     },
 ];
 
-export const CoresQuery: React.FC = () => {
-    const { data, loadding } = useFetch<Cores[]>("cores");
+export const WebServicesQuery: React.FC = () => {
+    const { data, loadding } = useFetch<WebServices[]>("webservices");
 
     return (
         <DataGrid columns={Campos} data={data} loading={loadding} />

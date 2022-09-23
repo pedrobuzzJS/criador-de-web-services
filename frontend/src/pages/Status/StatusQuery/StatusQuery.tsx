@@ -59,8 +59,6 @@ export const StatusQuery: React.FC = () => {
     const { data: status, loadding } = useFetch<Status[]>("status");
 
     return (
-        <>
-            <DataGrid columns={Campos} data={status} loading={loadding} />
-        </>
+        <DataGrid columns={Campos} data={status} loading={loadding} />
     );
 };

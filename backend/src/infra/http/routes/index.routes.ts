@@ -1,4 +1,7 @@
 import { Router } from "express";
+
+import ExecuteOperation from "../../../controller/ExecuteOperation";
+
 import AuthencitateUserController from "../../../useCases/userUseCases/autenticateUser/AutenticateUserController";
 import CreateUserController from "../../../useCases/userUseCases/createUser/CreateUserController";
 import ListUserController from "../../../useCases/userUseCases/listUser/ListUserController";
@@ -33,6 +36,10 @@ import ListColunaController from "../../../useCases/colunaUseCases/listColuna/Li
 import ListRotasController from "../../../useCases/rotasUseCases/listRotas/ListRotasController";
 
 import ListCoresController from "../../../useCases/coresUseCases/listCores/ListCoresController";
+
+import ListAcoesController from "../../../useCases/acoesUseCases/listAcoes/ListAcoesController";
+
+import ListWebServicesController from "../../../useCases/webServiceUseCases/listWebServices/ListWebServicesController";
 
 const Routes = Router();
 
@@ -69,5 +76,11 @@ Routes.get("/colunas", ListColunaController.handle);
 Routes.get("/rotas", ListRotasController.handle);
 
 Routes.get("/cores", ListCoresController.handle)
+
+Routes.get("/acoes", ListAcoesController.handle);
+
+Routes.get("/webservices", ListWebServicesController.handle);
+
+Routes.get("/executeoperation", ExecuteOperation.handle);
 
 export default Routes;

@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE "tbcolunas" ALTER COLUMN "pk" DROP NOT NULL,
+ALTER COLUMN "fk" DROP NOT NULL,
+ALTER COLUMN "permissao" DROP NOT NULL;

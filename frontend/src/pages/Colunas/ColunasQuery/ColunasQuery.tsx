@@ -3,6 +3,7 @@ import { DataGrid } from "../../../components/DataGrid/DataGrid";
 import { GridFields, FieldTypes } from "../../../Utils/Fields";
 import { Operation } from "../../../Utils/Operations";
 import { useFetch } from "../../../hooks/useFetch";
+import { Coluna } from "../../../@types/coluna";
 
 const Campos: GridFields[] = [
     {
@@ -17,24 +18,12 @@ const Campos: GridFields[] = [
         description: "Nome",
         type: FieldTypes.TEXT
     },
-    {
-        field: "pk",
-        tittle: "PK",
-        description: "PK",
-        type: FieldTypes.TEXT
-    },
-    {
-        field: "fk",
-        tittle: "FK",
-        description: "FK",
-        type: FieldTypes.TEXT
-    },
-    {
-        field: "tabela_id",
-        tittle: "PK",
-        description: "PK",
-        type: FieldTypes.TEXT
-    },
+    // {
+    //     field: "tabela_id",
+    //     tittle: "tabela_id",
+    //     description: "tabela_id",
+    //     type: FieldTypes.TEXT
+    // },
     {
         field: "permissao",
         tittle: "PK",
@@ -120,8 +109,12 @@ const Campos: GridFields[] = [
     },
 ];
 
-export const ColunasQuery: React.FC = () => {
-    const { data, loadding } = useFetch<any[]>("colunas");
+export const ColunasQuery: React.FC<Coluna> = ({tabela_id, ...props}) => {
+    const { data, loadding } = useFetch<any[]>("colunas", {
+        params: {
+            id: tabela_id
+        }
+    });
 
     return (
         <DataGrid columns={Campos} data={data} loading={loadding} />

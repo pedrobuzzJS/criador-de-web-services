@@ -1,7 +1,7 @@
 import React from "react";
-import { useFetch } from "../../../hooks/useFetch";
 import { useParams } from "react-router-dom";
 import { FormBuilder } from "../../../components/Form/FormBuilder/FormBuilder";
+import { useFetch } from "../../../hooks/useFetch";
 import { FormInputs, InputType } from "../../../Utils/FormFields";
 
 const inputs: FormInputs[] = [
@@ -22,12 +22,12 @@ const inputs: FormInputs[] = [
         type: InputType.TEXT,
     },
     {
-        id: "cor",
-        name: "cor",
-        placeholder: "cor",
-        label: "cor", 
+        id: "metodo",
+        name: "metodo",
+        placeholder: "metodo",
+        label: "metodo", 
         pixels: "250",
-        type: InputType.COLOR,
+        type: InputType.TEXT,
     },
     {
         id: "created_at",
@@ -47,9 +47,9 @@ const inputs: FormInputs[] = [
     }
 ];
 
-export const CoresMaintenance: React.FC = () => {
+export const AcoesMaintenance: React.FC = () => {
     const { op, id } = useParams();
-    const { data } = useFetch<any>("cores", {
+    const { data } = useFetch<any>("acoes", {
         params: {
             id: id
         },

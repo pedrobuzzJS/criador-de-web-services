@@ -3,11 +3,6 @@ import { useFetch } from "../../../hooks/useFetch";
 import { useParams } from "react-router-dom";
 import { FormBuilder } from "../../../components/Form/FormBuilder/FormBuilder";
 import { FormInputs, InputType } from "../../../Utils/FormFields";
-import { Button } from "../../../components/Form/Button/Button";
-import { DataGrid } from "../../../components/DataGrid/DataGrid";
-import { Table } from "../../../@types/table";
-import { Operation } from "../../../Utils/Operations";
-import { FieldTypes, GridFields } from "../../../Utils/Fields";
 import { TabelasQuery } from "../../Tabelas/TabelasQuery/TabelasQuery";
 
 const inputs: FormInputs[] = [
@@ -18,7 +13,7 @@ const inputs: FormInputs[] = [
         label: "Código", 
         pixels: "250",
         type: InputType.TEXT,
-        disabled: true
+        disabled: true,
     },
     {
         id: "nome",
@@ -27,6 +22,7 @@ const inputs: FormInputs[] = [
         label: "nome", 
         pixels: "250",
         type: InputType.TEXT,
+        disabled: true,
     },
     {
         id: "user",
@@ -35,6 +31,7 @@ const inputs: FormInputs[] = [
         label: "user", 
         pixels: "250",
         type: InputType.TEXT,
+        disabled: true,
     },
     {
         id: "password",
@@ -43,6 +40,7 @@ const inputs: FormInputs[] = [
         label: "password", 
         pixels: "250",
         type: InputType.TEXT,
+        disabled: true,
     },
     {
         id: "db_connection",
@@ -51,6 +49,7 @@ const inputs: FormInputs[] = [
         label: "db_connection", 
         pixels: "250",
         type: InputType.TEXT,
+        disabled: true,
     },
     {
         id: "host",
@@ -59,6 +58,7 @@ const inputs: FormInputs[] = [
         label: "host", 
         pixels: "250",
         type: InputType.TEXT,
+        disabled: true,
     },
     {
         id: "emp",
@@ -67,6 +67,7 @@ const inputs: FormInputs[] = [
         label: "emp", 
         pixels: "250",
         type: InputType.TEXT,
+        disabled: true,
     },
     {
         id: "fil",
@@ -75,6 +76,7 @@ const inputs: FormInputs[] = [
         label: "fil", 
         pixels: "250",
         type: InputType.TEXT,
+        disabled: true,
     },
     {
         id: "tipobase_id",
@@ -83,6 +85,7 @@ const inputs: FormInputs[] = [
         label: "tipobase_id", 
         pixels: "250",
         type: InputType.TEXT,
+        disabled: true,
     },
     {
         id: "url",
@@ -91,6 +94,7 @@ const inputs: FormInputs[] = [
         label: "url", 
         pixels: "250",
         type: InputType.TEXT,
+        disabled: true,
     },
     {
         id: "ip",
@@ -99,6 +103,7 @@ const inputs: FormInputs[] = [
         label: "ip", 
         pixels: "250",
         type: InputType.TEXT,
+        disabled: true,
     },
     {
         id: "permissao",
@@ -107,6 +112,7 @@ const inputs: FormInputs[] = [
         label: "permissao", 
         pixels: "250",
         type: InputType.TEXT,
+        disabled: true,
     },
     {
         id: "status_id",
@@ -115,80 +121,7 @@ const inputs: FormInputs[] = [
         label: "status_id", 
         pixels: "250",
         type: InputType.TEXT,
-    },
-];
-
-const Campos: GridFields[] = [
-    {
-        field: "id",
-        tittle: "ID",
-        description: "ID",
-        type: FieldTypes.TEXT
-    },
-    {
-        field: "nome",
-        tittle: "Nome",
-        description: "Nome",
-        type: FieldTypes.TEXT
-    },
-    {
-        field: "scheme",
-        tittle: "scheme",
-        description: "scheme",
-        type: FieldTypes.TEXT
-    },
-    {
-        field: "base_id",
-        tittle: "base_id",
-        description: "base_id",
-        type: FieldTypes.TEXT
-    },
-    {
-        field: "permissao",
-        tittle: "permissao",
-        description: "permissao",
-        type: FieldTypes.TEXT
-    },
-    {
-        field: "status_id",
-        tittle: "status_id",
-        description: "status_id",
-        type: FieldTypes.TEXT
-    },
-    {
-        field: "scheme",
-        tittle: "scheme",
-        description: "scheme",
-        type: FieldTypes.TEXT
-    },
-    {
-        field: "acoes",
-        tittle: "Acoes",
-        description: "Acoes",
-        type: FieldTypes.BUTTON,
-        buttons: [
-            {
-                button: "tabelas",
-                action: Operation.VIEW,
-                tittle: "Visualizar",
-                icon: "RiIcons.RiDashboardFill",
-                rotina: "tabelas"
-            },
-            {
-                button: "tabelas",
-                action: Operation.ALTER,
-                tittle: "Alterar",
-                icon: "RiIcons.RiDashboardFill",
-                rotina: "tabelas"
-            },
-            {
-                button: "tabelas",
-                action: Operation.DELETE,
-                tittle: "Deletar    ",
-                icon: "RiIcons.RiDashboardFill",
-                rotina: "tabelas"
-            },
-        ]
+        disabled: true,
     },
 ];
 

@@ -1,7 +1,7 @@
 import React from "react";
-import { useFetch } from "../../../hooks/useFetch";
 import { useParams } from "react-router-dom";
 import { FormBuilder } from "../../../components/Form/FormBuilder/FormBuilder";
+import { useFetch } from "../../../hooks/useFetch";
 import { FormInputs, InputType } from "../../../Utils/FormFields";
 
 const inputs: FormInputs[] = [
@@ -14,6 +14,14 @@ const inputs: FormInputs[] = [
         type: InputType.TEXT,
     },
     {
+        id: "nome",
+        name: "nome",
+        placeholder: "nome",
+        label: "nome", 
+        pixels: "250",
+        type: InputType.TEXT,
+    },
+    {
         id: "descricao",
         name: "descricao",
         placeholder: "descricao",
@@ -22,34 +30,42 @@ const inputs: FormInputs[] = [
         type: InputType.TEXT,
     },
     {
-        id: "cor",
-        name: "cor",
-        placeholder: "cor",
-        label: "cor", 
-        pixels: "250",
-        type: InputType.COLOR,
-    },
-    {
-        id: "created_at",
-        name: "created_at",
-        placeholder: "created_at",
-        label: "created_at", 
+        id: "prover",
+        name: "prover",
+        placeholder: "prover",
+        label: "prover", 
         pixels: "250",
         type: InputType.TEXT,
     },
     {
-        id: "updated_at",
-        name: "updated_at",
-        placeholder: "updated_at",
-        label: "updated_at", 
+        id: "consumir",
+        name: "consumir",
+        placeholder: "consumir",
+        label: "consumir", 
         pixels: "250",
         type: InputType.TEXT,
-    }
+    },
+    {
+        id: "varsao",
+        name: "varsao",
+        placeholder: "varsao",
+        label: "varsao", 
+        pixels: "250",
+        type: InputType.TEXT,
+    },
+    {
+        id: "status_id",
+        name: "status_id",
+        placeholder: "status_id",
+        label: "status_id", 
+        pixels: "250",
+        type: InputType.TEXT,
+    },
 ];
 
-export const CoresMaintenance: React.FC = () => {
+export const WebServicesMaintenance: React.FC = () => {
     const { op, id } = useParams();
-    const { data } = useFetch<any>("cores", {
+    const { data } = useFetch<any>("webservices", {
         params: {
             id: id
         },

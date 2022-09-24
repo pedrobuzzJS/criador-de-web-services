@@ -59,6 +59,6 @@ export const AcoesMaintenance: React.FC = () => {
     };
 
     return (
-        <FormBuilder operation={Number(op)} data={data} campos={inputs} fun={envia}/>
+        <FormBuilder op={Number(op)} data={data} campos={inputs} fun={envia}/>
     );
 };

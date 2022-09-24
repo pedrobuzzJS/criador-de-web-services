@@ -62,7 +62,7 @@ export const StatusMaintenance: React.FC = () => {
 
     return (
         <>
-            <FormBuilder operation={Number(op)} data={data} campos={inputs} fun={addStatus}/>
+            <FormBuilder op={Number(op)} data={data} campos={inputs} fun={addStatus}/>
             <Button onClick={envia} buttonDescription="Enviar" />
         </>
     );

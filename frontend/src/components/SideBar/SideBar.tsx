@@ -77,7 +77,7 @@ export const SideBar: React.FC = () => {
                     </SidebarWrap>
                 </SideBarNav>
             </IconContext.Provider>
-            {/* {sideBar && <BlackHole onClick={showSideBar}/>} */}
+            {sideBar && <BlackHole onClick={showSideBar}/>}
         </>
     )
 };

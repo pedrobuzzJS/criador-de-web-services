@@ -15,8 +15,8 @@ export const DataGrid: React.FC<GridProps> = ({ columns, data, loading, ...props
     const navigate = useNavigate();
     const [ order, setOrder ] = useState<String>('');
 
-    const buildMaintenanceURL = useCallback( (btn: string, operation: number, key?: any) => {
-        let url = btn + "-manutencao" + `/${operation}` + `/${key}`; 
+    const buildMaintenanceURL = useCallback( (btn: string, op: number, key?: any) => {
+        let url = btn + "-manutencao" + `/${op}` + `/${key}`; 
         return navigate("/"+url);
     }, []);
 

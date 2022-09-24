@@ -48,6 +48,6 @@ export const TipoWebServiceMaintenance: React.FC = () => {
     });
 
     return (
-        <FormBuilder operation={Number(op)} data={data} campos={inputs} fun={() => console.log("nada")} />
+        <FormBuilder op={Number(op)} data={data} campos={inputs} fun={() => console.log("nada")} />
     );
 };

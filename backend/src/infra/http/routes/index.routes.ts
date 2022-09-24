@@ -40,6 +40,7 @@ import ListCoresController from "../../../useCases/coresUseCases/listCores/ListC
 import ListAcoesController from "../../../useCases/acoesUseCases/listAcoes/ListAcoesController";
 
 import ListWebServicesController from "../../../useCases/webServiceUseCases/listWebServices/ListWebServicesController";
+import CreateWebServicesController from "../../../useCases/webServiceUseCases/createWebServices/CreateWebServicesController";
 
 const Routes = Router();
 
@@ -80,6 +81,7 @@ Routes.get("/cores", ListCoresController.handle)
 Routes.get("/acoes", ListAcoesController.handle);
 
 Routes.get("/webservices", ListWebServicesController.handle);
+Routes.post("/webservices", CreateWebServicesController.handle);
 
 Routes.get("/executeoperation", ExecuteOperation.handle);
 

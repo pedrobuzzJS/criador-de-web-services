@@ -3,15 +3,18 @@ import Input from "../Inputs/InputDefault/InputDefault";
 import { Button } from "../Button/Button";
 import { ButtonArea, Container, FormContainer } from "./styles";
 import { FormInputs } from "../../../Utils/FormFields";
+import { Operation } from "../../../Utils/Operations";
+import api from "../../../services/api";
 import { Select } from "../Inputs/Select/Select";
 interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
-    operation: number;
+    op: number;
     data: any[];
     campos: FormInputs[];
+    url?: any;
     fun(data: any): void;
 };
 
-export const FormBuilder: React.FC<FormProps> = ({  operation, data, campos, fun, ...props }) => {
+export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, fun, url, ...props }) => {
     const [ formValues, setFormValues ] = useState({});
     const setFormValueInitial = useEffect( () => {
         setFormValues({
@@ -21,7 +24,24 @@ export const FormBuilder: React.FC<FormProps> = ({  operation, data, campos, fun
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        fun(formValues);
+        submitFormToBakc();
+    };
+
+    const submitFormToBakc = () => {
+        console.log(formValues);
+        switch (op) {
+            case Operation.INSERT:
+                    try {
+                        api.post(url, {
+                            data: {
+                                ...formValues
+                            }
+                        })
+                    } catch (error) {
+                        console.log(error);
+                    }
+                break;
+        };
     };
 
     const handleClick = () => {

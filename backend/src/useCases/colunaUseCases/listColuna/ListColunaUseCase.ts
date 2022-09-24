@@ -17,6 +17,9 @@ export class ListColunaUseCase {
         const data = await client.colunas.findMany({
             where: {
                 tabela_id: id
+            },
+            orderBy: {
+                posicao: 'asc'
             }
         });
         if (!data) {

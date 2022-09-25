@@ -6,9 +6,6 @@ export class CreateWebServicesUseCase {
         const info = requestData.data;
         const createWebService = await client.webService.create(
             {
-                // data: {
-                //     ...info
-                // }
                 data: {
                     nome: info.nome,
                     descricao: info.descricao,

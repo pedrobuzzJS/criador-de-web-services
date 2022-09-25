@@ -31,16 +31,38 @@ export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, fun, url, 
         console.log(formValues);
         switch (op) {
             case Operation.INSERT:
-                    try {
-                        api.post(url, {
-                            data: {
-                                ...formValues
-                            }
-                        })
-                    } catch (error) {
-                        console.log(error);
-                    }
-                break;
+                try {
+                    api.post(url, {
+                        data: {
+                            ...formValues
+                        }
+                    });
+                } catch (error) {
+                    console.log(error);
+                };
+            break;
+            case Operation.ALTER:
+                try {
+                    api.put(url, {
+                        data: {
+                            ...formValues
+                        }
+                    });
+                } catch (error) {
+                    console.log(error);
+                };
+            break;
+            case Operation.DELETE:
+                try {
+                    api.delete(url, {
+                        data: {
+                            ...formValues
+                        }
+                    });
+                } catch (error) {
+                    console.log(error);
+                };
+            break;
         };
     };
 

@@ -1,7 +1,7 @@
 import { FieldAction } from "./FieldAction";
 export interface GridFields {
     field: string;
-    tittle: string;
+    title: string;
     description: string;
     type: number;
     hidden?: boolean;

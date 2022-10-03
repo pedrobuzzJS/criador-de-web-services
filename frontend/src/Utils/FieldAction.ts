@@ -1,10 +1,11 @@
 import { DisableButtonCondition } from "./DisableButtonCondition";
 
-export interface FieldAction{
+export interface FieldAction {
+    id?: number;
     button: string;
     action: number;
     rotina?: string;
-    tittle: string;
+    title: string;
     icon?: string;
     active?: boolean;
     hint?: string;

@@ -1,9 +1,9 @@
 import React from "react";
+import { WebServiceObj } from "../../../@types/webServicesObj";
 import { DataGrid } from "../../../components/DataGrid/DataGrid";
-import { GridFields, FieldTypes } from "../../../Utils/Fields";
-import { Operation } from "../../../Utils/Operations";
 import { useFetch } from "../../../hooks/useFetch";
-import { Acoes } from "../../../@types/acoes";
+import { FieldTypes, GridFields } from "../../../Utils/Fields";
+import { Operation } from "../../../Utils/Operations";
 
 const Campos: GridFields[] = [
     {
@@ -13,27 +13,27 @@ const Campos: GridFields[] = [
         type: FieldTypes.TEXT
     },
     {
-        field: "descricao",
-        title: "descricao",
-        description: "descricao",
+        field: "obj",
+        title: "obj",
+        description: "obj",
         type: FieldTypes.TEXT
     },
     {
-        field: "metodo",
-        title: "metodo",
-        description: "metodo",
+        field: "sql",
+        title: "sql",
+        description: "sql",
         type: FieldTypes.TEXT
     },
     {
-        field: "created_at",
-        title: "created_at",
-        description: "created_at",
+        field: "versao",
+        title: "versao",
+        description: "versao",
         type: FieldTypes.TEXT
     },
     {
-        field: "updated_at",
-        title: "updated_at",
-        description: "updated_at",
+        field: "webservice_id",
+        title: "webservice_id",
+        description: "webservice_id",
         type: FieldTypes.TEXT
     },
     {
@@ -43,32 +43,32 @@ const Campos: GridFields[] = [
         type: FieldTypes.BUTTON,
         buttons: [
             {
-                button: "acoes",
+                button: "webservicesobj",
                 action: Operation.VIEW,
                 title: "Visualizar",
                 icon: "RiIcons.RiDashboardFill",
-                rotina: "acoes",
+                rotina: "webservicesobj",
             },
             {
-                button: "acoes",
+                button: "webservicesobj",
                 action: Operation.ALTER,
                 title: "Alterar",
                 icon: "RiIcons.RiDashboardFill",
-                rotina: "acoes",
+                rotina: "webservicesobj",
             },
             {
-                button: "acoes",
+                button: "webservicesobj",
                 action: Operation.DELETE,
                 title: "Deletar    ",
                 icon: "RiIcons.RiDashboardFill",
-                rotina: "acoes",
+                rotina: "webservicesobj",
             },
         ]
     },
 ];
 
-export const AcoesQuery: React.FC = () => {
-    const { data, loadding } = useFetch<Acoes[]>("acoes");
+export const WebServicesObjQuery: React.FC = () => {
+    const { data, loadding } = useFetch<WebServiceObj[]>("webservicesobj");
 
     return (
         <DataGrid columns={Campos} data={data} loading={loadding} />

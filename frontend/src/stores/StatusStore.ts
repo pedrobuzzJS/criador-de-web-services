@@ -1,7 +1,5 @@
 import zustand from "zustand";
-
 import { Status } from "../@types/status";
-
 interface State {
     status: any[];
     addStatus: (status: Status) => void;

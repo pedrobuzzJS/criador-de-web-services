@@ -27,6 +27,8 @@ import { AcoesMaintenance } from "./pages/Acoes/AcoesMaintenance/AcoesMaintenanc
 import { WebServicesQuery } from "./pages/WebServices/WebServicesQuery/WebServicesQuery";
 import { WebServicesMaintenance } from "./pages/WebServices/WebServicesMaintenance/WebServicesMaintenance";
 import { TipoBaseMaintenance } from "./pages/TipoBase/TipoBaseMaintenance/TipoBaseMaintenance";
+import { WebServicesObjMaintanance } from "./pages/WebServicesObj/WebServicesObjMaintanance/WebServicesObjMaintanance";
+import { WebServicesObjQuery } from "./pages/WebServicesObj/WebServicesObjQuery/WebServicesObjQuery";
 
 const App: React.FC = () => {
   return (
@@ -43,6 +45,7 @@ const App: React.FC = () => {
           <Route path="tabelas-manutencao/:op/:id" element={<TabelasMaintenance />} />
           <Route path="status-contulta" element={<StatusQuery />} />
           <Route path="status-manutencao/:op/:id" element={<StatusMaintenance />} />
+          <Route path="status-manutencao/:op" element={<StatusMaintenance />} />
           <Route path="tipowebservice-contulta" element={<TipoWebServiceQuery />} />
           <Route path="tipowebservice-manutencao/:op/:id" element={<TipoWebServiceMaintenance />} />
           <Route path="colunas-manutencao/:op/:id" element={<ColunasMaintenance />} />
@@ -58,6 +61,8 @@ const App: React.FC = () => {
           <Route path="acoes-manutencao/:op/:id" element={<AcoesMaintenance />} />
           <Route path="webservices-consulta" element={<WebServicesQuery />} />
           <Route path="webservices-manutencao/:op/:id" element={<WebServicesMaintenance />} />
+          <Route path="webservicesobj-consulta" element={<WebServicesObjQuery />} />
+          <Route path="webservicesobj-manutencao/:op/:id" element={<WebServicesObjMaintanance />} />
           <Route path={"*"} element={<PageNotFound />}/>
         </Routes>
       </BrowserRouter>

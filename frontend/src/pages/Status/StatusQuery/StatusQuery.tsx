@@ -8,46 +8,46 @@ import { Status } from "../../../@types/status";
 const Campos: GridFields[] = [
     {
         field: "id",
-        tittle: "ID",
+        title: "ID",
         description: "ID",
         type: FieldTypes.TEXT
     },
     {
         field: "nome",
-        tittle: "Nome",
+        title: "Nome",
         description: "Nome",
         type: FieldTypes.TEXT
     },
     {
         field: "descricao",
-        tittle: "Descricao",
+        title: "Descricao",
         description: "Descricao",
         type: FieldTypes.TEXT
     },
     {
         field: "acoes",
-        tittle: "Acoes",
+        title: "Acoes",
         description: "Acoes",
         type: FieldTypes.BUTTON,
         buttons: [
             {
                 button: "status",
                 action: Operation.VIEW,
-                tittle: "Visualizar",
+                title: "Visualizar",
                 icon: "RiIcons.RiDashboardFill",
                 rotina: "status",
             },
             {
                 button: "status",
                 action: Operation.ALTER,
-                tittle: "Alterar",
+                title: "Alterar",
                 icon: "RiIcons.RiDashboardFill",
                 rotina: "status",
             },
             {
                 button: "status",
                 action: Operation.DELETE,
-                tittle: "Deletar    ",
+                title: "Deletar    ",
                 icon: "RiIcons.RiDashboardFill",
                 rotina: "status",
             },

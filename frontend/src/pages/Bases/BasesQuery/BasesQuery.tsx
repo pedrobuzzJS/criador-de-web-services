@@ -8,106 +8,106 @@ import { Bases } from "../../../@types/base";
 const Campos: GridFields[] = [
     {
         field: "id",
-        tittle: "ID",
+        title: "ID",
         description: "ID",
         type: FieldTypes.TEXT
     },
     {
         field: "nome",
-        tittle: "nome",
+        title: "nome",
         description: "nome",
         type: FieldTypes.TEXT
     },
     {
         field: "user",
-        tittle: "user",
+        title: "user",
         description: "user",
         type: FieldTypes.TEXT
     },
     // {
     //     field: "password",
-    //     tittle: "password",
+    //     title: "password",
     //     description: "password",
     //     type: FieldTypes.TEXT
     // },
     // {
     //     field: "db_connection",
-    //     tittle: "db_connection",
+    //     title: "db_connection",
     //     description: "db_connection",
     //     type: FieldTypes.TEXT
     // },
     // {
     //     field: "host",
-    //     tittle: "host",
+    //     title: "host",
     //     description: "host",
     //     type: FieldTypes.TEXT
     // },
     // {
     //     field: "emp",
-    //     tittle: "emp",
+    //     title: "emp",
     //     description: "emp",
     //     type: FieldTypes.TEXT
     // },
     // {
     //     field: "fil",
-    //     tittle: "fil",
+    //     title: "fil",
     //     description: "fil",
     //     type: FieldTypes.TEXT
     // },
     {
         field: "tipobase_id",
-        tittle: "tipobase_id",
+        title: "tipobase_id",
         description: "tipobase_id",
         type: FieldTypes.TEXT
     },
     // {
     //     field: "url",
-    //     tittle: "url",
+    //     title: "url",
     //     description: "url",
     //     type: FieldTypes.TEXT
     // },
     // {
     //     field: "ip",
-    //     tittle: "ip",
+    //     title: "ip",
     //     description: "ip",
     //     type: FieldTypes.TEXT
     // },
     {
         field: "permissao",
-        tittle: "permissao",
+        title: "permissao",
         description: "permissao",
         type: FieldTypes.TEXT
     },
     {
         field: "status_id",
-        tittle: "status_id",
+        title: "status_id",
         description: "status_id",
         type: FieldTypes.TEXT
     },
     {
         field: "acoes",
-        tittle: "Acoes",
+        title: "Acoes",
         description: "Acoes",
         type: FieldTypes.BUTTON,
         buttons: [
             {
                 button: "bases",
                 action: Operation.VIEW,
-                tittle: "Visualizar",
+                title: "Visualizar",
                 icon: "RiIcons.RiDashboardFill",
                 rotina: "bases",
             },
             {
                 button: "bases",
                 action: Operation.ALTER,
-                tittle: "Alterar",
+                title: "Alterar",
                 icon: "RiIcons.RiDashboardFill",
                 rotina: "bases",
             },
             {
                 button: "bases",
                 action: Operation.DELETE,
-                tittle: "Deletar    ",
+                title: "Deletar    ",
                 icon: "RiIcons.RiDashboardFill",
                 rotina: "bases",
             },

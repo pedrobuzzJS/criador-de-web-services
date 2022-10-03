@@ -137,6 +137,7 @@ model Status {
   TipoBase        TipoBases[]
   Rotas           Rotas[]
   Colunas         Colunas[]
+  WebServiceObj   WebServiceObj[]
 
   @@map("tbstatus")
 }
@@ -153,16 +154,30 @@ model TipoWebService {
 }
 
 model WebService {
-  id        Int     @id @default(autoincrement())
-  nome      String  @db.VarChar(255)
-  descricao String  @db.VarChar(255)
-  prover    Boolean
-  consumir  Boolean
-  varsao    Float
-  status_id Int?
-  status    Status? @relation(fields: [status_id], references: [id])
+  id            Int             @id @default(autoincrement())
+  nome          String          @db.VarChar(255)
+  descricao     String          @db.VarChar(255)
+  prover        Boolean
+  consumir      Boolean
+  varsao        Float
+  status_id     Int?
+  status        Status?         @relation(fields: [status_id], references: [id])
+  webserviceobj WebServiceObj[]
 
   @@map("tbwebservices")
+}
+
+model WebServiceObj {
+  id            Int        @id @default(autoincrement())
+  obj           String     @db.VarChar(2500)
+  sql           String     @db.VarChar(2500)
+  webservice_id Int
+  versao        Int?
+  status_id     Int?
+  status        Status?    @relation(fields: [status_id], references: [id])
+  webservice    WebService @relation(fields: [webservice_id], references: [id])
+
+  @@map("tbwebserviceobj")
 }
 
 model TipoBases {
@@ -258,4 +273,12 @@ model TabelaLigacao {
 
   @@id([tabela_origem_id, coluna_origem_id, tabela_destino_id, coluna_destino_id])
   @@map("tbtabelaligacoes")
+}
+
+model Rotina {
+  id        Int    @id @default(autoincrement())
+  name      String @db.VarChar(255)
+  descricao String @db.VarChar(500)
+  acao      String @db.VarChar(500)
+  metodo    String @db.VarChar(8)
 }

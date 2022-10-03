@@ -8,64 +8,64 @@ import { Rotas } from "../../../@types/rotas";
 const Campos: GridFields[] = [
     {
         field: "id",
-        tittle: "ID",
+        title: "ID",
         description: "ID",
         type: FieldTypes.TEXT
     },
     {
         field: "nome",
-        tittle: "Nome",
+        title: "Nome",
         description: "Nome",
         type: FieldTypes.TEXT
     },
     {
         field: "rota",
-        tittle: "rota",
+        title: "rota",
         description: "rota",
         type: FieldTypes.TEXT
     },
     {
         field: "parametros",
-        tittle: "parametros",
+        title: "parametros",
         description: "parametros",
         type: FieldTypes.TEXT
     },
     {
         field: "metodo",
-        tittle: "metodo",
+        title: "metodo",
         description: "metodo",
         type: FieldTypes.TEXT
     },
     {
         field: "status_id",
-        tittle: "status_id",
+        title: "status_id",
         description: "status_id",
         type: FieldTypes.TEXT
     },
     {
         field: "acoes",
-        tittle: "Acoes",
+        title: "Acoes",
         description: "Acoes",
         type: FieldTypes.BUTTON,
         buttons: [
             {
                 button: "rotas",
                 action: Operation.VIEW,
-                tittle: "Visualizar",
+                title: "Visualizar",
                 icon: "RiIcons.RiDashboardFill",
                 rotina: "rotas",
             },
             {
                 button: "rotas",
                 action: Operation.ALTER,
-                tittle: "Alterar",
+                title: "Alterar",
                 icon: "RiIcons.RiDashboardFill",
                 rotina: "rotas",
             },
             {
                 button: "rotas",
                 action: Operation.DELETE,
-                tittle: "Deletar    ",
+                title: "Deletar    ",
                 icon: "RiIcons.RiDashboardFill",
                 rotina: "rotas",
             },

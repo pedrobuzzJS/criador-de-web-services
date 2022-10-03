@@ -8,85 +8,85 @@ import { Users } from "../../../@types/user";
 const Campos: GridFields[] = [
     {
         field: "id",
-        tittle: "id",
+        title: "id",
         description: "id",
         type: FieldTypes.TEXT,
     },
     // {
     //     field: "name",
-    //     tittle: "name",
+    //     title: "name",
     //     description: "name",
     //     type: FieldTypes.TEXT,
     // },
     {
         field: "username",
-        tittle: "username",
+        title: "username",
         description: "username",
         type: FieldTypes.TEXT,
     },
     {
         field: "email",
-        tittle: "email",
+        title: "email",
         description: "email",
         type: FieldTypes.TEXT,
     },
     // {
     //     field: "email_verified",
-    //     tittle: "email_verified",
+    //     title: "email_verified",
     //     description: "email_verified"
     // },
     // {
     //     field: "password",
-    //     tittle: "password",
+    //     title: "password",
     //     description: "password"
     // },
     // {
     //     field: "remember_token",
-    //     tittle: "remember_token",
+    //     title: "remember_token",
     //     description: "remember_token"
     // },
     {
         field: "status_id",
-        tittle: "status_id",
+        title: "status_id",
         description: "status_id",
         type: FieldTypes.TEXT,
     },
     {
         field: "created_at",
-        tittle: "created_at",
+        title: "created_at",
         description: "created_at",
         type: FieldTypes.TEXT,
     },
     {
         field: "updated_at",
-        tittle: "updated_at",
+        title: "updated_at",
         description: "updated_at",
         type: FieldTypes.TEXT,
     },
     {
         field: "acoes",
-        tittle: "Acoes",
+        title: "Acoes",
         description: "Acoes",
         type: FieldTypes.BUTTON,
         buttons: [
             {
                 button: "usuario",
                 action: Operation.VIEW,
-                tittle: "Visualizar",
+                title: "Visualizar",
                 icon: "RiIcons.RiDashboardFill",
                 rotina: "usuario",
             },
             {
                 button: "usuario",
                 action: Operation.ALTER,
-                tittle: "Alterar",
+                title: "Alterar",
                 icon: "RiIcons.RiDashboardFill",
                 rotina: "usuario",
             },
             {
                 button: "usuario",
                 action: Operation.DELETE,
-                tittle: "Deletar    ",
+                title: "Deletar    ",
                 icon: "RiIcons.RiDashboardFill",
                 rotina: "usuario",
             },

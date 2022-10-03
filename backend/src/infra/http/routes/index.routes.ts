@@ -42,6 +42,8 @@ import ListAcoesController from "../../../useCases/acoesUseCases/listAcoes/ListA
 import ListWebServicesController from "../../../useCases/webServiceUseCases/listWebServices/ListWebServicesController";
 import CreateWebServicesController from "../../../useCases/webServiceUseCases/createWebServices/CreateWebServicesController";
 
+import ListWebServicesObjController from "../../../useCases/webServicesOjbUseCases/ListWebServices/ListWebServicesController";
+
 const Routes = Router();
 
 Routes.post("/users", CreateUserController.handle);
@@ -84,5 +86,7 @@ Routes.get("/webservices", ListWebServicesController.handle);
 Routes.post("/webservices", CreateWebServicesController.handle);
 
 Routes.get("/executeoperation", ExecuteOperation.handle);
+
+Routes.get("/webservicesobj", ListWebServicesObjController.handle);
 
 export default Routes;

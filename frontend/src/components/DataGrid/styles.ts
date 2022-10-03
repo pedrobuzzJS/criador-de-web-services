@@ -6,7 +6,7 @@ export const Container = styled.div`
 `;
 
 export const TableContainer = styled.table`
-    width: 85%;
+    width: 90%;
     margin: 0 auto;
     border-collapse: collapse;
 
@@ -47,4 +47,18 @@ export const ButtonContainerGrid = styled.div`
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
+`;
+
+export const ButtonContainer = styled.div`
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    padding-bottom: 15px;
+    justify-content: right;
+`;
+
+export const FiltersContainer = styled.div`
+    width: 90%;
+    margin: 0 auto;
+    padding-bottom: 15px;
 `;

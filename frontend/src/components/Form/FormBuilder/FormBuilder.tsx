@@ -16,11 +16,35 @@ interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
 
 export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, fun, url, ...props }) => {
     const [ formValues, setFormValues ] = useState({});
-    const setFormValueInitial = useEffect( () => {
-        setFormValues({
-            ...data?.[0]
-        })
-    }, [data] );
+
+    useEffect( () => {
+        switch(op) {
+            case Operation.INSERT:
+                return setFormValues({});
+            break;
+            case Operation.ALTER:
+                if (data?.[0]) {
+                    return setFormValues({
+                        ...data?.[0]
+                    });
+                };
+            break;
+            case Operation.DELETE:
+                if (data?.[0]) {
+                    return setFormValues({
+                        ...data?.[0]
+                    });
+                };
+            break;
+            case Operation.VIEW:
+                if (data?.[0]) {
+                    return setFormValues({
+                        ...data?.[0]
+                    });
+                };
+            break;
+        };
+    }, [data, op] );
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -28,7 +52,6 @@ export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, fun, url, 
     };
 
     const submitFormToBakc = () => {
-        console.log(formValues);
         switch (op) {
             case Operation.INSERT:
                 try {

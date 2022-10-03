@@ -8,68 +8,68 @@ import { Tabelas } from "../../../@types/tabelas";
 const Campos: GridFields[] = [
     {
         field: "id",
-        tittle: "ID",
+        title: "ID",
         description: "ID",
         type: FieldTypes.TEXT
     },
     {
         field: "nome",
-        tittle: "Nome",
+        title: "Nome",
         description: "Nome",
         type: FieldTypes.TEXT
     },
     {
         field: "scheme",
-        tittle: "scheme",
+        title: "scheme",
         description: "scheme",
         type: FieldTypes.TEXT
     },
     {
         field: "base_id",
-        tittle: "base_id",
+        title: "base_id",
         description: "base_id",
         type: FieldTypes.TEXT
     },
     {
         field: "permissao",
-        tittle: "permissao",
+        title: "permissao",
         description: "permissao",
         type: FieldTypes.TEXT
     },
     {
         field: "status_id",
-        tittle: "status_id",
+        title: "status_id",
         description: "status_id",
         type: FieldTypes.TEXT
     },
     {
         field: "scheme",
-        tittle: "scheme",
+        title: "scheme",
         description: "scheme",
         type: FieldTypes.TEXT
     },
     {
         field: "acoes",
-        tittle: "Acoes",
+        title: "Acoes",
         description: "Acoes",
         type: FieldTypes.BUTTON,
         buttons: [
             {
                 button: "view-status",
                 action: Operation.VIEW,
-                tittle: "Visualizar",
+                title: "Visualizar",
                 icon: "RiIcons.RiDashboardFill"
             },
             {
                 button: "alter-status",
                 action: Operation.ALTER,
-                tittle: "Alterar",
+                title: "Alterar",
                 icon: "RiIcons.RiDashboardFill"
             },
             {
                 button: "delete-status",
                 action: Operation.DELETE,
-                tittle: "Deletar    ",
+                title: "Deletar    ",
                 icon: "RiIcons.RiDashboardFill"
             },
         ]

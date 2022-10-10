@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { FormBuilder } from "../../../components/Form/FormBuilder/FormBuilder";
 import { useFetch } from "../../../hooks/useFetch";
 import { FormInputs, InputType } from "../../../Utils/FormFields";
+import { Operation } from "../../../Utils/Operations";
 import { WebServicesObjQuery } from "../../WebServicesObj/WebServicesObjQuery/WebServicesObjQuery";
 
 export const WebServicesMaintenance: React.FC = () => {
@@ -15,7 +16,9 @@ export const WebServicesMaintenance: React.FC = () => {
                 placeholder: "Código",
                 label: "Código", 
                 pixels: "250",
-                type: InputType.TEXT,   
+                type: InputType.TEXT,
+                isChave: true,
+                disabled: true,
             },
             {
                 id: "nome",
@@ -23,7 +26,8 @@ export const WebServicesMaintenance: React.FC = () => {
                 placeholder: "nome",
                 label: "nome", 
                 pixels: "250",
-                type: InputType.TEXT,   
+                type: InputType.TEXT,
+                disabled: [Operation.VIEW, Operation.DELETE].includes(Number(op)) ? true : false,   
             },
             {
                 id: "descricao",
@@ -31,7 +35,8 @@ export const WebServicesMaintenance: React.FC = () => {
                 placeholder: "descricao",
                 label: "descricao", 
                 pixels: "250",
-                type: InputType.TEXT,   
+                type: InputType.TEXT,
+                disabled: [Operation.VIEW, Operation.DELETE].includes(Number(op)) ? true : false,   
             },
             {
                 id: "prover",
@@ -39,7 +44,8 @@ export const WebServicesMaintenance: React.FC = () => {
                 placeholder: "prover",
                 label: "prover", 
                 pixels: "250",
-                type: InputType.TEXT,   
+                type: InputType.TEXT,
+                disabled: [Operation.VIEW, Operation.DELETE].includes(Number(op)) ? true : false,   
             },
             {
                 id: "consumir",
@@ -47,7 +53,8 @@ export const WebServicesMaintenance: React.FC = () => {
                 placeholder: "consumir",
                 label: "consumir", 
                 pixels: "250",
-                type: InputType.TEXT,   
+                type: InputType.TEXT,
+                disabled: [Operation.VIEW, Operation.DELETE].includes(Number(op)) ? true : false,   
             },
             {
                 id: "varsao",
@@ -55,7 +62,8 @@ export const WebServicesMaintenance: React.FC = () => {
                 placeholder: "varsao",
                 label: "varsao", 
                 pixels: "250",
-                type: InputType.TEXT,   
+                type: InputType.TEXT,
+                disabled: [Operation.VIEW, Operation.DELETE].includes(Number(op)) ? true : false,   
             },
             {
                 id: "status_id",
@@ -63,7 +71,8 @@ export const WebServicesMaintenance: React.FC = () => {
                 placeholder: "status_id",
                 label: "status_id", 
                 pixels: "250",
-                type: InputType.TEXT,   
+                type: InputType.TEXT,
+                disabled: [Operation.VIEW, Operation.DELETE].includes(Number(op)) ? true : false,   
             },
         ]
     );

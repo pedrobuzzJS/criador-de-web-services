@@ -1,7 +1,7 @@
 import React, { useState, FormHTMLAttributes, FormEvent, useCallback, useEffect } from "react";
 import Input from "../Inputs/InputDefault/InputDefault";
 import { Button } from "../Button/Button";
-import { ButtonArea, Container, FormContainer } from "./styles";
+import { ButtonArea, Container, FormContainer, SuperContainer } from "./styles";
 import { FormInputs } from "../../../Utils/FormFields";
 import { Operation } from "../../../Utils/Operations";
 import api from "../../../services/api";
@@ -47,6 +47,7 @@ export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, fun, url, 
     }, [data, op] );
 
     const handleSubmit = (e: React.FormEvent) => {
+        console.log("sub");
         e.preventDefault();
         submitFormToBakc();
     };
@@ -134,7 +135,8 @@ export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, fun, url, 
     }, [formValues]);
 
     return (
-        <Container>
+        <SuperContainer>
+            <Container>
             <form onSubmit={handleSubmit}>  
                 <FormContainer>
                     {campos?.map( (campo, index) => (
@@ -169,10 +171,11 @@ export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, fun, url, 
                 <ButtonArea>
                     <Button 
                         onClick={handleClick}
-                        buttonDescription="Enviar"
+                        buttonDescription="Confirmar"
                     />
                 </ButtonArea>
             </form>
-        </Container>
+            </Container>
+        </SuperContainer>
     );
 }

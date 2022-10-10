@@ -14,4 +14,5 @@ export class FieldTypes {
   public static BUTTON = 2;
   public static BOOLEAN = 3;
   public static COLOR = 4;
+  public static CHECKBOX = 5;
 };

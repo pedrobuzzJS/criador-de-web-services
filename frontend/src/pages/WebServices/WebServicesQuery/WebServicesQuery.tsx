@@ -89,9 +89,12 @@ const Campos: GridFields[] = [
 
 export const WebServicesQuery: React.FC = () => {
     const { data, loadding } = useFetch<WebServices[]>("webservices");
-    const button = UseButtonStore(state => state?.button[0]);
+    const button = UseButtonStore(state => state?.button);
 
-    console.log(button);
+    if (button?.length) {
+        console.log("BTN")
+        console.log(button);
+    }
 
     return (
         <DataGrid columns={Campos} data={data} loading={loadding} />

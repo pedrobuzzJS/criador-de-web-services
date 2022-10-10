@@ -21,31 +21,32 @@ export const DataGrid: React.FC<GridProps> = ({ columns, data, loading, ...props
     const teste: any[] = data; 
     const navigate = useNavigate();
     const addButtonAction = UseButtonStore(state => state.addButton);
+    const cleanButtonAction = UseButtonStore(state => state.cleanButton);
     // const [ order, setOrder ] = useState<String>('');
-    
-    useEffect( () => {
-    }, [] );
 
     const buildMaintenanceURL = useCallback( (btn: string, op: number, id?: any) => {
-        let url = btn + "-manutencao" + `/${op}` + `/${id}`; 
+        let url = btn + "-manutencao" + `/${op}` + `/${id}`;
         return navigate("/"+url);
     }, [navigate]);
 
     const buttonInserFormValues = useCallback( (btn: string, op: number) => {
-        let url = btn + "-manutencao" + `/${op}`; 
+        let url = btn + "-manutencao" + `/${op}`;
         return navigate("/"+url);
     }, [navigate] );
 
     const handdleSelectButtonActions = useCallback( async (btn: string, operation: number, id: number) => {
         switch(operation) {
             case Operation.ALTER:
-                buildMaintenanceURL(btn, operation, id);
+                await cleanButtonAction();
+                await buildMaintenanceURL(btn, operation, id);
             break;
             case Operation.DELETE:
-                buildMaintenanceURL(btn, operation, id);
+                await cleanButtonAction();
+                await buildMaintenanceURL(btn, operation, id);
             break;
             case Operation.VIEW:
-                buildMaintenanceURL(btn, operation, id);
+                await cleanButtonAction();
+                await buildMaintenanceURL(btn, operation, id);
             break;
             default:
                 await addButtonAction({

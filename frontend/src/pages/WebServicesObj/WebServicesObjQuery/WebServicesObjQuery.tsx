@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { WebServiceObj } from "../../../@types/webServicesObj";
 import { DataGrid } from "../../../components/DataGrid/DataGrid";
 import { useFetch } from "../../../hooks/useFetch";
@@ -71,6 +71,8 @@ export const WebServicesObjQuery: React.FC = () => {
     const { data, loadding } = useFetch<WebServiceObj[]>("webservicesobj");
 
     return (
-        <DataGrid columns={Campos} data={data} loading={loadding} />
+        <>
+            <DataGrid columns={Campos} data={data} loading={loadding} />
+        </>
     );
 };

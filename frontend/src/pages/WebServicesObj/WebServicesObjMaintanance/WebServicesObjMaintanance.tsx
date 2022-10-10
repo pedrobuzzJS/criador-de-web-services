@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
+import { Button } from "../../../components/Form/Button/Button";
 import { FormBuilder } from "../../../components/Form/FormBuilder/FormBuilder";
+import { Modal } from "../../../components/Modal/Modal";
+import { WebServiceMount } from "../../../components/WebServiceMount/WebServiceMount";
 import { useFetch } from "../../../hooks/useFetch";
 import { FormInputs, InputType } from "../../../Utils/FormFields";
+import { Container, WebServiceBuilderContainer } from "./styles";
 
 const inputs: FormInputs[] = [
     {
@@ -49,6 +53,7 @@ const inputs: FormInputs[] = [
 
 export const WebServicesObjMaintanance: React.FC = () => {
     const { op, id } = useParams();
+    const [ mo, setMo ] = useState(false);
     const { data } = useFetch<any>("webservicesobj", {
         params: {
             id: id
@@ -60,8 +65,15 @@ export const WebServicesObjMaintanance: React.FC = () => {
 
     return (
         <>
-            {data && <FormBuilder op={Number(op)} data={data} campos={inputs} fun={envia}/>}
-            <h1>opa</h1>
+            {/* {data && <FormBuilder op={Number(op)} data={data} campos={inputs} fun={envia}/>} */}
+            <Container>
+                <WebServiceMount />
+
+                <WebServiceBuilderContainer>
+                    
+                </WebServiceBuilderContainer>
+        
+            </Container>
         </>
     );
 };

@@ -80,7 +80,7 @@ const Campos: GridFields[] = [
 ];
 
 export const TabelasQuery: React.FC = () => {
-    const { data, loadding } = useFetch<Table[]>("table");
+    const { data, loadding } = useFetch<any[]>("table");
 
     return (
         <DataGrid columns={Campos} data={data} loading={loadding} />

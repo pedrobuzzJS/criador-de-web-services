@@ -1,16 +1,20 @@
-import zustand from "zustand";
+import create from 'zustand'
 import { FieldAction } from "../Utils/FieldAction";
 
 interface State {
-    button: FieldAction[];
+    button: FieldAction[] | null;
     addButton: (button: FieldAction) => void;
+    cleanButton: () => void;
 };
 
-const UseButtonStore = zustand<State>((set) => (
+const UseButtonStore = create<State>((set) => (
         {
             button: [],
-            addButton: async (button: any) => {
-                await set(state => ({ button: [button] }))
+            addButton: async (button: FieldAction) => {
+                await set(state => ({ button: [button] }));
+            },
+            cleanButton: async () => {
+                await set(state => ({ button: null }));
             }
         }
     )

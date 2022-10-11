@@ -9,7 +9,7 @@ export class ListTableUseCase {
             }
         });
         if (!data) {
-            throw new Error("Sem de Menus do Sistema");
+            throw new Error("Sem de Tabelas do Sistema");
         };
         return data;
     };
@@ -21,7 +21,7 @@ export class ListTableUseCase {
             }
         });
         if (!data) {
-            throw new Error("Sem de Menus do Sistema");
+            throw new Error("Sem de Tabelas do Sistema");
         };
         return data;
     };

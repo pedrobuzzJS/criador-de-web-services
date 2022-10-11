@@ -1,10 +1,10 @@
-import React, { useCallback } from "react";
+import React, { FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
-import UseButtonStore from "../../stores/buttonStore";
+import UseButtonStore from "../../stores/ButtonStore";
 import { FieldTypes, GridFields } from "../../Utils/Fields";
-import { Operation } from "../../Utils/Operations";
-import { Button } from "../Form/Button/Button";
-import { ButtonContainer, ButtonContainerGrid, Container, TableContainer, TableRows } from "./styles";
+import { Container, TableContainer, TableRows, CheckBoxContainer } from "./styles";
+import UseColunaStore from "../../stores/ColunaStore";
+import { eventNames } from "process";
 
 interface GridProps {
     columns: GridFields[],
@@ -17,6 +17,14 @@ export const SelectCheckBoxTable: React.FC<GridProps> = ({ columns, data, loadin
     const navigate = useNavigate();
     const addButtonAction = UseButtonStore(state => state.addButton);
     const cleanButtonAction = UseButtonStore(state => state.cleanButton);
+    const addColuna = UseColunaStore(state => state.addColuna);
+
+    const handleCheckBoxChange = (e: any, item: any) => {
+        // console.log(e.target.name);
+        // console.log(e.currentTarget.name);
+        // console.log(item);
+        addColuna(item);
+    };
 
     return (
         <Container>
@@ -29,9 +37,14 @@ export const SelectCheckBoxTable: React.FC<GridProps> = ({ columns, data, loadin
                             <tr>
                                 {columns && columns.map( (column, index) => (
                                     column.type === FieldTypes.CHECKBOX ?
-                                    <input type="checkbox" id="all" name="all"></input>
+                                    <th key={index}>
+                                        {/* <input type="checkbox" id="all" name="all"></input> */}
+                                        #
+                                    </th>
                                     :
-                                    <th key={index}>{column.title}</th>
+                                    <th key={index}>
+                                        {column.title}
+                                    </th>
                                 ) )}
                             </tr>
                         </thead>
@@ -44,8 +57,18 @@ export const SelectCheckBoxTable: React.FC<GridProps> = ({ columns, data, loadin
                                             {item[column?.field]}
                                         </td>
                                         :
-                                        column.type === FieldTypes.CHECKBOX ? 
-                                        <input type="checkbox" id="horns" name="horns"></input>
+                                        column.type === FieldTypes.CHECKBOX ?
+                                        <td key={index}>
+                                            <CheckBoxContainer key={index}>
+                                                <input
+                                                    key={index}
+                                                    type="checkbox"
+                                                    name="coluna"
+                                                    onChange={(e) => handleCheckBoxChange(e, item)}
+                                                >
+                                                </input>
+                                            </CheckBoxContainer>
+                                        </td>
                                         :
                                         <td key={index}></td>
                                 ) )}

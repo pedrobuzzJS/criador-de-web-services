@@ -24,7 +24,7 @@ export const TableContainer = styled.table`
 
 interface TableRowProps {
     isOdd?: boolean
-}
+};
 
 export const TableRows = styled.tr<TableRowProps>`
     text-align: left;
@@ -61,4 +61,10 @@ export const FiltersContainer = styled.div`
     width: 90%;
     margin: 0 auto;
     padding-bottom: 15px;
+`;
+
+export const CheckBoxContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    justify-items: center;
 `;

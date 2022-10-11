@@ -5,16 +5,17 @@ import { ButtonArea, Container, FormContainer, SuperContainer } from "./styles";
 import { FormInputs } from "../../../Utils/FormFields";
 import { Operation } from "../../../Utils/Operations";
 import api from "../../../services/api";
+import { useNavigate } from "react-router-dom";
 import { Select } from "../Inputs/Select/Select";
 interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
     op: number;
     data: any[];
     campos: FormInputs[];
-    url?: any;
+    urlBakc?: any;
     fun(data: any): void;
 };
 
-export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, fun, url, ...props }) => {
+export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, fun, urlBakc, ...props }) => {
     const [ formValues, setFormValues ] = useState({});
 
     useEffect( () => {
@@ -47,7 +48,6 @@ export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, fun, url, 
     }, [data, op] );
 
     const handleSubmit = (e: React.FormEvent) => {
-        console.log("sub");
         e.preventDefault();
         submitFormToBakc();
     };
@@ -56,33 +56,45 @@ export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, fun, url, 
         switch (op) {
             case Operation.INSERT:
                 try {
-                    api.post(url, {
-                        data: {
-                            ...formValues
-                        }
-                    });
+                    api.post(urlBakc, {
+                        data: JSON.stringify(formValues)
+                    }).then(response => {
+                        const { data, status } = response;
+                        console.log(status);
+                    }).catch(error => {
+                        console.log(error);
+                    }).finally();
                 } catch (error) {
                     console.log(error);
                 };
             break;
             case Operation.ALTER:
                 try {
-                    api.put(url, {
-                        data: {
-                            ...formValues
-                        }
-                    });
+                    api.put(urlBakc, {
+                        data: JSON.stringify(formValues)
+                    }).then(response => {
+                        const { status } = response;
+                        console.log(status);
+                    }).catch(error => {
+                        console.log(error);
+                    }).finally();;
                 } catch (error) {
                     console.log(error);
                 };
             break;
             case Operation.DELETE:
                 try {
-                    api.delete(url, {
-                        data: {
-                            ...formValues
+                    api.delete(urlBakc, {
+                            params: {
+                                id: findValueById(formValues, "id")
+                            }
                         }
-                    });
+                    ).then(response => {
+                        const { status } = response;
+                        console.log(status);
+                    }).catch(error => {
+                        console.log(error.response.status);
+                    }).finally();
                 } catch (error) {
                     console.log(error);
                 };
@@ -95,7 +107,7 @@ export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, fun, url, 
     };
 
     const handleInputChange = async (e: React.FormEvent<HTMLInputElement>) => {
-        const { name, value, type} = e.currentTarget;
+        const { name, value } = e.currentTarget;
         setFormValues({
             ...formValues,
             [name]: value,
@@ -132,7 +144,11 @@ export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, fun, url, 
             return data;
         }
         return "";
-    }, [formValues]);
+    }, []);
+
+    const findCheckBoxValueById = useCallback((values: any, key: any) => {
+
+    }, []);
 
     return (
         <SuperContainer>

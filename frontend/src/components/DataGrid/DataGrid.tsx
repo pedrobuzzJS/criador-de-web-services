@@ -10,7 +10,7 @@ import { GridFields, FieldTypes } from "../../Utils/Fields";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../Form/Button/Button";
 import { Operation } from "../../Utils/Operations";
-import UseButtonStore from "../../stores/buttonStore";
+import UseButtonStore from "../../stores/ButtonStore";
 interface GridProps {
     columns: GridFields[],
     data: any,

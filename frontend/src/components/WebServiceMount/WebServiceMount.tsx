@@ -10,14 +10,17 @@ import {
         TableColumn,
         ImageCloseDiv,
         ButtonDiv,
-        MountArea } 
+        MountArea, 
+        TableRows } 
 from "./styles";
 import { useFetch } from "../../hooks/useFetch";
 import { FaRegWindowClose } from "react-icons/fa";
 import { Coluna } from "../../@types/coluna";
 import { SelectCheckBoxTable } from "../SelectCheckBoxTable/SelectCheckBoxTable";
 import { FieldTypes, GridFields } from "../../Utils/Fields";
-import { Operation } from "../../Utils/Operations";
+import api from "../../services/api";
+import { Button } from "../Form/Button/Button";
+import UseColunaStore from "../../stores/ColunaStore";
 
 const Campos: GridFields[] = [
     {
@@ -111,22 +114,40 @@ export const WebServiceMount: React.FC = () => {
         }
     ])
     const { data } = useFetch<any[]>("table");
+    const [ Colunas, setColunas ] = useState();
     const changeModalState = () => setModal(!modal);
-    const { data: Colunas, loadding } = useFetch<any[]>("colunas");
-
+    
     const deleteColumn = (columnId: number) => {
-        console.log(columnId)
-        const newColumnList = columns.filter( item => item.id != columnId );
-        setSelect(newColumnList)
+        deleteColuna(columnId);
     };
+
+    const openModal = async (columnId: number) => {
+        try {
+            const { data } = await api.get("colunas", {
+                params: {
+                    id: columnId
+                }
+            })
+            await setColunas(data);
+        } catch (error) {
+            console.log(error);
+        }
+        return changeModalState();
+    };
+
+    const ColunasStore = UseColunaStore(state => state.colunas);
+    const deleteColuna = UseColunaStore(state => state.deleteColuna);
 
     return (
         <>
             <MountArea>
                 <TablesSelection>
-                    {columns && columns.map( (column, index) => (
+                    {ColunasStore && ColunasStore.map( (column, index) => (
                         <TableColumn key={index}>
                             <span>{column.nome}</span>
+                            <span>{column.tipo}</span>
+                            <span>{column.nulo}</span>
+                            <span>{column.char_max}</span>
                             <ImageCloseDiv onClick={() => deleteColumn(Number(column.id))}>
                                 <FaRegWindowClose />
                             </ImageCloseDiv>
@@ -138,8 +159,8 @@ export const WebServiceMount: React.FC = () => {
                         data?.length && data.map( (item, index) => (
                             <TableModal
                                 key={index}
-                                onClick={changeModalState}
-                                canUse={columns.length ? false : true}
+                                onClick={() => openModal(item.id)}
+                                canUse={ColunasStore.length ? false : true}
                             >
                                 <span>
                                     {item.nome}
@@ -167,6 +188,7 @@ export const WebServiceMount: React.FC = () => {
                 <ModalContainer>
                     <SelectCheckBoxTable columns={Campos} data={Colunas} />
                 </ModalContainer>
+                <Button buttonDescription={"Inserir Coluna"}></Button>
             </ReactModal>
         </>
     );

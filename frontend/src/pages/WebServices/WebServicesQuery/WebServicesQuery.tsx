@@ -3,7 +3,7 @@ import { WebServices } from "../../../@types/webServices";
 import { DataGrid } from "../../../components/DataGrid/DataGrid";
 import { useFetch } from "../../../hooks/useFetch";
 import { FieldTypes, GridFields } from "../../../Utils/Fields";
-import UseButtonStore from "../../../stores/buttonStore";
+import UseButtonStore from "../../../stores/ButtonStore";
 import { Operation } from "../../../Utils/Operations";
 
 const Campos: GridFields[] = [

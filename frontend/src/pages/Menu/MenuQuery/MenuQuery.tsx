@@ -113,6 +113,6 @@ export const MenuQuery: React.FC = () => {
     const { data: Menus, loadding } = useFetch<LinkMenu[]>("menu");
 
     return (
-        <DataGrid columns={campos} data={Menus} loading={loadding} />
+        <DataGrid columns={campos} data={Menus} loading={loadding} pathMantencao="menu"/>
     );
 };

@@ -25,18 +25,18 @@ const Campos: GridFields[] = [
         description: "descricao",
         type: FieldTypes.TEXT
     },
-    {
-        field: "prover",
-        title: "prover",
-        description: "prover",
-        type: FieldTypes.TEXT
-    },
-    {
-        field: "consumir",
-        title: "consumir",
-        description: "consumir",
-        type: FieldTypes.TEXT
-    },
+    // {
+    //     field: "prover",
+    //     title: "prover",
+    //     description: "prover",
+    //     type: FieldTypes.TEXT
+    // },
+    // {
+    //     field: "consumir",
+    //     title: "consumir",
+    //     description: "consumir",
+    //     type: FieldTypes.TEXT
+    // },
     {
         field: "varsao",
         title: "varsao",
@@ -78,7 +78,7 @@ const Campos: GridFields[] = [
             },
             {
                 button: "webservices",
-                action: Operation.SEARCH,
+                action: Operation.ATIVAR,
                 title: "Ativar",
                 icon: "RiIcons.RiDashboardFill",
                 rotina: "webservices",
@@ -97,6 +97,6 @@ export const WebServicesQuery: React.FC = () => {
     }
 
     return (
-        <DataGrid columns={Campos} data={data} loading={loadding} />
+        <DataGrid columns={Campos} data={data} loading={loadding} pathMantencao="webservices" />
     );
 };

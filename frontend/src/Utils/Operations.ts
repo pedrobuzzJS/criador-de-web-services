@@ -5,4 +5,5 @@ export class Operation {
     public static DELETE = 4;
     public static VIEW = 5;
     public static REDIRECT = 6;
+    public static ATIVAR = 7;
 };

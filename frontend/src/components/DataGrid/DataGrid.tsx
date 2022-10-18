@@ -11,13 +11,15 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "../Form/Button/Button";
 import { Operation } from "../../Utils/Operations";
 import UseButtonStore from "../../stores/ButtonStore";
+
 interface GridProps {
     columns: GridFields[],
     data: any,
-    loading?: boolean
+    loading?: boolean,
+    pathMantencao?: string;
 };
 
-export const DataGrid: React.FC<GridProps> = ({ columns, data, loading, ...props }) => {
+export const DataGrid: React.FC<GridProps> = ({ columns, data, loading, pathMantencao, ...props }) => {
     const teste: any[] = data; 
     const navigate = useNavigate();
     const addButtonAction = UseButtonStore(state => state.addButton);
@@ -29,8 +31,8 @@ export const DataGrid: React.FC<GridProps> = ({ columns, data, loading, ...props
         return navigate("/"+url);
     }, [navigate]);
 
-    const buttonInserFormValues = useCallback( (btn: string, op: number) => {
-        let url = btn + "-manutencao" + `/${op}`;
+    const buttonInserFormValues = useCallback( (op: number) => {
+        let url = pathMantencao + "-manutencao" + `/${op}`;
         return navigate("/"+url);
     }, [navigate] );
 
@@ -72,7 +74,6 @@ export const DataGrid: React.FC<GridProps> = ({ columns, data, loading, ...props
                             buttonDescription="Inserir"
                             size="prettySmall"
                             onClick={() => buttonInserFormValues(
-                                "status",
                                 2
                             )}
                         />

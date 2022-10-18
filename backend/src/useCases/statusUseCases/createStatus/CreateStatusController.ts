@@ -20,11 +20,9 @@ class CreateStatusController {
                 );
             }
         } catch (error) {
-            return response.json(
-                {
-                    "msg" : error
-                }
-            );
+            return response.status(500).json({
+                message: error
+            });
         };
     };
 };

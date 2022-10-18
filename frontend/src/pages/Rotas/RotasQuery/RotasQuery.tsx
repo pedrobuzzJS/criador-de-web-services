@@ -78,8 +78,11 @@ export const RotasQuery: React.FC = () => {
     const { data, loadding } = useFetch<Rotas[]>("rotas");
 
     return (
-        <>
-            <DataGrid columns={Campos} data={data} loading={loadding} />
-        </>
+        <DataGrid
+            columns={Campos}
+            data={data}
+            loading={loadding}
+            pathMantencao="rotas"
+        />
     );
 };

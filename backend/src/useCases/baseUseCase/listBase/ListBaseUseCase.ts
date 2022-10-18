@@ -8,7 +8,7 @@ export class ListBasesUseCase {
             }
         });
         if (!data) {
-            throw new Error("Sem de Colunas do Sistema");
+            throw new Error("Sem de Base do Sistema");
         };
         return data;
     };
@@ -20,7 +20,7 @@ export class ListBasesUseCase {
             }
         });
         if (!data) {
-            throw new Error("Sem de Colunas do Sistema");
+            throw new Error("Sem de Base do Sistema");
         };
         return data;
     };

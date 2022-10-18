@@ -6,6 +6,7 @@ import { FormInputs } from "../../../Utils/FormFields";
 import { Operation } from "../../../Utils/Operations";
 import api from "../../../services/api";
 import { useNavigate } from "react-router-dom";
+import { SnackBar } from "../../SnackBar/SnackBar";
 import { Select } from "../Inputs/Select/Select";
 interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
     op: number;
@@ -17,6 +18,9 @@ interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
 
 export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, fun, urlBakc, ...props }) => {
     const [ formValues, setFormValues ] = useState({});
+    const [ backResponse, setBackResponse ] = useState<string>();
+    const [ showSnackBar, setShowSnackBar ] = useState<boolean>(false);
+    const navigate = useNavigate();
 
     useEffect( () => {
         switch(op) {
@@ -52,49 +56,53 @@ export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, fun, urlBa
         submitFormToBakc();
     };
 
-    const submitFormToBakc = () => {
+    const submitFormToBakc = async () => {
         switch (op) {
             case Operation.INSERT:
                 try {
-                    api.post(urlBakc, {
+                    await api.post(urlBakc, {
                         data: JSON.stringify(formValues)
                     }).then(response => {
-                        const { data, status } = response;
-                        console.log(status);
-                    }).catch(error => {
+                        const { status } = response;
+                    }).catch(async error => {
                         console.log(error);
-                    }).finally();
+                        await setBackResponse(error.response.data);
+                    }).finally( () => navigate(-1) );
                 } catch (error) {
                     console.log(error);
                 };
             break;
             case Operation.ALTER:
                 try {
-                    api.put(urlBakc, {
+                    await api.put(urlBakc, {
                         data: JSON.stringify(formValues)
                     }).then(response => {
                         const { status } = response;
-                        console.log(status);
-                    }).catch(error => {
+                    }).catch(async error => {
                         console.log(error);
-                    }).finally();;
+                        await setBackResponse(error.response.data);
+                    }).finally( () => navigate(-1) );;
                 } catch (error) {
                     console.log(error);
                 };
             break;
             case Operation.DELETE:
                 try {
-                    api.delete(urlBakc, {
+                    await api.delete(urlBakc, {
                             params: {
                                 id: findValueById(formValues, "id")
                             }
                         }
                     ).then(response => {
                         const { status } = response;
-                        console.log(status);
-                    }).catch(error => {
-                        console.log(error.response.status);
-                    }).finally();
+                    }).catch(async error => {
+                        // console.log(error.response.status);
+                        // console.log(error.response.data.message.code);
+                        await setBackResponse(error.response.data.message.code);
+                        await setShowSnackBar(true);
+                    }).finally(
+                        // () => navigate(-1)
+                    );
                 } catch (error) {
                     console.log(error);
                 };
@@ -151,47 +159,59 @@ export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, fun, urlBa
     }, []);
 
     return (
-        <SuperContainer>
-            <Container>
-            <form onSubmit={handleSubmit}>  
-                <FormContainer>
-                    {campos?.map( (campo, index) => (
-                        campo.type === "select" ?
-                            <Select
-                                key={index}
-                                id={campo.id}
-                                name={campo.name}
-                                label={campo.label}
-                                placeholder={campo.placeholder}
-                                onChange={handleSelectListInputChange}
-                                value={findValueById(formValues, campo.name)}
-                                pixels={campo.pixels?.toString()}
-                                disabled={campo.disabled}
-                                listOptions={campo.list}
-                            />
-                            :
-                            <Input
-                                key={index}
-                                id={campo.id}
-                                name={campo.name}
-                                type={campo.type}
-                                label={campo.label}
-                                placeholder={campo.placeholder}
-                                onChange={handleInputChange}
-                                value={findValueById(formValues, campo.name)}
-                                pixels={campo.pixels?.toString()}
-                                disabled={campo.disabled}
-                            />
-                    ) )}
-                </FormContainer>
-                <ButtonArea>
-                    <Button 
-                        onClick={handleClick}
-                        buttonDescription="Confirmar"
-                    />
-                </ButtonArea>
-            </form>
-            </Container>
-        </SuperContainer>
+        <>
+            <SuperContainer>
+                <Container>
+                <form onSubmit={handleSubmit}>  
+                    <FormContainer>
+                        {campos?.map( (campo, index) => (
+                            campo.type === "select" ?
+                                <Select
+                                    key={index}
+                                    id={campo.id}
+                                    name={campo.name}
+                                    label={campo.label}
+                                    placeholder={campo.placeholder}
+                                    onChange={handleSelectListInputChange}
+                                    value={findValueById(formValues, campo.name)}
+                                    pixels={campo.pixels?.toString()}
+                                    disabled={campo.disabled}
+                                    listOptions={campo.list}
+                                />
+                                :
+                                <Input
+                                    key={index}
+                                    id={campo.id}
+                                    name={campo.name}
+                                    type={campo.type}
+                                    label={campo.label}
+                                    placeholder={campo.placeholder}
+                                    onChange={handleInputChange}
+                                    value={findValueById(formValues, campo.name)}
+                                    pixels={campo.pixels?.toString()}
+                                    disabled={campo.disabled}
+                                />
+                        ) )}
+                    </FormContainer>
+                    <ButtonArea>
+                        <Button 
+                            onClick={handleClick}
+                            buttonDescription="Confirmar"
+                        />
+                    </ButtonArea>
+                </form>
+                </Container>
+            </SuperContainer>
+            <SnackBar
+                open={showSnackBar}
+                type="Error"
+                children={
+                    <span>
+                        {backResponse}
+                    </span>
+                }
+                onClose={() => setShowSnackBar(false)}
+            />
+        </>
     );
 }

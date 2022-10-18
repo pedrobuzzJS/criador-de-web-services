@@ -41,6 +41,8 @@ import ListAcoesController from "../../../useCases/acoesUseCases/listAcoes/ListA
 
 import ListWebServicesController from "../../../useCases/webServiceUseCases/listWebServices/ListWebServicesController";
 import CreateWebServicesController from "../../../useCases/webServiceUseCases/createWebServices/CreateWebServicesController";
+import UpdateWebServicesController from "../../../useCases/webServiceUseCases/updateWebServices/UpdatesWebServicesController";
+import DeleteWebServicesController from "../../../useCases/webServiceUseCases/deleteWebServices/DeleteWebServicesController";
 
 import ListWebServicesObjController from "../../../useCases/webServicesOjbUseCases/ListWebServices/ListWebServicesController";
 
@@ -84,6 +86,8 @@ Routes.get("/acoes", ListAcoesController.handle);
 
 Routes.get("/webservices", ListWebServicesController.handle);
 Routes.post("/webservices", CreateWebServicesController.handle);
+Routes.put("/webservices", UpdateWebServicesController.handle);
+Routes.delete("/webservices", DeleteWebServicesController.handle);
 
 Routes.get("/executeoperation", ExecuteOperation.handle);
 

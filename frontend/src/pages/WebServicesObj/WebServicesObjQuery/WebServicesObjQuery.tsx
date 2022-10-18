@@ -63,6 +63,13 @@ const Campos: GridFields[] = [
                 icon: "RiIcons.RiDashboardFill",
                 rotina: "webservicesobj",
             },
+            {
+                button: "webservices",
+                action: Operation.ATIVAR,
+                title: "Ativar",
+                icon: "RiIcons.RiDashboardFill",
+                rotina: "webservices",
+            },
         ]
     },
 ];
@@ -71,8 +78,6 @@ export const WebServicesObjQuery: React.FC = () => {
     const { data, loadding } = useFetch<WebServiceObj[]>("webservicesobj");
 
     return (
-        <>
-            <DataGrid columns={Campos} data={data} loading={loadding} />
-        </>
+        <DataGrid columns={Campos} data={data} loading={loadding} pathMantencao="webservicesobj" />
     );
 };

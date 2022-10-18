@@ -59,7 +59,7 @@ export const SideBar: React.FC = () => {
                             <AiIcons.AiOutlineClose onClick={showSideBar} />
                         </NavIcon>
                         <Lista>
-                            {LinksTratados?.length && LinksTratados?.map((item, index) => (
+                            {LinksTratados && LinksTratados?.map((item, index) => (
                                     <SideBarItem
                                         key={index}
                                         id={item.id}

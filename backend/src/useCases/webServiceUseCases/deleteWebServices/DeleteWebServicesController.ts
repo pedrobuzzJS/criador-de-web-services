@@ -1,12 +1,13 @@
+
 import { Request, Response } from "express";
 import { client } from "../../../infra/prisma/client";
 
-class DeleteStatusController {
+export default class DeleteWebServicesController {
     static async handle(request: Request, response: Response) {
         const { id } = request.query;
         try {
             if (id) {
-                const deleteStatus = await client.status.delete({
+                const deleteStatus = await client.webService.delete({
                     where: {
                         id: Number(id)
                     }
@@ -26,5 +27,3 @@ class DeleteStatusController {
         };
     };
 };
-
-export default DeleteStatusController;

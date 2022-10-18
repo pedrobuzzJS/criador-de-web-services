@@ -13,7 +13,6 @@ import { TipoWebServiceQuery } from "./pages/TipoWebService/TipoWebServiceQuery/
 import { UserQuery } from "./pages/Users/UsersQuery/UsersQuery";
 import { TipoWebServiceMaintenance } from "./pages/TipoWebService/TipoWebServiceMaintenance/TipoWebServiceMaintenance";
 import { UsersMaintenance } from "./pages/Users/UsersMaintenance/UsersMaintenance";
-import { ColunasQuery } from "./pages/Colunas/ColunasQuery/ColunasQuery";
 import { ColunasMaintenance } from "./pages/Colunas/ColunaMaintenance/ColunasMaintenance";
 import { BasesQuery } from "./pages/Bases/BasesQuery/BasesQuery";
 import { BasesMaintenance } from "./pages/Bases/BasesMaintenance/BasesMaintenance";
@@ -41,6 +40,7 @@ const App: React.FC = () => {
           <Route path="usuario-manutencao/:op/:id" element={<UsersMaintenance />} />
           <Route path="menu-consulta" element={<MenuQuery />} />
           <Route path="menu-manutencao/:op/:id" element={<MenuMaintenance />} />
+          <Route path="menu-manutencao/:op" element={<MenuMaintenance />} />
           <Route path="tabelas-consulta" element={<TabelasQuery />} />
           <Route path="tabelas-manutencao/:op/:id" element={<TabelasMaintenance />} />
           <Route path="status-contulta" element={<StatusQuery />} />
@@ -55,14 +55,17 @@ const App: React.FC = () => {
           <Route path="tipo-base-manutencao/:op/:id" element={<TipoBaseMaintenance />} />
           <Route path="rotas-consulta" element={<RotasQuery />} />
           <Route path="rotas-manutencao/:op/:id" element={<RotasMaintenance />} />
+          <Route path="rotas-manutencao/:op" element={<RotasMaintenance />} />
           <Route path="cores-consulta" element={<CoresQuery />} />
           <Route path="cores-manutencao/:op/:id" element={<CoresMaintenance />} />
           <Route path="acoes-consulta" element={<AcoesQuery />} />
           <Route path="acoes-manutencao/:op/:id" element={<AcoesMaintenance />} />
           <Route path="webservices-consulta" element={<WebServicesQuery />} />
           <Route path="webservices-manutencao/:op/:id" element={<WebServicesMaintenance />} />
+          <Route path="webservices-manutencao/:op" element={<WebServicesMaintenance />} />
           <Route path="webservicesobj-consulta" element={<WebServicesObjQuery />} />
           <Route path="webservicesobj-manutencao/:op/:id" element={<WebServicesObjMaintanance />} />
+          <Route path="webservicesobj-manutencao/:op" element={<WebServicesObjMaintanance />} />
           <Route path={"*"} element={<PageNotFound />}/>
         </Routes>
       </BrowserRouter>

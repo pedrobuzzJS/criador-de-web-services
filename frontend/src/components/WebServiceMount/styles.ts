@@ -61,7 +61,7 @@ interface TableModal {
 export const TableModal = styled.div<TableModal>`
     border: 2px solid black;
     height: 60px;
-    /* border-radius: 0.25rem; */
+    border-radius: 0.25rem;
     margin-top: 10px;
     margin-bottom: 5px;
     margin-left: 7px;
@@ -69,6 +69,12 @@ export const TableModal = styled.div<TableModal>`
     background: none;
     pointer-events: all;
     cursor: pointer;
+    display: flex;
+    justify-content: center;                                                                                                                                                    
+
+    > span {
+        padding-top: 15px;
+    }
 
     ${props => props?.canUse === false && css`
         background: lightgray;
@@ -118,6 +124,8 @@ export const ButtonDiv = styled.div`
     border-right: 2px solid black;
     width: 90%;
     padding: 50px;
+    display: flex;
+    justify-content: end;
 `;
 
 export const TableContainer = styled.table`

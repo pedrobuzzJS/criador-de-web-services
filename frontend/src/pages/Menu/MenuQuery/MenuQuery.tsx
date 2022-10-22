@@ -93,8 +93,8 @@ const campos: GridFields[] = [
         buttons: [
             {
                 button: "menu",
-                action: Operation.SEARCH,
-                title: "Visualisar",
+                action: Operation.VIEW,
+                title: "Visualizar",
                 icon: "RiIcons.RiDashboardFill",
                 rotina: "menu",
             },
@@ -104,7 +104,14 @@ const campos: GridFields[] = [
                 title: "Alterar",
                 icon: "RiIcons.RiDashboardFill",
                 rotina: "menu",
-            }
+            },
+            {
+                button: "menu",
+                action: Operation.DELETE,
+                title: "Deletar    ",
+                icon: "RiIcons.RiDashboardFill",
+                rotina: "menu",
+            },
         ]
     }
 ];
@@ -113,6 +120,11 @@ export const MenuQuery: React.FC = () => {
     const { data: Menus, loadding } = useFetch<LinkMenu[]>("menu");
 
     return (
-        <DataGrid columns={campos} data={Menus} loading={loadding} pathMantencao="menu"/>
+        <DataGrid
+            columns={campos}
+            data={Menus}
+            loading={loadding}
+            pathMantencao="menu"
+        />
     );
 };

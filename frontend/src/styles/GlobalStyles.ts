@@ -30,11 +30,21 @@ export default createGlobalStyle`
     }
 
     :root {
-        --primary: #36393f,
+        --primary:      #007BFF,
 
-        --white: #fff,
+        --secondary:    #6C757D,
 
-        --link: #5d80d6,
+        --succes:       #28A745,
+
+        --danger:       #DC3545,
+
+        --warning:      #FFC107,
+
+        --info:         #17A2B8,
+
+        --white:        #fff,
+
+        --link:         #5d80d6,
     }
 
     .react-modal-overlay{

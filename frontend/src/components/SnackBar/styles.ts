@@ -1,4 +1,3 @@
-import { Button } from './../Form/Button/Button';
 import styled, { css } from "styled-components";
 
 interface SnackBarProps {
@@ -25,7 +24,7 @@ export const SnackBarContainer = styled.div<SnackBarProps>`
     align-items: center;
     transition: all 200ms ease-in-out;
     background-color: #333;
-
+    
     > span {
         max-width: 90%;
         word-wrap: break-word;

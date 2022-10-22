@@ -20,9 +20,6 @@ export const SelectCheckBoxTable: React.FC<GridProps> = ({ columns, data, loadin
     const addColuna = UseColunaStore(state => state.addColuna);
 
     const handleCheckBoxChange = (e: any, item: any) => {
-        // console.log(e.target.name);
-        // console.log(e.currentTarget.name);
-        // console.log(item);
         addColuna(item);
     };
 

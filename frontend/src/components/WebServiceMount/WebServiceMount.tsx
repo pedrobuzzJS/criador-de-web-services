@@ -21,6 +21,7 @@ import { FieldTypes, GridFields } from "../../Utils/Fields";
 import api from "../../services/api";
 import { Button } from "../Form/Button/Button";
 import UseColunaStore from "../../stores/ColunaStore";
+import { useNavigate } from "react-router-dom";
 
 const Campos: GridFields[] = [
     {
@@ -114,11 +115,16 @@ export const WebServiceMount: React.FC = () => {
         }
     ])
     const { data } = useFetch<any[]>("table");
-    const [ Colunas, setColunas ] = useState();
+    const [ ColunasBack, setColunas ] = useState();
+    const [ colunaService, setColunaService ] = useState<Coluna[]>([]);
     const changeModalState = () => setModal(!modal);
+    const ColunasStore = UseColunaStore(state => state.colunas);
+    const deleteColuna = UseColunaStore(state => state.deleteColuna);
+    const navigate = useNavigate();
     
-    const deleteColumn = (columnId: number) => {
-        deleteColuna(columnId);
+    const deleteColumn = async (columnId: number) => {
+        await deleteColuna(columnId);
+        await setColunaService(ColunasStore);
     };
 
     const openModal = async (columnId: number) => {
@@ -135,19 +141,30 @@ export const WebServiceMount: React.FC = () => {
         return changeModalState();
     };
 
-    const ColunasStore = UseColunaStore(state => state.colunas);
-    const deleteColuna = UseColunaStore(state => state.deleteColuna);
+    const handleCloseModal = () => {
+        setColunaService(ColunasStore);
+        changeModalState();
+    };
+
+    const handleSelectFieldsToBack = () => {
+        console.log(JSON.stringify(colunaService));
+        navigate(-1);
+    };
+
+    const submitFormToBack = () => {
+
+    };
 
     return (
         <>
             <MountArea>
                 <TablesSelection>
-                    {ColunasStore && ColunasStore.map( (column, index) => (
+                    {colunaService && colunaService.map( (column, index) => (
                         <TableColumn key={index}>
                             <span>{column.nome}</span>
-                            <span>{column.tipo}</span>
-                            <span>{column.nulo}</span>
-                            <span>{column.char_max}</span>
+                            {/* <span>{column.tipo}</span> */}
+                            {/* <span>{column.nulo}</span> */}
+                            {/* <span>{column.char_max}</span> */}
                             <ImageCloseDiv onClick={() => deleteColumn(Number(column.id))}>
                                 <FaRegWindowClose />
                             </ImageCloseDiv>
@@ -160,7 +177,7 @@ export const WebServiceMount: React.FC = () => {
                             <TableModal
                                 key={index}
                                 onClick={() => openModal(item.id)}
-                                canUse={ColunasStore.length ? false : true}
+                                canUse={colunaService.length ? false : true}
                             >
                                 <span>
                                     {item.nome}
@@ -170,7 +187,13 @@ export const WebServiceMount: React.FC = () => {
                     }
                 </TableList>
             </MountArea>
-            <ButtonDiv />
+            <ButtonDiv>
+                <Button 
+                    buttonDescription="Cadastrar"
+                    size="small"
+                    onClick={handleSelectFieldsToBack}
+                />
+            </ButtonDiv>
             <Footer />
             <ReactModal
                 isOpen={modal}
@@ -186,9 +209,15 @@ export const WebServiceMount: React.FC = () => {
                     <AiOutlineClose />
                 </button>
                 <ModalContainer>
-                    <SelectCheckBoxTable columns={Campos} data={Colunas} />
+                    <SelectCheckBoxTable
+                        columns={Campos}
+                        data={ColunasBack}
+                    />
                 </ModalContainer>
-                <Button buttonDescription={"Inserir Coluna"}></Button>
+                <Button
+                    buttonDescription={"Inserir Coluna no Serviço"}
+                    onClick={handleCloseModal}
+                ></Button>
             </ReactModal>
         </>
     );

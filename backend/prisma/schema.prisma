@@ -49,7 +49,7 @@ model Acoes {
 }
 
 model Menus {
-  id           Int       @id
+  id           Int       @id @default(autoincrement())
   nome         String    @db.VarChar(255)
   parametros   String?   @db.VarChar(255)
   rota         String?   @db.VarChar(255)
@@ -57,8 +57,6 @@ model Menus {
   pai_id       Int?
   component    String?   @db.VarChar(255)
   possuifilhos Boolean   @default(false)
-  // menu_pai     Menus?    @relation("SelfMenus", fields: [pai_id], references: [id])
-  // menus_pais   Menus[]   @relation("SelfMenus")
   ordem        Int?
   desabilitado Boolean   @default(false)
   papel        Int?

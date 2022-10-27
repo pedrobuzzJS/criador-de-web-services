@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { LinkMenu } from "../../@types/menu";
 import * as AiIcons from 'react-icons/ai';
 import * as RiIcons from 'react-icons/ri'
@@ -13,7 +13,11 @@ import {
 export const SideBarItem: React.FC<LinkMenu> = ({ id, icone, nome, pai_id, rota, filhos, possuifilhos, ...props }) => {
     const [ isOpen, setIsOpen ] = useState<boolean>(false);
 
-    const openSubMenuList = () => setIsOpen(!isOpen);
+    // const openSubMenuList = () => setIsOpen(!isOpen);
+
+    const openSubMenuList = useCallback(() => {
+        setIsOpen(!isOpen);
+    }, [isOpen]);
 
     if (filhos) {
         return (

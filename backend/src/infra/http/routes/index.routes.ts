@@ -44,7 +44,10 @@ import CreateWebServicesController from "../../../useCases/webServiceUseCases/cr
 import UpdateWebServicesController from "../../../useCases/webServiceUseCases/updateWebServices/UpdatesWebServicesController";
 import DeleteWebServicesController from "../../../useCases/webServiceUseCases/deleteWebServices/DeleteWebServicesController";
 
-import ListWebServicesObjController from "../../../useCases/webServicesOjbUseCases/ListWebServices/ListWebServicesController";
+import ListWebServicesObjController from "../../../useCases/webServicesOjbUseCases/ListWebServices/ListWebServicesObjController";
+import UpdateWebServicesObjController from "../../../useCases/webServicesOjbUseCases/UpdateWebServicesObjController/UpdateWebServicesObjController";
+import CreateWebServicesObjController from "../../../useCases/webServicesOjbUseCases/CreateWebServicesObjController/CreateWebServicesObjController";
+import DeleteWebServicesObjController from "../../../useCases/webServicesOjbUseCases/DeleteWebServicesObjController/DeleteWebServicesObjController";
 
 const Routes = Router();
 
@@ -89,8 +92,11 @@ Routes.post("/webservices", CreateWebServicesController.handle);
 Routes.put("/webservices", UpdateWebServicesController.handle);
 Routes.delete("/webservices", DeleteWebServicesController.handle);
 
-Routes.get("/executeoperation", ExecuteOperation.handle);
-
 Routes.get("/webservicesobj", ListWebServicesObjController.handle);
+Routes.post("/webse rvicesobj", CreateWebServicesObjController.handle);
+Routes.put("/webservicesobj", UpdateWebServicesObjController.handle);
+Routes.delete("/webservicesobj", DeleteWebServicesObjController.handle);
+
+Routes.get("/executeoperation", ExecuteOperation.handle);
 
 export default Routes;

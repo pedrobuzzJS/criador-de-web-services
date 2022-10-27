@@ -1,23 +1,31 @@
 import { Request, Response } from "express";
 import { client } from "../../../infra/prisma/client";
-class CreateStatusController {
+
+export default class UpdateWebServicesObjController {
     static async handle(request: Request, response: Response) {
         const { data } = request.body;
         const objJson = JSON.parse(data);
         try {
-            const status = await client.status.create({
+            const updateWebServiceObj = await client.webServiceObj.update({
+                where: {
+                    id: Number(objJson.id)
+                },
                 data: {
-                    nome: objJson.nome,
-                    descricao: objJson.descricao 
+                    obj: objJson.obj,
+                    sql: objJson.sql,
+                    webservice_id: Number(objJson.webservice_id),
+                    versao: Number(objJson.versao),
+                    status_id: Number(objJson.status_id),
+                    table_id: 98,
                 }
             });
-            if (status) {
+            if (updateWebServiceObj) {
                 return response.json(
                     {
                         "msg" : "Successes"
                     }
                 );
-            }
+            };
         } catch (error) {
             return response.status(500).json({
                 message: error
@@ -25,5 +33,3 @@ class CreateStatusController {
         };
     };
 };
-
-export default CreateStatusController;

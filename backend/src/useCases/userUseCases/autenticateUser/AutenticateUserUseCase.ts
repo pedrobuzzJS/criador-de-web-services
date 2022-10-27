@@ -16,7 +16,7 @@ const colunms = {
     password: true
 }
 
-const tabela = "users";
+// const tabela = "users";
 
 class AutenticateUerUseCase {
 
@@ -46,6 +46,25 @@ class AutenticateUerUseCase {
             expiresIn: "3600s"
         });
         return token;
+    };
+
+    async getUserByUsername(username: string) {
+        const data = await client.users.findMany({
+            where: {
+                username: username
+            },
+            select: {
+                id: true,
+                name: true,
+                username: true,
+                email: true,
+                status_id: true
+            }
+        });
+        if (!data) {
+            throw new Error("Sem de Usuario do Sistema");
+        };
+        return data;
     };
 };
 

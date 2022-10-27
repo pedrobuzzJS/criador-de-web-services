@@ -68,7 +68,13 @@ export const RotasMaintenance: React.FC = () => {
 
     return (
         <>
-            <FormBuilder op={Number(op)} data={data} campos={inputs} fun={envia} urlBakc="rotas"/>
+            <FormBuilder
+                op={Number(op)}
+                data={data}
+                campos={inputs}
+                fun={envia}
+                urlBakc="rotas"
+            />
         </>
     );
 };

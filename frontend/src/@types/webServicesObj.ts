@@ -3,4 +3,5 @@ export interface WebServiceObj {
     obj: string;
     sql: string;
     webservice_id: number;
+    table_id: number;
 };

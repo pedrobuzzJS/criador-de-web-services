@@ -21,7 +21,8 @@ import { FieldTypes, GridFields } from "../../Utils/Fields";
 import api from "../../services/api";
 import { Button } from "../Form/Button/Button";
 import UseColunaStore from "../../stores/ColunaStore";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { Operation } from "../../Utils/Operations";
 
 const Campos: GridFields[] = [
     {
@@ -100,27 +101,15 @@ const Campos: GridFields[] = [
 
 export const WebServiceMount: React.FC = () => {
     const [ modal, setModal ] = useState(false);
-    const [ columns, setSelect ] = useState<Coluna[]>([
-        {
-            id: 1,
-            nome: "id",
-        },
-        {
-            id: 2,
-            nome: "nome",
-        },
-        {
-            id: 3,
-            nome: "parametros",
-        }
-    ])
     const { data } = useFetch<any[]>("table");
     const [ ColunasBack, setColunas ] = useState();
     const [ colunaService, setColunaService ] = useState<Coluna[]>([]);
     const changeModalState = () => setModal(!modal);
     const ColunasStore = UseColunaStore(state => state.colunas);
     const deleteColuna = UseColunaStore(state => state.deleteColuna);
+    const [ backResponse, setBackResponse ] = useState<string>();
     const navigate = useNavigate();
+    const { op, id } = useParams();
     
     const deleteColumn = async (columnId: number) => {
         await deleteColuna(columnId);
@@ -148,11 +137,61 @@ export const WebServiceMount: React.FC = () => {
 
     const handleSelectFieldsToBack = () => {
         console.log(JSON.stringify(colunaService));
-        navigate(-1);
+        // navigate(-1);
+        submitFormToBakc();
     };
 
-    const submitFormToBack = () => {
-
+    const submitFormToBakc = async () => {
+        switch (Number(op)) {
+            case Operation.INSERT:
+                try {
+                    await api.post("webservicesobj", {
+                        data: JSON.stringify(colunaService)
+                    }).then(response => {
+                        const { status } = response;
+                    }).catch(async error => {
+                        console.log(error);
+                        await setBackResponse(error.response.data);
+                    }).finally( () => navigate(-1) );
+                } catch (error) {
+                    console.log(error);
+                };
+            break;
+            case Operation.ALTER:
+                try {
+                    await api.put("webservicesobj", {
+                        data: JSON.stringify(colunaService)
+                    }).then(response => {
+                        const { status } = response;
+                    }).catch(async error => {
+                        console.log(error);
+                        await setBackResponse(error.response.data);
+                    }).finally( () => navigate(-1) );;
+                } catch (error) {
+                    console.log(error);
+                };
+            break;
+            case Operation.DELETE:
+                try {
+                    await api.delete("webservicesobj", {
+                            params: {
+                                id: id
+                            }
+                        }
+                    ).then(response => {
+                        const { status } = response;
+                    }).catch(async error => {
+                        // console.log(error.response.status);
+                        // console.log(error.response.data.message.code);
+                        await setBackResponse(error.response.data.message.code);
+                    }).finally(
+                        // () => navigate(-1)
+                    );
+                } catch (error) {
+                    console.log(error);
+                };
+            break;
+        };
     };
 
     return (

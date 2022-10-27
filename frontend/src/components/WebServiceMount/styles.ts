@@ -1,18 +1,5 @@
 import styled, { css } from "styled-components";
 
-// export const Grid = styled.div`
-//     display: grid;
-//     grid-template-columns: 1300px auto;
-//     grid-template-rows: auto auto;
-//     grid-template-areas: 
-//         'MN'
-//     ;
-//     height: 550px;
-//     border: 2px solid black;
-    // border-radius: 0.25rem;
-//     display: flex;
-// `;
-
 export const MountArea = styled.div`
     width: 90%;
     display: flex;

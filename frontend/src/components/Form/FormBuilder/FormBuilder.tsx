@@ -13,7 +13,8 @@ interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
     data: any[];
     campos: FormInputs[];
     urlBakc?: any;
-    fun(data: any): void;
+    // fun(data: any): void;
+    fun: (data: any) => void;
 };
 
 export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, fun, urlBakc, ...props }) => {

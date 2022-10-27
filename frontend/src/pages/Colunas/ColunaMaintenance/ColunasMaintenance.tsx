@@ -138,6 +138,6 @@ export const ColunasMaintenance: React.FC = () => {
     const f = () => {};
 
     return (
-        <FormBuilder op={Number(op)} data={data} campos={inputs} fun={f}/>
+        <FormBuilder op={Number(op)} data={data} campos={inputs} callBack={f}/>
     );
 };

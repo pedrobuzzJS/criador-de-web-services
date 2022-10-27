@@ -153,7 +153,7 @@ export const MenuMaintenance: React.FC = () => {
             op={Number(op)}
             campos={inputs}
             urlBakc="menu"
-            fun={() => console.log("nada")}
+            callBack={() => console.log("nada")}
         />
     );
 };

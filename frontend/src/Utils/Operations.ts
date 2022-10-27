@@ -6,4 +6,5 @@ export class Operation {
     public static VIEW = 5;
     public static REDIRECT = 6;
     public static ATIVAR = 7;
+    public static LOGAR = 8;
 };

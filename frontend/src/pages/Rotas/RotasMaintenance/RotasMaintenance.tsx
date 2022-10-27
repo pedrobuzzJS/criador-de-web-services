@@ -72,7 +72,7 @@ export const RotasMaintenance: React.FC = () => {
                 op={Number(op)}
                 data={data}
                 campos={inputs}
-                fun={envia}
+                callBack={envia}
                 urlBakc="rotas"
             />
         </>

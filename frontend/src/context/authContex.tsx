@@ -4,32 +4,33 @@ import api from "../services/api";
 
 interface AuthInterface extends PropsWithChildren {
     signed: boolean;
-    permissions?: number[];
     user: object | null;
     loginLoaging: boolean;
     signIn: () => Promise<void>;
     signOut: () => void;
 };
 
-interface AuthProviderProps extends PropsWithChildren {};
+interface AuthProviderProps {
+    children: React.ReactNode | null;
+};
 
 const AuthContext = createContext<AuthInterface>({} as AuthInterface);
 
-const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
+export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
     const [ user, setUser ] = useState<object | null>(null);
-    const [ loginLoaging, setLoginLoaging ] = useState<boolean>(true);
+    const [ loginLoaging, setLoginLoaging ] = useState<boolean>(false);
 
     useEffect( () => {
-        async function loadLocalStorageData() {
-            const storageUser = localStorage.getItem("USER");
-            const storageToken = localStorage.getItem("TOKEN");
+        // async function loadLocalStorageData() {
+            // const storageUser = localStorage.getItem("USER");
+            // const storageToken = localStorage.getItem("TOKEN");
 
-            if (storageUser && storageToken) {
+            // if (storageUser && storageToken) {
                 // api.defaults.headers["Authorization"] = `Bearer ${response.token}`;
-                setUser(JSON.parse(storageUser));
-                setLoginLoaging(false);
-            };
-        };
+                // setUser(JSON.parse(storageUser));
+                // setLoginLoaging(false);
+            // };
+        // };
     } );
 
     async function signIn() {
@@ -37,8 +38,8 @@ const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
         const response = await AuthController.signIn();
 
         // api.defaults.headers["Authorization"] = `Bearer ${response.token}`;
-        await localStorage.setItem("USER" , "Dawdwa");
-        await localStorage.setItem("TOKEN" , "Dawdwa");
+        // await localStorage.setItem("USER" , "Dawdwa");
+        // await localStorage.setItem("TOKEN" , "Dawdwa");
     };
 
     async function signOut() {
@@ -47,11 +48,12 @@ const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
 
     return (
         <AuthContext.Provider value={{
-            signed: Boolean(user),
+            // signed: Boolean(user),
+            signed: false,
             user: user,
             signIn: signIn,
             signOut: signOut,
-            loginLoaging: loginLoaging
+            loginLoaging: false
         }}>
             {children}
         </AuthContext.Provider>

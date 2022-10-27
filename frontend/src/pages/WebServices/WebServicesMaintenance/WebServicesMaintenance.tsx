@@ -87,7 +87,7 @@ export const WebServicesMaintenance: React.FC = () => {
 
     return (
         <>
-            <FormBuilder op={Number(op)} data={data} campos={fieldInputs} fun={envia} urlBakc="webservices"/>
+            <FormBuilder op={Number(op)} data={data} campos={fieldInputs} callBack={envia} urlBakc="webservices"/>
             <WebServicesObjQuery  />
         </>
     );

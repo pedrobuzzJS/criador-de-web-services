@@ -31,8 +31,6 @@ import { WebServicesObjMaintanance } from "../pages/WebServicesObj/WebServicesOb
 import { WebServicesObjQuery } from "../pages/WebServicesObj/WebServicesObjQuery/WebServicesObjQuery";
 
 const AuthRoutes = () => {
-    // const {signed} = useContext(AuthContext);
-
     return (
         <>
             <BrowserRouter>

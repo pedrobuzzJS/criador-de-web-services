@@ -13,11 +13,10 @@ interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
     data: any[];
     campos: FormInputs[];
     urlBakc?: any;
-    // fun(data: any): void;
-    fun: (data: any) => void;
+    callBack: (callback: any) => void;
 };
 
-export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, fun, urlBakc, ...props }) => {
+export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, callBack, urlBakc, ...props }) => {
     const [ formValues, setFormValues ] = useState({});
     const [ backResponse, setBackResponse ] = useState<string>();
     const [ showSnackBar, setShowSnackBar ] = useState<boolean>(false);
@@ -27,7 +26,6 @@ export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, fun, urlBa
         switch(op) {
             case Operation.INSERT:
                 return setFormValues({});
-            break;
             case Operation.ALTER:
                 if (data?.[0]) {
                     return setFormValues({
@@ -48,6 +46,9 @@ export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, fun, urlBa
                         ...data?.[0]
                     });
                 };
+            break;
+            default:
+                return setFormValues({});
             break;
         };
     }, [data, op] );
@@ -112,7 +113,7 @@ export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, fun, urlBa
     };
 
     const handleClick = () => {
-        // fun(formValues);
+        // callBack(formValues);
     };
 
     const handleInputChange = async (e: React.FormEvent<HTMLInputElement>) => {
@@ -121,7 +122,7 @@ export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, fun, urlBa
             ...formValues,
             [name]: value,
         });
-        fun(formValues);
+        // callBack(formValues);
     };
 
     const handleSelectListInputChange = (e: FormEvent<HTMLSelectElement>) => {
@@ -130,7 +131,7 @@ export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, fun, urlBa
             ...formValues,
             [name]: value,
         });
-        fun(formValues);
+        // callBack(formValues);
     };
 
     const handleTextAreaChange = (e: FormEvent<HTMLTextAreaElement>) => {
@@ -139,12 +140,12 @@ export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, fun, urlBa
             ...formValues,
             [name]: value,
         });
-        fun(formValues);
+        // callBack(formValues);
     };
 
     const handleCheckBoxChange = (e: FormEvent<HTMLInputElement>) => {
         const { name, value } = e.currentTarget;
-        fun(formValues);
+        // callBack(formValues);
     };
 
     const findValueById = useCallback((values: any, key: any) => {

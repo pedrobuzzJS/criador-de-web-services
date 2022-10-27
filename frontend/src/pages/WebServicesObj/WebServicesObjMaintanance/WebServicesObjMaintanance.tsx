@@ -66,7 +66,7 @@ export const WebServicesObjMaintanance: React.FC = () => {
 
     return (
         <>
-            {/* {data && <FormBuilder op={Number(op)} data={data} campos={inputs} fun={envia}/>} */}
+            {/* {data && <FormBuilder op={Number(op)} data={data} campos={inputs} callBack={envia}/>} */}
             <Container>
                 <WebServiceMount />
 

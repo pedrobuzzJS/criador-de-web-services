@@ -7,12 +7,12 @@ export const Login: React.FC = () => {
     const [ inputs, setInputs ]  = useState<FormInputs[]>(
         [
             {
-                id: "email",
-                name: "email",
-                placeholder: "E-mail",
-                label: "E-mail", 
+                id: "username",
+                name: "username",
+                placeholder: "Username",
+                label: "Username", 
                 pixels: "250",
-                type: InputType.EMAIL,
+                type: InputType.TEXT,
             },
             {
                 id: "password",
@@ -32,8 +32,8 @@ export const Login: React.FC = () => {
                     op={2}
                     data={[]}
                     campos={inputs}
-                    fun={() => console.log("foi")}
-                    // urlBakc="rotas"
+                    callBack={() => console.log("foi")}
+                    urlBakc="login"
                 />
             </L1>
             <L2>

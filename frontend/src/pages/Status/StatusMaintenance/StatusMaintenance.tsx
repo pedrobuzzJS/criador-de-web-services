@@ -67,6 +67,6 @@ export const StatusMaintenance: React.FC = () => {
     // };
 
     return (
-        <FormBuilder op={Number(op)} data={data} campos={inputs} fun={addStatus} urlBakc="status"/>
+        <FormBuilder op={Number(op)} data={data} campos={inputs} callBack={addStatus} urlBakc="status"/>
     );
 };

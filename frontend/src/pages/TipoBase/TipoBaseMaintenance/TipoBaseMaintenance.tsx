@@ -53,6 +53,6 @@ export const TipoBaseMaintenance: React.FC = () => {
     };
 
     return (
-        <FormBuilder op={Number(op)} data={data} campos={inputs} fun={envia}/>
+        <FormBuilder op={Number(op)} data={data} campos={inputs} callBack={envia}/>
     );
 };

@@ -53,50 +53,50 @@ const Routes = Router();
 
 Routes.post("/users", CreateUserController.handle);
 Routes.post("/login", AuthencitateUserController.handle);
-Routes.get("/usuario", ListUserController.handle);
+Routes.get("/usuario", tokenAuthenticate, ListUserController.handle);
 
-Routes.get("/table", ListTableController.handle);
-Routes.post("/table", CreateTableController.handle);
-Routes.put("/table", UpdateTableController.handle);
-Routes.delete("/table", DeleteTableController.handle);
+Routes.get("/table", tokenAuthenticate, ListTableController.handle);
+Routes.post("/table", tokenAuthenticate, CreateTableController.handle);
+Routes.put("/table", tokenAuthenticate, UpdateTableController.handle);
+Routes.delete("/table", tokenAuthenticate, DeleteTableController.handle);
 
-Routes.get("/menu", ListMenuController.handle);
-Routes.post("/menu", CreateMenuController.handle);
-Routes.put("/menu", UpdateMenuController.handle);
-Routes.delete("/menu", DeleteMenuController.handle);
+Routes.get("/menu", tokenAuthenticate, ListMenuController.handle);
+Routes.post("/menu", tokenAuthenticate, CreateMenuController.handle);
+Routes.put("/menu", tokenAuthenticate, UpdateMenuController.handle);
+Routes.delete("/menu", tokenAuthenticate, DeleteMenuController.handle);
 
-Routes.get("/status", ListStatusController.handle);
-Routes.post("/status", CreateStatusController.handle);
-Routes.put("/status", UpdateStatusController.handle);
-Routes.delete("/status", DeleteStatusController.handle);
+Routes.get("/status", tokenAuthenticate, ListStatusController.handle);
+Routes.post("/status", tokenAuthenticate, CreateStatusController.handle);
+Routes.put("/status", tokenAuthenticate, UpdateStatusController.handle);
+Routes.delete("/status", tokenAuthenticate, DeleteStatusController.handle);
 
-Routes.get("/tipowebservice", ListTipoWebServiceController.handle);
-Routes.post("/tipowebservice", CreateTipoWebServiceController.handle);
-Routes.put("/tipowebservice", UpdateTipoWebServiceController.handle);
-Routes.delete("/tipowebservice", DeleteTipoWebServiceController.handle);
+Routes.get("/tipowebservice", tokenAuthenticate, ListTipoWebServiceController.handle);
+Routes.post("/tipowebservice", tokenAuthenticate, CreateTipoWebServiceController.handle);
+Routes.put("/tipowebservice", tokenAuthenticate, UpdateTipoWebServiceController.handle);
+Routes.delete("/tipowebservice", tokenAuthenticate, DeleteTipoWebServiceController.handle);
 
-Routes.get("/tipo-base", ListTipoBasesController.handle);
+Routes.get("/tipo-base", tokenAuthenticate, ListTipoBasesController.handle);
 
-Routes.get("/base", ListBasesController.handle);
+Routes.get("/base", tokenAuthenticate, ListBasesController.handle);
 
-Routes.get("/colunas", ListColunaController.handle);
+Routes.get("/colunas", tokenAuthenticate, ListColunaController.handle);
 
-Routes.get("/rotas", ListRotasController.handle);
+Routes.get("/rotas", tokenAuthenticate, ListRotasController.handle);
 
-Routes.get("/cores", ListCoresController.handle)
+Routes.get("/cores", tokenAuthenticate, ListCoresController.handle)
 
-Routes.get("/acoes", ListAcoesController.handle);
+Routes.get("/acoes", tokenAuthenticate, ListAcoesController.handle);
 
-Routes.get("/webservices", ListWebServicesController.handle);
-Routes.post("/webservices", CreateWebServicesController.handle);
-Routes.put("/webservices", UpdateWebServicesController.handle);
-Routes.delete("/webservices", DeleteWebServicesController.handle);
+Routes.get("/webservices", tokenAuthenticate, ListWebServicesController.handle);
+Routes.post("/webservices", tokenAuthenticate, CreateWebServicesController.handle);
+Routes.put("/webservices", tokenAuthenticate, UpdateWebServicesController.handle);
+Routes.delete("/webservices", tokenAuthenticate, DeleteWebServicesController.handle);
 
-Routes.get("/webservicesobj", ListWebServicesObjController.handle);
-Routes.post("/webse rvicesobj", CreateWebServicesObjController.handle);
-Routes.put("/webservicesobj", UpdateWebServicesObjController.handle);
-Routes.delete("/webservicesobj", DeleteWebServicesObjController.handle);
+Routes.get("/webservicesobj", tokenAuthenticate, ListWebServicesObjController.handle);
+Routes.post("/webservicesobj", tokenAuthenticate, CreateWebServicesObjController.handle);
+Routes.put("/webservicesobj", tokenAuthenticate, UpdateWebServicesObjController.handle);
+Routes.delete("/webservicesobj", tokenAuthenticate, DeleteWebServicesObjController.handle);
 
-Routes.get("/executeoperation", ExecuteOperation.handle);
+Routes.get("/executeoperation", tokenAuthenticate, ExecuteOperation.handle);
 
 export default Routes;

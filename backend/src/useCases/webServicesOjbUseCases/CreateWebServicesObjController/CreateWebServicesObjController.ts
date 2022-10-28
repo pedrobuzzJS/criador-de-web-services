@@ -4,7 +4,7 @@ import { client } from "../../../infra/prisma/client";
 export default class CreateWebServicesObjController {
     static async handle(request: Request, response: Response) {
         const { data } = await request.body;
-        // const objJson = await JSON.parse(data);
+        const objJson = await JSON.parse(data);
         // await console.log(data);
         try {
             const webServiceObj = await client.webServiceObj.create({

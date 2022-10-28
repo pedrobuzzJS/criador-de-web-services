@@ -7,13 +7,14 @@ import { Operation } from "../../../Utils/Operations";
 import api from "../../../services/api";
 import { useNavigate } from "react-router-dom";
 import { SnackBar } from "../../SnackBar/SnackBar";
+import { useAuth } from "../../../context/authContex";
 import { Select } from "../Inputs/Select/Select";
 interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
     op: number;
     data: any[];
     campos: FormInputs[];
     urlBakc?: any;
-    callBack: (callback: any) => void;
+    callBack: (callback?: any) => void;
 };
 
 export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, callBack, urlBakc, ...props }) => {
@@ -21,6 +22,7 @@ export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, callBack, 
     const [ backResponse, setBackResponse ] = useState<string>();
     const [ showSnackBar, setShowSnackBar ] = useState<boolean>(false);
     const navigate = useNavigate();
+    const { signIn } = useAuth()
 
     useEffect( () => {
         switch(op) {
@@ -55,7 +57,16 @@ export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, callBack, 
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        submitFormToBakc();
+
+        if (+op === Operation.LOGAR) {
+            const { username, password }: any = formValues;
+            return signIn(username, password);
+        };
+
+        if (callBack) {
+            callBack()
+        };
+        return submitFormToBakc();
     };
 
     const submitFormToBakc = async () => {
@@ -97,13 +108,11 @@ export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, callBack, 
                         }
                     ).then(response => {
                         const { status } = response;
+                        navigate(-1);
                     }).catch(async error => {
-                        // console.log(error.response.status);
-                        // console.log(error.response.data.message.code);
                         await setBackResponse(error.response.data.message.code);
                         await setShowSnackBar(true);
                     }).finally(
-                        // () => navigate(-1)
                     );
                 } catch (error) {
                     console.log(error);
@@ -113,7 +122,7 @@ export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, callBack, 
     };
 
     const handleClick = () => {
-        // callBack(formValues);
+        // handleSubmit();
     };
 
     const handleInputChange = async (e: React.FormEvent<HTMLInputElement>) => {
@@ -122,7 +131,6 @@ export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, callBack, 
             ...formValues,
             [name]: value,
         });
-        // callBack(formValues);
     };
 
     const handleSelectListInputChange = (e: FormEvent<HTMLSelectElement>) => {
@@ -131,7 +139,6 @@ export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, callBack, 
             ...formValues,
             [name]: value,
         });
-        // callBack(formValues);
     };
 
     const handleTextAreaChange = (e: FormEvent<HTMLTextAreaElement>) => {
@@ -140,12 +147,10 @@ export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, callBack, 
             ...formValues,
             [name]: value,
         });
-        // callBack(formValues);
     };
 
     const handleCheckBoxChange = (e: FormEvent<HTMLInputElement>) => {
         const { name, value } = e.currentTarget;
-        // callBack(formValues);
     };
 
     const findValueById = useCallback((values: any, key: any) => {

@@ -201,9 +201,6 @@ export const WebServiceMount: React.FC = () => {
                     {colunaService && colunaService.map( (column, index) => (
                         <TableColumn key={index}>
                             <span>{column.nome}</span>
-                            {/* <span>{column.tipo}</span> */}
-                            {/* <span>{column.nulo}</span> */}
-                            {/* <span>{column.char_max}</span> */}
                             <ImageCloseDiv onClick={() => deleteColumn(Number(column.id))}>
                                 <FaRegWindowClose />
                             </ImageCloseDiv>

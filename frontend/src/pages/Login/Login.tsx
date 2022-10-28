@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FormBuilder } from "../../components/Form/FormBuilder/FormBuilder";
 import { FormInputs, InputType } from "../../Utils/FormFields";
 import { Container, L1, L2 } from "./styles";
+import { Operation } from "../../Utils/Operations";
 
 export const Login: React.FC = () => {
     const [ inputs, setInputs ]  = useState<FormInputs[]>(
@@ -29,7 +30,7 @@ export const Login: React.FC = () => {
         <Container>
             <L1>
                 <FormBuilder
-                    op={2}
+                    op={Operation.LOGAR}
                     data={[]}
                     campos={inputs}
                     callBack={() => console.log("foi")}

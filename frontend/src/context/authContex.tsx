@@ -6,7 +6,7 @@ interface AuthInterface extends PropsWithChildren {
     signed: boolean;
     user: object | null;
     loginLoaging: boolean;
-    signIn: () => Promise<void>;
+    signIn: (username: string, password: string) => Promise<void>;
     signOut: () => void;
 };
 
@@ -21,25 +21,22 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
     const [ loginLoaging, setLoginLoaging ] = useState<boolean>(false);
 
     useEffect( () => {
-        // async function loadLocalStorageData() {
-            // const storageUser = localStorage.getItem("USER");
-            // const storageToken = localStorage.getItem("TOKEN");
+        const storageUser = localStorage.getItem("USER");
+        const storageToken = localStorage.getItem("TOKEN");
 
-            // if (storageUser && storageToken) {
-                // api.defaults.headers["Authorization"] = `Bearer ${response.token}`;
-                // setUser(JSON.parse(storageUser));
-                // setLoginLoaging(false);
-            // };
-        // };
-    } );
+        if (storageUser && storageToken) {
+            api.defaults.headers.common['Authorization'] = `Bearer ${String(storageToken)}`;;
+            setUser(JSON.parse(storageUser));
+            setLoginLoaging(false);
+        };
+    }, [] );
 
-    async function signIn() {
+    async function signIn(username: string, password: string) {
         const AuthController = await new Auth();
-        const response = await AuthController.signIn();
-
-        // api.defaults.headers["Authorization"] = `Bearer ${response.token}`;
-        // await localStorage.setItem("USER" , "Dawdwa");
-        // await localStorage.setItem("TOKEN" , "Dawdwa");
+        const response = await AuthController.signIn(username, password);
+        api.defaults.headers.common['Authorization'] = `Bearer ${String(response.TOKEN)}`;;
+        await localStorage.setItem("USER" , JSON.stringify(response.USER));
+        await localStorage.setItem("TOKEN" , String(response.TOKEN));
     };
 
     async function signOut() {
@@ -48,12 +45,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
 
     return (
         <AuthContext.Provider value={{
-            // signed: Boolean(user),
-            signed: false,
+            signed: Boolean(user),
             user: user,
             signIn: signIn,
             signOut: signOut,
-            loginLoaging: false
+            loginLoaging: loginLoaging
         }}>
             {children}
         </AuthContext.Provider>

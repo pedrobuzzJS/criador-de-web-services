@@ -8,16 +8,13 @@ function tokenAuthenticate(
     next: NextFunction
 ) {
     const authToken = request?.headers?.authorization;
-
     if (!authToken) {
         return response.status(401).json({
             message: "Invalid Authotization",
             }
         );
     };
-
     const [, token] = authToken.split(" ");
-
     try {
         // verify(token, `${process.env.JWT_SECRET}`);
         verify(token, "d13bf4cd-c6f6-4164-8ab7-207fec130d21");

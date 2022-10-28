@@ -30,11 +30,11 @@ class AutenticateUerUseCase {
             }
         });
         if (!userAlreadyExists) {
-            throw new Error("Usuario ou senha invalido");
+            return {"msg": "Usuario ou senha invalido"};
         };
         const passwordMatch = await compare(password, userAlreadyExists.password);
         if (!passwordMatch) {
-            throw new Error("Usuario ou senha invalido");
+            return {"msg": "Usuario ou senha invalido"};
         };
         const token = await sign({
             id: userAlreadyExists.id,

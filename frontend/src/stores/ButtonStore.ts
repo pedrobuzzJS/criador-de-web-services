@@ -7,7 +7,7 @@ interface State {
     cleanButton: () => void;
 };
 
-const UseButtonStore = create<State>((set) => (
+const useButtonStore = create<State>((set) => (
         {
             button: [],
             addButton: async (button: FieldAction) => {
@@ -20,4 +20,4 @@ const UseButtonStore = create<State>((set) => (
     )
 );
 
-export default UseButtonStore;
+export default useButtonStore;

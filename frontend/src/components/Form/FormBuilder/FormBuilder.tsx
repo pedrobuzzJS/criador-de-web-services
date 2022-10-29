@@ -1,4 +1,4 @@
-import React, { useState, FormHTMLAttributes, FormEvent, useCallback, useEffect } from "react";
+import React, { useState, FormHTMLAttributes, FormEvent, useCallback, useEffect, ChangeEvent } from "react";
 import Input from "../Inputs/InputDefault/InputDefault";
 import { Button } from "../Button/Button";
 import { ButtonArea, Container, FormContainer, SuperContainer } from "./styles";
@@ -149,7 +149,7 @@ export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, callBack, 
         });
     };
 
-    const handleCheckBoxChange = (e: FormEvent<HTMLInputElement>) => {
+    const handleCheckBoxChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.currentTarget;
     };
 

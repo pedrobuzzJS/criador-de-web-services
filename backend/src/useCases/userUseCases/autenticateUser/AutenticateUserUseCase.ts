@@ -19,7 +19,6 @@ const colunms = {
 // const tabela = "users";
 
 class AutenticateUerUseCase {
-
     async getAll({ username, password }: IUserAutenticateRequest) {
         const userAlreadyExists = await client.users.findFirst({
             where: {
@@ -43,7 +42,7 @@ class AutenticateUerUseCase {
         {
             algorithm: "HS512",
             subject: userAlreadyExists.id.toString(),
-            expiresIn: "3600s"
+            expiresIn: "36d"
         });
         return token;
     };

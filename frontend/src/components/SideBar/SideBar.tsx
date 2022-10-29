@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState } from "react";
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import { IconContext } from "react-icons";
@@ -8,16 +8,18 @@ import { Nav,
          SidebarWrap,
          Lista,
          HeaderTitle,
-         BlackHole
 } from "./styles";
 import { SideBarItem } from "../SideBarItem/SideBarItem";
 import { LinkMenu } from "../../@types/menu";
-import { useFetch } from "../../hooks/useFetch";
+import { useMenu } from "../../context/menuContext";
+import { useLocation } from "react-router-dom";
+import useMenuStore from "../../stores/menuStore";
 
 export const SideBar: React.FC = () => {
     const [sideBar, setSideBar] = useState(false);
-    const { data: menus } = useFetch<LinkMenu[]>("menu");
+    const { menuNome, fetechedMenu } = useMenu();
     const showSideBar = () => setSideBar(!sideBar);
+    const { pathname } = useLocation();
    
     let LinksTratados: LinkMenu[] = [];
 
@@ -36,8 +38,8 @@ export const SideBar: React.FC = () => {
     };
 
     
-    menus?.forEach((link, index) => {
-        link.filhos = buildChildrenLinks(link, menus);
+    fetechedMenu?.forEach((link, index) => {
+        link.filhos = buildChildrenLinks(link, fetechedMenu);
         LinksTratados.push(link);
     });
 
@@ -50,7 +52,7 @@ export const SideBar: React.FC = () => {
                     <NavIcon to='#'>
                         <FaIcons.FaBars onClick={showSideBar} />
                     </NavIcon>
-                    <HeaderTitle>OI</HeaderTitle>
+                    <HeaderTitle>{menuNome}</HeaderTitle>
                 </Nav>
                 <SideBarNav sideBar={sideBar}> 
                     <SidebarWrap>

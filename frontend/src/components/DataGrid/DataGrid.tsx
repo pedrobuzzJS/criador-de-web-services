@@ -10,7 +10,7 @@ import { GridFields, FieldTypes } from "../../Utils/Fields";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../Form/Button/Button";
 import { Operation } from "../../Utils/Operations";
-import UseButtonStore from "../../stores/ButtonStore";
+import useButtonStore from "../../stores/ButtonStore";
 
 interface GridProps {
     columns: GridFields[],
@@ -22,8 +22,8 @@ interface GridProps {
 export const DataGrid: React.FC<GridProps> = ({ columns, data, loading, pathMantencao, ...props }) => {
     const teste: any[] = data; 
     const navigate = useNavigate();
-    const addButtonAction = UseButtonStore(state => state.addButton);
-    const cleanButtonAction = UseButtonStore(state => state.cleanButton);
+    const addButtonAction = useButtonStore(state => state.addButton);
+    const cleanButtonAction = useButtonStore(state => state.cleanButton);
     // const [ order, setOrder ] = useState<String>('');
 
     const buildMaintenanceURL = useCallback( (btn: string, op: number, id?: any) => {

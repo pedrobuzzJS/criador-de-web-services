@@ -1,10 +1,8 @@
 import api from "./api";
 export default class Auth {
     async signIn(username: string, password: string) {
-
         let USER;
         let TOKEN;
-
         try {
             await api.post("login", {
                 data: JSON.stringify({username, password})
@@ -20,5 +18,12 @@ export default class Auth {
             console.log(error);
         };
         return { USER, TOKEN };
+    };
+    async getPermissions(username: string) {
+        try {
+            
+        } catch (error) {
+            
+        }
     };
 };

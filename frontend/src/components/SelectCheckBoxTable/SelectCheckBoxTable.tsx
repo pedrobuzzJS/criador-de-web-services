@@ -1,6 +1,6 @@
 import React, { FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
-import UseButtonStore from "../../stores/ButtonStore";
+import useButtonStore from "../../stores/ButtonStore";
 import { FieldTypes, GridFields } from "../../Utils/Fields";
 import { Container, TableContainer, TableRows, CheckBoxContainer } from "./styles";
 import UseColunaStore from "../../stores/ColunaStore";
@@ -15,8 +15,8 @@ interface GridProps {
 export const SelectCheckBoxTable: React.FC<GridProps> = ({ columns, data, loading, ...props }) => {
     const teste: any[] = data; 
     const navigate = useNavigate();
-    const addButtonAction = UseButtonStore(state => state.addButton);
-    const cleanButtonAction = UseButtonStore(state => state.cleanButton);
+    const addButtonAction = useButtonStore(state => state.addButton);
+    const cleanButtonAction = useButtonStore(state => state.cleanButton);
     const addColuna = UseColunaStore(state => state.addColuna);
 
     const handleCheckBoxChange = (e: any, item: any) => {

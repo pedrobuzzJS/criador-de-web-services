@@ -3,7 +3,7 @@ import { WebServices } from "../../../@types/webServices";
 import { DataGrid } from "../../../components/DataGrid/DataGrid";
 import { useFetch } from "../../../hooks/useFetch";
 import { FieldTypes, GridFields } from "../../../Utils/Fields";
-import UseButtonStore from "../../../stores/ButtonStore";
+import useButtonStore from "../../../stores/ButtonStore";
 import { Operation } from "../../../Utils/Operations";
 
 const Campos: GridFields[] = [
@@ -89,7 +89,7 @@ const Campos: GridFields[] = [
 
 export const WebServicesQuery: React.FC = () => {
     const { data, loadding } = useFetch<WebServices[]>("webservices");
-    const button = UseButtonStore(state => state?.button);
+    const button = useButtonStore(state => state?.button);
 
     if (button?.length) {
         console.log("BTN")

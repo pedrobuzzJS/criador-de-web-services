@@ -1,18 +1,18 @@
 import React, { createContext, useState, useEffect, PropsWithChildren, useContext } from "react";
 import Auth from "../services/auth";
 import api from "../services/api";
+import { redirect } from "react-router-dom";
 
-interface AuthInterface extends PropsWithChildren {
+interface AuthInterface {
     signed: boolean;
     user: object | null;
     loginLoaging: boolean;
     signIn: (username: string, password: string) => Promise<void>;
     signOut: () => void;
+    getPermission: (username: string) => Promise<void>;
 };
 
-interface AuthProviderProps {
-    children: React.ReactNode | null;
-};
+interface AuthProviderProps extends PropsWithChildren {};
 
 const AuthContext = createContext<AuthInterface>({} as AuthInterface);
 
@@ -28,7 +28,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
             api.defaults.headers.common['Authorization'] = `Bearer ${String(storageToken)}`;;
             setUser(JSON.parse(storageUser));
             setLoginLoaging(false);
-        };
+        } else if (!storageUser && !storageToken) {
+            // window.location.replace("/");
+            redirect("/")
+        }
     }, [] );
 
     async function signIn(username: string, password: string) {
@@ -37,10 +40,17 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
         api.defaults.headers.common['Authorization'] = `Bearer ${String(response.TOKEN)}`;;
         await localStorage.setItem("USER" , JSON.stringify(response.USER));
         await localStorage.setItem("TOKEN" , String(response.TOKEN));
+        await window.location.reload();
     };
 
+    async function getPermission(username: string) {
+        const AuthController = await new Auth();
+        const response = await AuthController.getPermissions(username);
+    }
+
     async function signOut() {
-        return setUser(null);
+        setUser(null);
+        return redirect("/");
     };
 
     return (
@@ -49,7 +59,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
             user: user,
             signIn: signIn,
             signOut: signOut,
-            loginLoaging: loginLoaging
+            loginLoaging: loginLoaging,
+            getPermission: getPermission
         }}>
             {children}
         </AuthContext.Provider>

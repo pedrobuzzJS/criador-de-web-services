@@ -12,13 +12,9 @@ import {
 
 export const SideBarItem: React.FC<LinkMenu> = ({ id, icone, nome, pai_id, rota, filhos, possuifilhos, ...props }) => {
     const [ isOpen, setIsOpen ] = useState<boolean>(false);
-
-    // const openSubMenuList = () => setIsOpen(!isOpen);
-
     const openSubMenuList = useCallback(() => {
         setIsOpen(!isOpen);
     }, [isOpen]);
-
     if (filhos) {
         return (
             <>

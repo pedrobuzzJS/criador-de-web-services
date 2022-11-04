@@ -1,11 +1,9 @@
-import React, { FormEvent } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import useButtonStore from "../../stores/ButtonStore";
 import { FieldTypes, GridFields } from "../../Utils/Fields";
 import { Container, TableContainer, TableRows, CheckBoxContainer } from "./styles";
 import UseColunaStore from "../../stores/ColunaStore";
-import { eventNames } from "process";
-
 interface GridProps {
     columns: GridFields[],
     data: any,

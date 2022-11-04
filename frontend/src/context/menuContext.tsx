@@ -1,7 +1,7 @@
 import React, { useState,
      createContext,
      useContext,
-     useEffect,
+    //  useEffect,
      PropsWithChildren } from "react";
 import { useFetch } from "../hooks/useFetch";
 import { LinkMenu } from "../@types/menu";
@@ -15,7 +15,7 @@ interface MenuInterface {
 
 interface MenuProviderChildren extends PropsWithChildren {};
 
-const MenuContext = createContext({} as MenuInterface);
+const MenuContext = createContext<MenuInterface>({} as MenuInterface);
 
 export const MenuProvider: React.FC<MenuProviderChildren> = ({children}) => {
     const [ nome, setNome ] = useState<string | null>(null);

@@ -55,8 +55,6 @@ export const ImgContainer = styled.div<Toggle>`
     padding: 5px;
 
     > svg {
-
-        /* ${({ isSubMenuOpen }) => (isSubMenuOpen && isSubMenuOpen === true ? 'block' : 'none')}; */
         transform: rotate(90deg);
         transition: 350ms;
 

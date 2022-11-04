@@ -19,9 +19,20 @@ export default class Auth {
         };
         return { USER, TOKEN };
     };
-    async getPermissions(username: string) {
+    async getPermissions(id: number, username: string, token: string) {
+        
         try {
-            
+            await api.get("permissions", {
+                params: {
+                    id: id,
+                    username: username,
+                    token: token
+                }
+            }).then(
+                response => {
+
+                }
+            ).finally();
         } catch (error) {
             
         }

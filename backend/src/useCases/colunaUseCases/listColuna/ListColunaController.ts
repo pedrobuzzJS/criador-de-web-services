@@ -11,10 +11,7 @@ export default class ListColunaController {
             return response.json(data);
         };
         const data = await listColunaUseCase.getAll();
-        const cre = new CreateColunaUseCase();
-
-        // await cre.generateColumnDic();
-
+        // const cre = new CreateColunaUseCase();
         return response.json(data);
     };
 };

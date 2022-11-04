@@ -1,10 +1,9 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback } from "react";
 import { Container,
      TableContainer,
      TableRows,
      ButtonContainerGrid,
-     ButtonContainer,
-    FiltersContainer } 
+     ButtonContainer } 
 from "./styles";
 import { GridFields, FieldTypes } from "../../Utils/Fields";
 import { useNavigate } from "react-router-dom";
@@ -24,12 +23,22 @@ export const DataGrid: React.FC<GridProps> = ({ columns, data, loading, pathMant
     const navigate = useNavigate();
     const addButtonAction = useButtonStore(state => state.addButton);
     const cleanButtonAction = useButtonStore(state => state.cleanButton);
-    // const [ order, setOrder ] = useState<String>('');
 
     const buildMaintenanceURL = useCallback( (btn: string, op: number, id?: any) => {
         let url = btn + "-manutencao" + `/${op}` + `/${id}`;
         return navigate("/"+url);
     }, [navigate]);
+
+    const montaUrlManutencao = useCallback( (btn: string, op: number, keyList: string[]) => {
+        let url = '';
+        url = btn + "-manutencao" + `/${op}`;
+        if (keyList.length) {
+          keyList.forEach(key => {
+            url = url + '/' + key;
+          });
+        }
+        return navigate("/"+url);
+    }, [navigate] );
 
     const buttonInserFormValues = useCallback( (op: number) => {
         let url = pathMantencao + "-manutencao" + `/${op}`;

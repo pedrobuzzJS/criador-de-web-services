@@ -5,8 +5,17 @@ import { useFetch } from "../../../hooks/useFetch";
 import { FieldTypes, GridFields } from "../../../Utils/Fields";
 import { Operation } from "../../../Utils/Operations";
 
-export const WebServicesObjQuery: React.FC = () => {
-    const { data, loadding } = useFetch<WebServiceObj[]>("webservicesobj");
+interface RequestParams {
+    webservice_id?: number;
+    table_id?: number;
+};
+
+export const WebServicesObjQuery: React.FC<RequestParams> = ({ webservice_id, table_id, ...props }) => {
+    const { data, loadding } = useFetch<WebServiceObj[]>("webservicesobj", {
+        params: {
+            webservice_id: webservice_id
+        }
+    });
     const [ campos, setCampos ] = useState<GridFields[]>([
         {
             field: "id",

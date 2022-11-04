@@ -7,6 +7,7 @@ import { WebServiceMount } from "../../../components/WebServiceMount/WebServiceM
 import { useFetch } from "../../../hooks/useFetch";
 import { FormInputs, InputType } from "../../../Utils/FormFields";
 import { Container, WebServiceBuilderContainer } from "./styles";
+import { useWebServiceHook } from "../../../context/webServiceMountContext";
 
 const inputs: FormInputs[] = [
     {
@@ -60,15 +61,13 @@ export const WebServicesObjMaintanance: React.FC = () => {
         },
     });
 
-    const envia = () => {
-        
-    };
+    const { webservice_id } = useWebServiceHook();
 
     return (
         <>
             {/* {data && <FormBuilder op={Number(op)} data={data} campos={inputs} callBack={envia}/>} */}
             <Container>
-                <WebServiceMount />
+                <WebServiceMount webservice_id={webservice_id} />
 
                 <WebServiceBuilderContainer>
                     

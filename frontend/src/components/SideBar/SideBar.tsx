@@ -13,7 +13,6 @@ import { SideBarItem } from "../SideBarItem/SideBarItem";
 import { LinkMenu } from "../../@types/menu";
 import { useMenu } from "../../context/menuContext";
 import { useLocation } from "react-router-dom";
-import useMenuStore from "../../stores/menuStore";
 
 export const SideBar: React.FC = () => {
     const [sideBar, setSideBar] = useState(false);

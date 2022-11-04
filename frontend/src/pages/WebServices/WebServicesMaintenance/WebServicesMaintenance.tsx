@@ -5,6 +5,7 @@ import { useFetch } from "../../../hooks/useFetch";
 import { FormInputs, InputType } from "../../../Utils/FormFields";
 import { Operation } from "../../../Utils/Operations";
 import { WebServicesObjQuery } from "../../WebServicesObj/WebServicesObjQuery/WebServicesObjQuery";
+import { useWebServiceHook } from "../../../context/webServiceMountContext";
 
 export const WebServicesMaintenance: React.FC = () => {
     const { op, id } = useParams();
@@ -81,6 +82,10 @@ export const WebServicesMaintenance: React.FC = () => {
             id: id
         },
     });
+    const webservice_id = data?.[0].id;
+
+    const { setWebServiceId } = useWebServiceHook();
+    if (id) setWebServiceId(Number(id));
 
     const envia = () => {
     };
@@ -88,7 +93,7 @@ export const WebServicesMaintenance: React.FC = () => {
     return (
         <>
             <FormBuilder op={Number(op)} data={data} campos={fieldInputs} callBack={envia} urlBakc="webservices"/>
-            <WebServicesObjQuery  />
+            {webservice_id && <WebServicesObjQuery webservice_id={webservice_id} />}
         </>
     );
 };

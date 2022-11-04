@@ -76,13 +76,13 @@ const Campos: GridFields[] = [
                 icon: "RiIcons.RiDashboardFill",
                 rotina: "webservices",
             },
-            {
-                button: "webservices",
-                action: Operation.ATIVAR,
-                title: "Ativar",
-                icon: "RiIcons.RiDashboardFill",
-                rotina: "webservices",
-            },
+            // {
+            //     button: "webservices",
+            //     action: Operation.ATIVAR,
+            //     title: "Ativar",
+            //     icon: "RiIcons.RiDashboardFill",
+            //     rotina: "webservices",
+            // },
         ]
     },
 ];

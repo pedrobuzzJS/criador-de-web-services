@@ -152,32 +152,45 @@ model TipoWebService {
 }
 
 model WebService {
-  id            Int             @id @default(autoincrement())
-  nome          String          @db.VarChar(255)
-  descricao     String          @db.VarChar(255)
-  prover        Boolean
-  consumir      Boolean
-  varsao        Float
-  status_id     Int?
-  status        Status?         @relation(fields: [status_id], references: [id])
-  webserviceobj WebServiceObj[]
+  id               Int                @id @default(autoincrement())
+  nome             String             @db.VarChar(255)
+  descricao        String             @db.VarChar(255)
+  prover           Boolean
+  consumir         Boolean
+  varsao           Float
+  status_id        Int?
+  status           Status?            @relation(fields: [status_id], references: [id])
+  webserviceobj    WebServiceObj[]
+  webserviceroutes WebServiceRoutes[]
 
   @@map("tbwebservices")
 }
 
 model WebServiceObj {
-  id            Int        @id @default(autoincrement())
-  obj           String     @db.VarChar(2500)
-  sql           String     @db.VarChar(2500)
-  webservice_id Int
-  versao        Int?
-  status_id     Int?
-  status        Status?    @relation(fields: [status_id], references: [id])
-  webservice    WebService @relation(fields: [webservice_id], references: [id])
-  table_id      Int
-  table         Tabelas    @relation(fields: [table_id], references: [id])
+  id               Int                @id @default(autoincrement())
+  obj              String             @db.VarChar(2500)
+  sql              String             @db.VarChar(2500)
+  webservice_id    Int
+  versao           Int?
+  status_id        Int?
+  status           Status?            @relation(fields: [status_id], references: [id])
+  webservice       WebService         @relation(fields: [webservice_id], references: [id])
+  table_id         Int
+  table            Tabelas            @relation(fields: [table_id], references: [id])
+  webserviceroutes WebServiceRoutes[]
 
   @@map("tbwebserviceobj")
+}
+
+model WebServiceRoutes {
+  id                Int           @id @default(autoincrement())
+  webservice_id     Int
+  route             String        @db.VarChar(500)
+  webservice        WebService    @relation(fields: [webservice_id], references: [id])
+  werbservoceobj_id Int
+  webserviceobj     WebServiceObj @relation(fields: [werbservoceobj_id], references: [id])
+
+  @@map("tbwebserviceroutes")
 }
 
 model TipoBases {

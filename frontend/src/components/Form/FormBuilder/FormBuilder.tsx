@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { SnackBar } from "../../SnackBar/SnackBar";
 import { useAuth } from "../../../context/authContex";
 import { Select } from "../Inputs/Select/Select";
+import { useForm } from "../../../context/formContext";
 interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
     op: number;
     data: any[];
@@ -22,7 +23,9 @@ export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, callBack, 
     const [ backResponse, setBackResponse ] = useState<string>();
     const [ showSnackBar, setShowSnackBar ] = useState<boolean>(false);
     const navigate = useNavigate();
-    const { signIn } = useAuth()
+    const { signIn } = useAuth();
+
+    const { setChangeState } = useForm();
 
     useEffect( () => {
         switch(op) {
@@ -77,10 +80,13 @@ export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, callBack, 
                         data: JSON.stringify(formValues)
                     }).then(response => {
                         const { status } = response;
+                        navigate(-1)
                     }).catch(async error => {
-                        console.log(error);
-                        await setBackResponse(error.response.data);
-                    }).finally( () => navigate(-1) );
+                        await setBackResponse(error.response.data.message.code);
+                        await setShowSnackBar(true);
+                    }).finally(
+                        // () => navigate(-1)
+                    );
                 } catch (error) {
                     console.log(error);
                 };
@@ -91,10 +97,13 @@ export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, callBack, 
                         data: JSON.stringify(formValues)
                     }).then(response => {
                         const { status } = response;
+                        navigate(-1)
                     }).catch(async error => {
-                        console.log(error);
-                        await setBackResponse(error.response.data);
-                    }).finally( () => navigate(-1) );;
+                        await setBackResponse(error.response.data.message.code);
+                        await setShowSnackBar(true);
+                    }).finally(
+                        // () => navigate(-1)
+                    );;
                 } catch (error) {
                     console.log(error);
                 };
@@ -113,10 +122,14 @@ export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, callBack, 
                         await setBackResponse(error.response.data.message.code);
                         await setShowSnackBar(true);
                     }).finally(
+                        // () => navigate(-1)
                     );
                 } catch (error) {
                     console.log(error);
                 };
+            break;
+            case Operation.VIEW:
+                navigate(-1);
             break;
         };
     };
@@ -133,7 +146,16 @@ export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, callBack, 
         });
     };
 
-    const handleSelectListInputChange = (e: FormEvent<HTMLSelectElement>) => {
+    const handleSelectListInputChange = (e: React.FormEvent<HTMLSelectElement>) => {
+        setChangeState(e);
+        const { name, value } = e.currentTarget;
+        setFormValues({
+            ...formValues,
+            [name]: value,
+        });
+    };
+
+    const handleTextAreaChange = (e: React.FormEvent<HTMLTextAreaElement>) => {
         const { name, value} = e.currentTarget;
         setFormValues({
             ...formValues,
@@ -141,15 +163,7 @@ export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, callBack, 
         });
     };
 
-    const handleTextAreaChange = (e: FormEvent<HTMLTextAreaElement>) => {
-        const { name, value} = e.currentTarget;
-        setFormValues({
-            ...formValues,
-            [name]: value,
-        });
-    };
-
-    const handleCheckBoxChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleCheckBoxChange = (e: React.FormEvent<HTMLInputElement>) => {
         const { name, value } = e.currentTarget;
     };
 

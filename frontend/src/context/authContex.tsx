@@ -23,13 +23,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
     useEffect( () => {
         const storageUser = localStorage.getItem("USER");
         const storageToken = localStorage.getItem("TOKEN");
-
         if (storageUser && storageToken) {
             api.defaults.headers.common['Authorization'] = `Bearer ${String(storageToken)}`;;
             setUser(JSON.parse(storageUser));
             setLoginLoaging(false);
         } else if (!storageUser && !storageToken) {
-            // window.location.replace("/");
             redirect("/")
         }
     }, [] );
@@ -40,12 +38,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
         api.defaults.headers.common['Authorization'] = `Bearer ${String(response.TOKEN)}`;;
         await localStorage.setItem("USER" , JSON.stringify(response.USER));
         await localStorage.setItem("TOKEN" , String(response.TOKEN));
-        await window.location.reload();
+        await window.location.replace("/");
     };
 
     async function getPermission(username: string) {
-        const AuthController = await new Auth();
-        const response = await AuthController.getPermissions(username);
+        // const AuthController = await new Auth();
+        // const response = await AuthController.getPermissions(username);
     }
 
     async function signOut() {

@@ -15,9 +15,6 @@ const colunms = {
     username: true,
     password: true
 }
-
-// const tabela = "users";
-
 class AutenticateUerUseCase {
     async getAll({ username, password }: IUserAutenticateRequest) {
         const userAlreadyExists = await client.users.findFirst({

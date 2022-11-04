@@ -49,6 +49,17 @@ import UpdateWebServicesObjController from "../../../useCases/webServicesOjbUseC
 import CreateWebServicesObjController from "../../../useCases/webServicesOjbUseCases/CreateWebServicesObjController/CreateWebServicesObjController";
 import DeleteWebServicesObjController from "../../../useCases/webServicesOjbUseCases/DeleteWebServicesObjController/DeleteWebServicesObjController";
 
+import ListWebServiceRoutesController from "../../../useCases/webServiceRoutesUseCase/ListWebServiceRoutes/ListWebServiceRoutesController";
+import CreateWebServiceRoutesController from "../../../useCases/webServiceRoutesUseCase/CreateWebServiceRoutes/CreateWebServiceRoutesController";
+import UpdateWebServiceRoutesController from "../../../useCases/webServiceRoutesUseCase/UpdateWebServiceRoutes/UpdateWebServiceRoutesController";
+import DeleteWebServiceRoutesController from "../../../useCases/webServiceRoutesUseCase/DeleteWebServiceRoutes/DeleteWebServiceRoutesController";
+
+import ExecuteWebServiceController from "../../../modules/ExecuteWebServiceController";
+
+import ObjToSqlController from "../../../modules/ObjToSqlController";
+
+import { client } from "../../prisma/client";
+
 const Routes = Router();
 
 Routes.post("/users", CreateUserController.handle);
@@ -97,6 +108,25 @@ Routes.post("/webservicesobj", tokenAuthenticate, CreateWebServicesObjController
 Routes.put("/webservicesobj", tokenAuthenticate, UpdateWebServicesObjController.handle);
 Routes.delete("/webservicesobj", tokenAuthenticate, DeleteWebServicesObjController.handle);
 
+Routes.get("/webserviceroutes", tokenAuthenticate, ListWebServiceRoutesController.handle);
+Routes.post("/webserviceroutes", tokenAuthenticate, CreateWebServiceRoutesController.handle);
+Routes.put("/webserviceroutes", tokenAuthenticate, UpdateWebServiceRoutesController.handle);
+Routes.delete("/webserviceroutes", tokenAuthenticate, DeleteWebServiceRoutesController.handle);
+
 Routes.get("/executeoperation", tokenAuthenticate, ExecuteOperation.handle);
+
+Routes.get("/executewebservice", ExecuteWebServiceController.handle);
+
+Routes.get("/objtosql", ObjToSqlController.handle);
+
+async function automaticRoute() {
+    const teste = await client.webServiceRoutes.findMany();
+    // console.log(teste);
+    teste.forEach(rota => {
+        Routes.get("/"+rota.route, ListWebServicesObjController.handle);
+    });
+};
+
+automaticRoute();
 
 export default Routes;

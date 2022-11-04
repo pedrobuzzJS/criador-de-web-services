@@ -1,25 +1,22 @@
 import { Request, Response } from "express";
 import { client } from "../../../infra/prisma/client";
 
-export default class UpdateWebServicesController {
+export default class UpdateWebServiceRoutesController {
     static async handle(request: Request, response: Response) {
         const { data } = request.body;
         const objJson = JSON.parse(data);
         try {
-            const updateStatus = await client.webService.update({
+            const updateWebServiceRoutes = await client.webServiceRoutes.update({
                 where: {
                     id: Number(objJson.id)
                 },
                 data: {
-                    nome: objJson.nome,
-                    descricao: objJson.descricao,
-                    prover: true,
-                    consumir: true,
-                    varsao: Number(objJson.varsao),
-                    status_id : Number(objJson.status_id),
+                    webservice_id: Number(objJson.webservice_id),
+                    werbservoceobj_id: Number(objJson.werbservoceobj_id),
+                    route: objJson.route,
                 }
             });
-            if (updateStatus) {
+            if (updateWebServiceRoutes) {
                 return response.json(
                     {
                         "msg" : "Successes"

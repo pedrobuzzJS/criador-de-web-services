@@ -4,11 +4,14 @@ import { useFetch } from "../../../hooks/useFetch";
 import { FormBuilder } from "../../../components/Form/FormBuilder/FormBuilder";
 import { FormInputs, InputType } from "../../../Utils/FormFields";
 import { Operation } from "../../../Utils/Operations";
+import { Status } from "../../../@types/status";
+import { SelectList } from "../../../Utils/SelectList";
 
 export const MenuMaintenance: React.FC = () => {
     const { id, op } = useParams();
-    const [ inputs, setInputs ] = useState<FormInputs[]>(
-        [
+    const { data: status } = useFetch<Status[]>("status");
+    const statusOptions = status?.map(item => { return { key: (item.id), value: item.nome } });
+    const inputs: FormInputs[] = [
             {
                 id: "id",
                 name: "id",
@@ -106,20 +109,8 @@ export const MenuMaintenance: React.FC = () => {
                 label: "Status", 
                 pixels: "250",
                 type: InputType.SELECT,
-                list: [
-                    {
-                        key: "1",
-                        value: "Ativo",
-                    },
-                    {
-                        key: "2",
-                        value: "Inativo",
-                    },
-                    {
-                        key: "3",
-                        value: "Indefinido",
-                    }
-                ]
+                list: statusOptions ?? statusOptions,
+                disabled: [Operation.VIEW, Operation.DELETE].includes(Number(op)) ? true : false,   
             },
             {
                 id: "component",
@@ -139,8 +130,8 @@ export const MenuMaintenance: React.FC = () => {
                 type: InputType.TEXT,
                 disabled: [Operation.VIEW, Operation.DELETE].includes(Number(op)) ? true : false,   
             },
-        ]
-    );
+    ];
+    
     const { data } = useFetch<any>("menu", {
         params: {
             id: id
@@ -148,12 +139,8 @@ export const MenuMaintenance: React.FC = () => {
     });
 
     return (
-        <FormBuilder
-            data={data}
-            op={Number(op)}
-            campos={inputs}
-            urlBakc="menu"
-            callBack={() => console.log("nada")}
-        />
+        <>
+            {data && <FormBuilder data={data} op={Number(op)} campos={inputs} urlBakc="menu" callBack={() => console.log("nada")} />}
+        </>
     );
 };

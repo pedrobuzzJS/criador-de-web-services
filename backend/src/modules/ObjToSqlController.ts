@@ -8,17 +8,35 @@ export default class ObjToSqlController {
         const { id } = request.query;
         const listWebServiceObjUseCase = await new ListWebServicesObjUseCase();
         const objToSqlController = new ObjToSqlController();
-        const teste: WebServiceObj[] = await listWebServiceObjUseCase.getById(Number(id));
-        const obj = await JSON.parse(teste[0].obj);
-        await objToSqlController.ObjToSql(obj, Number(id));
-        return response.status(200).json(
-            {
-                obj
-            }
-        );
+        try {
+            const webServiceObjResult: WebServiceObj[] = await listWebServiceObjUseCase.getById(Number(id));
+            const obj = await JSON.parse(webServiceObjResult[0]?.obj);
+            await objToSqlController.ObjToSql(obj, Number(id));
+            if (webServiceObjResult) {
+                return response.status(200).json(
+                    {
+                        webServiceObjResult
+                    }
+                );
+            };
+        } catch (error) {
+            return response.status(404).json(
+                {
+                    "msg": "Not Found"
+                }
+            );
+        };
     };
 
-    async ObjToSql(obj: object, id: number) {
-        // console.log(obj);
+    async ObjToSql(obj: any, id: number) {
+        const tableId = obj.tableId;
+        const webServiceId = obj.webServiceId;
+        const objJson: any[] = obj.data;
+        let select = "SELECT";
+        let from = "FROM";
+
+        await objJson.forEach(el => {
+            console.log(el.nome);
+        })
     };
 };

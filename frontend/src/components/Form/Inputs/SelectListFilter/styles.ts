@@ -1,17 +1,16 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 interface InputCssProps {
     percent?: string;
     focus?: boolean | any;
-    error: boolean;
     pixels?: string;
-};
+}
 
-export const InputContainer = styled.div<InputCssProps>`
+export const SelectContainer = styled.div<InputCssProps>`
     border-radius: 5px;
     width: ${({ pixels }) => (`${pixels}px` ? `${pixels}px` : '100%')};
 
-    > input {
+    > Select {
         width: 95%;
         padding: 15px;
         margin: 10px auto;
@@ -22,12 +21,5 @@ export const InputContainer = styled.div<InputCssProps>`
     > label {
         font-size: 12px;
         color: gray;
-    }
-
-    span {
-        font-size: 12px;
-        padding: 3px;
-        color: red;
-        display: none;
     }
 `;

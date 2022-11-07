@@ -22,7 +22,7 @@ export default class CreateWebServicesObjController {
                         "msg" : "Successes"
                     }
                 );
-            }
+            };
         } catch (error) {
             return response.status(500).json({
                 message: error

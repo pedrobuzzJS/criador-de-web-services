@@ -18,7 +18,8 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 const Input: React.FC<InputProps> = ({ name, id, type, prefix, spanText, percent, label, pixels, ...props }) => {
     const [ isFocused, setIsFocused ] = useState<Boolean>(false);
     // const [ isFilled, setIsFilled ] = useState<Boolean>(false);
-    const [ inputErro, setInputErro ] = useState<string | null>(null);
+    const [ inputErro, setInputErro ] = useState<boolean>(false);
+    const [ error, setError ] = useState<string | null>(null);
     const inputRef = useRef<HTMLInputElement>(null);
 
     const handleInputFocus = useCallback(() => {
@@ -27,6 +28,10 @@ const Input: React.FC<InputProps> = ({ name, id, type, prefix, spanText, percent
 
     const handleInputBlur = useCallback(() => {
         setIsFocused(false);
+    }, []);
+
+    const handleInputError = useCallback(() => {
+
     }, []);
     
     const handleKeyDown = useCallback(
@@ -54,7 +59,9 @@ const Input: React.FC<InputProps> = ({ name, id, type, prefix, spanText, percent
         <InputContainer
             percent={percent}
             focus={isFocused}
-            pixels={pixels}>
+            pixels={pixels}
+            error={inputErro}
+        >
             <label
             htmlFor={id}
                 >

@@ -31,12 +31,13 @@ export default class ObjToSqlController {
     async ObjToSql(obj: any, id: number) {
         const tableId = obj.tableId;
         const webServiceId = obj.webServiceId;
-        const objJson: any[] = obj.data;
-        let select = "SELECT";
+    const objJson: any[] = obj.data;
+        let select = "SELECT ";
         let from = "FROM";
 
         await objJson.forEach(el => {
             console.log(el.nome);
+            select 
         })
     };
 };

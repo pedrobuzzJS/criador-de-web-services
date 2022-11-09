@@ -30,7 +30,6 @@ export default class ObjToSqlController {
 
     async ObjToSql(obj: any, id: number) {
         const tableId = obj.tableId;
-        const webServiceId = obj.webServiceId;
         const objJson: any[] = obj.data;
         const listTableUseCase = new ListTableUseCase();
         let select = "SELECT ";
@@ -43,8 +42,6 @@ export default class ObjToSqlController {
         })
         columns = columns.substring(0, columns.length - 1);
         select = select + columns + from;
-        await console.log(select);
-
         try {
             const updateWebServiceObj = await client.webServiceObj.update({
                 where: {
@@ -55,16 +52,10 @@ export default class ObjToSqlController {
                 }
             });
             if (updateWebServiceObj) {
-                // return response.json(
-                //     {
-                //         "msg" : "Successes"
-                //     }
-                // );
+                return true;
             };
         } catch (error) {
-            // return response.status(500).json({
-                // message: error
-            // });
+            return false;
         };
 
     };

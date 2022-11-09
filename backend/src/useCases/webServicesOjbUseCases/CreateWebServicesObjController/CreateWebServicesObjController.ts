@@ -1,10 +1,12 @@
 import { Request, Response } from "express";
 import { client } from "../../../infra/prisma/client";
+import ObjToSqlController from "../../../modules/ObjToSqlController";
 
 export default class CreateWebServicesObjController {
     static async handle(request: Request, response: Response) {
         const { data } = await request.body;
         const objJson = await JSON.parse(data);
+        const objToSqlController = new ObjToSqlController();
         try {
             const webServiceObj = await client.webServiceObj.create({
                 data: {
@@ -16,6 +18,7 @@ export default class CreateWebServicesObjController {
                     table_id: Number(objJson.tableId),
                 }
             });
+            await objToSqlController.ObjToSql(JSON.parse(webServiceObj.obj), webServiceObj.id);
             if (webServiceObj) {
                 return response.json(
                     {

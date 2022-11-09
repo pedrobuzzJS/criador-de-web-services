@@ -29,12 +29,12 @@ export const WebServicesObjQuery: React.FC<RequestParams> = ({ webservice_id, ta
         //     description: "obj",
         //     type: FieldTypes.TEXT
         // },
-        {
-            field: "sql",
-            title: "sql",
-            description: "sql",
-            type: FieldTypes.TEXT
-        },
+        // {
+        //     field: "sql",
+        //     title: "sql",
+        //     description: "sql",
+        //     type: FieldTypes.TEXT
+        // },
         {
             field: "versao",
             title: "versao",

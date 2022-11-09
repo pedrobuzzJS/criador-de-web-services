@@ -110,7 +110,7 @@ export const MenuMaintenance: React.FC = () => {
                 pixels: "250",
                 type: InputType.SELECT,
                 list: statusOptions ?? statusOptions,
-                disabled: [Operation.VIEW, Operation.DELETE].includes(Number(op)) ? true : false,   
+                disabled: [Operation.VIEW, Operation.DELETE].includes(Number(op)) ? true : false,
             },
             {
                 id: "component",

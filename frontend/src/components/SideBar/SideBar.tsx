@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
+import * as IoIcons from "react-icons/io";
 import { IconContext } from "react-icons";
 import { Nav,
          NavIcon,
@@ -13,12 +14,14 @@ import { SideBarItem } from "../SideBarItem/SideBarItem";
 import { LinkMenu } from "../../@types/menu";
 import { useMenu } from "../../context/menuContext";
 import { useLocation } from "react-router-dom";
+import { useAuth } from "../../context/authContex";
 
 export const SideBar: React.FC = () => {
     const [sideBar, setSideBar] = useState(false);
     const { menuNome, fetechedMenu } = useMenu();
     const showSideBar = () => setSideBar(!sideBar);
     const { pathname } = useLocation();
+    const { signOut } = useAuth();
    
     let LinksTratados: LinkMenu[] = [];
 
@@ -48,10 +51,17 @@ export const SideBar: React.FC = () => {
         <>
             <IconContext.Provider value={{color: '#fff'}}>
                 <Nav>
-                    <NavIcon to='#'>
-                        <FaIcons.FaBars onClick={showSideBar} />
-                    </NavIcon>
-                    <HeaderTitle>{menuNome}</HeaderTitle>
+                    <div>
+                        <NavIcon to='#'>
+                            <FaIcons.FaBars onClick={showSideBar} />
+                        </NavIcon>
+                    </div>
+                        <HeaderTitle>{menuNome}</HeaderTitle>
+                    <div>
+                        <NavIcon to='#'>
+                            <IoIcons.IoMdExit onClick={signOut} />
+                        </NavIcon>
+                    </div>
                 </Nav>
                 <SideBarNav sideBar={sideBar}> 
                     <SidebarWrap>

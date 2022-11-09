@@ -22,6 +22,7 @@ import { Button } from "../Form/Button/Button";
 import UseColunaStore from "../../stores/ColunaStore";
 import { useNavigate, useParams } from "react-router-dom";
 import { Operation } from "../../Utils/Operations";
+import { SnackBar } from "../SnackBar/SnackBar";
 
 interface WebServiceMountProps {
     webservice_id: number | null;
@@ -39,7 +40,7 @@ export const WebServiceMount: React.FC<WebServiceMountProps> = ({ webservice_id,
     const navigate = useNavigate();
     const { op, id } = useParams();
     const [ tableId, setTableId ] = useState<number | null>(null);
-
+    const [ showSnackBar, setShowSnackBar ] = useState<boolean>(false);
     const [ campos ] = useState<GridFields[]>(
         [
             {
@@ -204,8 +205,10 @@ export const WebServiceMount: React.FC<WebServiceMountProps> = ({ webservice_id,
                         }
                     ).then(response => {
                         const { status } = response;
+                        navigate(-1);
                     }).catch(async error => {
                         await setBackResponse(error.response.data.message.code);
+                        await setShowSnackBar(true);
                     }).finally(
                     );
                 } catch (error) {
@@ -276,6 +279,16 @@ export const WebServiceMount: React.FC<WebServiceMountProps> = ({ webservice_id,
                     onClick={handleCloseModal}
                 ></Button>
             </ReactModal>
+            <SnackBar
+                open={showSnackBar}
+                type="Error"
+                children={
+                    <span>
+                        {backResponse}
+                    </span>
+                }
+                onClose={() => setShowSnackBar(false)}
+            />
         </>
     );
 };

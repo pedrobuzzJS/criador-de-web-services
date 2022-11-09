@@ -47,7 +47,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
     }
 
     async function signOut() {
-        setUser(null);
+        await localStorage.removeItem("USER");
+        await localStorage.removeItem("TOKEN");
+        await setUser(null);
         return redirect("/");
     };
 

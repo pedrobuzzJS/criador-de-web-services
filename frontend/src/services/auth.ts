@@ -7,20 +7,18 @@ export default class Auth {
             await api.post("login", {
                 data: JSON.stringify({username, password})
             }).then(response => {
-                const { status } = response;
                 const { user, token } = response.data;
                 USER = user;
                 TOKEN = token;
             }).catch(async error => {
-                console.log(error);
+                console.log("a");
             }).finally();
         } catch (error) {
-            console.log(error);
+            console.log("b");
         };
         return { USER, TOKEN };
     };
     async getPermissions(id: number, username: string, token: string) {
-        
         try {
             await api.get("permissions", {
                 params: {
@@ -34,7 +32,6 @@ export default class Auth {
                 }
             ).finally();
         } catch (error) {
-            
         }
     };
 };

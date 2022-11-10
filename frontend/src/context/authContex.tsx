@@ -35,10 +35,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
     async function signIn(username: string, password: string) {
         const AuthController = await new Auth();
         const response = await AuthController.signIn(username, password);
-        api.defaults.headers.common['Authorization'] = `Bearer ${String(response.TOKEN)}`;;
-        await localStorage.setItem("USER" , JSON.stringify(response.USER));
-        await localStorage.setItem("TOKEN" , String(response.TOKEN));
-        await window.location.replace("/");
+        await console.log("response", response);
+        if ((response.USER != undefined) && (response.TOKEN != undefined)) {
+            api.defaults.headers.common['Authorization'] = `Bearer ${String(response.TOKEN)}`;;
+            await localStorage.setItem("USER" , JSON.stringify(response.USER));
+            await localStorage.setItem("TOKEN" , String(response.TOKEN));
+            return await window.location.replace("/");
+        };
+        return await window.location.replace("/");
     };
 
     async function getPermission(username: string) {

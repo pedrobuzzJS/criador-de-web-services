@@ -64,23 +64,6 @@ async function main() {
             }
           }
         }
-      },
-      {
-        id: 2,
-        nome: "SOAP",
-        sigla: "SP",
-        descricao: "WebService via SOAP",
-        status: {
-          connectOrCreate: {
-            where: {
-              id: 1
-            },
-            create: {
-              nome: "Ativo",
-              descricao: "Ativo"
-            }
-          }
-        }
       }
     ];
     

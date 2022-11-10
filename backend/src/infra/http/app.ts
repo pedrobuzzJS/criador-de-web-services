@@ -1,7 +1,6 @@
 import { Response } from 'express';
-// import cors from "cors";
 import express, { NextFunction, Request } from "express";
-import "express-async-errors";
+// import "express-async-errors";
 import Routes from "./routes/index.routes";
 import cors from 'cors';
 

@@ -36,7 +36,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
         const AuthController = await new Auth();
         const response = await AuthController.signIn(username, password);
         await console.log("response", response);
-        if ((response.USER != undefined) && (response.TOKEN != undefined)) {
+        if ((response.USER != undefined) && (response.TOKEN != undefined && typeof(response.TOKEN) == "string")) {
             api.defaults.headers.common['Authorization'] = `Bearer ${String(response.TOKEN)}`;;
             await localStorage.setItem("USER" , JSON.stringify(response.USER));
             await localStorage.setItem("TOKEN" , String(response.TOKEN));

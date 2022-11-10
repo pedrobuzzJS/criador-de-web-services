@@ -2,11 +2,12 @@ require('dotenv').config();
 import { compare } from "bcrypt";
 import { sign } from "jsonwebtoken";
 import { client } from "../../../infra/prisma/client";
+import { verify } from "jsonwebtoken";
 
 interface IUserAutenticateRequest {
-    // name?:string;
+    name?:string;
     username?:string;
-    // email?:string;
+    email?:string;
     password:string;
 }
 
@@ -41,11 +42,18 @@ class AutenticateUerUseCase {
             subject: userAlreadyExists.id.toString(),
             expiresIn: "36d"
         });
-        return token;
+
+        if (token) {
+            return token;
+        };
+
+        return false;
     };
 
-    async getUserByUsername(username: string) {
-        const data = await client.users.findMany({
+    async getUserByUsername(username: string, token?: any) {
+        try {
+            verify(String(token), "d13bf4cd-c6f6-4164-8ab7-207fec130d21");
+            const data = await client.users.findMany({
             where: {
                 username: username
             },
@@ -56,11 +64,15 @@ class AutenticateUerUseCase {
                 email: true,
                 status_id: true
             }
-        });
-        if (!data) {
-            throw new Error("Sem de Usuario do Sistema");
+            });
+            if (!data) {
+                throw new Error("Sem de Usuario do Sistema");
+            };
+            return data;
+        } catch(err) {
+            return [err];
         };
-        return data;
+
     };
 };
 

@@ -4,18 +4,24 @@ class AuthencitateUserController {
     static async handle(request: Request, response: Response) {
         const { data } = request.body;
         const loginData = JSON.parse(data)
-        const { username, password } = await loginData;
+        const { username, password } = loginData;
         const authenticateUserUserCase = new AutenticateUerUseCase();
         const token = await authenticateUserUserCase.getAll({
             username, 
             password
         });
-        const user = await authenticateUserUserCase.getUserByUsername(username);
-
-        return response.status(200).json(
+        if (token) {
+            const user = await authenticateUserUserCase.getUserByUsername(username, token);
+            return response.status(200).json(
+                {
+                    "user": user[0],
+                    "token" : token
+                }
+            );
+        };
+        return response.status(404).json(
             {
-                "user": {...user[0]},
-                "token" : token
+                "msg": "User not found"
             }
         );
     };

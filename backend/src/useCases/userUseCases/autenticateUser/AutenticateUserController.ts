@@ -5,6 +5,7 @@ class AuthencitateUserController {
         const { data } = request.body;
         const loginData = JSON.parse(data)
         const { username, password } = loginData;
+        console.log(username, password);
         const authenticateUserUserCase = new AutenticateUerUseCase();
         const token = await authenticateUserUserCase.getAll({
             username, 

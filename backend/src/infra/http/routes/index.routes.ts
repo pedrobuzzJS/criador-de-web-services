@@ -119,14 +119,14 @@ Routes.get("/executewebservice", ExecuteWebServiceController.handle);
 
 Routes.get("/objtosql", ObjToSqlController.handle);
 
-async function automaticRoute() {
-    const teste = await client.webServiceRoutes.findMany();
-    // console.log(teste);
-    teste.forEach(rota => {
-        Routes.get("/"+rota.route, ListWebServicesObjController.handle);
-    });
-};
+// async function automaticRoute() {
+//     const teste = await client.webServiceRoutes.findMany();
+//     // console.log(teste);
+//     teste.forEach(rota => {
+//         Routes.get("/"+rota.route, ListWebServicesObjController.handle);
+//     });
+// };
 
-automaticRoute();
+// automaticRoute();
 
 export default Routes;

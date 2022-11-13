@@ -11,42 +11,42 @@ datasource db {
 }
 
 model Users {
-  id                 Int                @id @default(autoincrement())
-  name               String             @db.VarChar(255)
-  username           String             @unique @db.VarChar(255)
-  email              String             @unique @db.VarChar(255)
-  email_verified     Boolean            @default(false)
-  password           String             @db.VarChar(255)
-  remember_token     String?            @db.VarChar(255)
-  status_id          Int?
-  status             Status?            @relation(fields: [status_id], references: [id])
-  created_at         DateTime?          @default(now())
-  updated_at         String?            @db.VarChar(255)
-  usuario_permissoes UsuarioPermissao[]
-  usuario_papeis     UsuarioPapel[]
+  id             Int       @id @default(autoincrement())
+  name           String    @db.VarChar(255)
+  username       String    @unique @db.VarChar(255)
+  email          String    @unique @db.VarChar(255)
+  email_verified Boolean   @default(false)
+  password       String    @db.VarChar(255)
+  remember_token String?   @db.VarChar(255)
+  status_id      Int?
+  status         Status?   @relation(fields: [status_id], references: [id])
+  created_at     DateTime? @default(now())
+  updated_at     String?   @db.VarChar(255)
+  // usuario_permissoes UsuarioPermissao[]
+  // usuario_papeis     UsuarioPapel[]
 
   @@map("tbusuarios")
 }
 
-model Cores {
-  id         Int      @id @default(autoincrement())
-  descricao  String   @db.VarChar(255)
-  cor        String   @db.VarChar(255)
-  created_at DateTime
-  updated_at DateTime
+// model Cores {
+//   id         Int      @id @default(autoincrement())
+//   descricao  String   @db.VarChar(255)
+//   cor        String   @db.VarChar(255)
+//   created_at DateTime
+//   updated_at DateTime
 
-  @@map("tbcores")
-}
+//   @@map("tbcores")
+// }
 
-model Acoes {
-  id         Int      @id
-  descricao  String   @db.VarChar(255)
-  metodo     String   @db.VarChar(255)
-  created_at DateTime
-  updated_at DateTime
+// model Acoes {
+//   id         Int      @id
+//   descricao  String   @db.VarChar(255)
+//   metodo     String   @db.VarChar(255)
+//   created_at DateTime
+//   updated_at DateTime
 
-  @@map("tbacoes")
-}
+//   @@map("tbacoes")
+// }
 
 model Menus {
   id           Int       @id @default(autoincrement())
@@ -69,57 +69,57 @@ model Menus {
   @@map("tbmenus")
 }
 
-model Papel {
-  id              Int              @id
-  nome            String           @db.VarChar(255)
-  descricao       String           @db.VarChar(255)
-  created_at      DateTime
-  usuarioPapeis   UsuarioPapel[]
-  papelPermissoes PapelPermissao[]
+// model Papel {
+//   id              Int              @id
+//   nome            String           @db.VarChar(255)
+//   descricao       String           @db.VarChar(255)
+//   created_at      DateTime
+//   usuarioPapeis   UsuarioPapel[]
+//   papelPermissoes PapelPermissao[]
 
-  @@map("tbpapeis")
-}
+//   @@map("tbpapeis")
+// }
 
-model Permissao {
-  id                 Int                @id
-  nome               String             @db.VarChar(255)
-  descricao          String             @db.VarChar(255)
-  created_at         DateTime
-  usuario_permissoes UsuarioPermissao[]
-  pepelPermissoes    PapelPermissao[]
+// model Permissao {
+//   id                 Int                @id
+//   nome               String             @db.VarChar(255)
+//   descricao          String             @db.VarChar(255)
+//   created_at         DateTime
+//   usuario_permissoes UsuarioPermissao[]
+//   pepelPermissoes    PapelPermissao[]
 
-  @@map("tbpermissoes")
-}
+//   @@map("tbpermissoes")
+// }
 
-model PapelPermissao {
-  papel_id     Int
-  papeis       Papel     @relation(fields: [papel_id], references: [id])
-  permissao_id Int
-  permissoes   Permissao @relation(fields: [permissao_id], references: [id])
+// model PapelPermissao {
+//   papel_id     Int
+//   papeis       Papel     @relation(fields: [papel_id], references: [id])
+//   permissao_id Int
+//   permissoes   Permissao @relation(fields: [permissao_id], references: [id])
 
-  @@id([papel_id, permissao_id])
-  @@map("tbpapelpermissoes")
-}
+//   @@id([papel_id, permissao_id])
+//   @@map("tbpapelpermissoes")
+// }
 
-model UsuarioPermissao {
-  usuario_id   Int
-  Usuario      Users     @relation(fields: [usuario_id], references: [id])
-  permissao_id Int
-  permissao    Permissao @relation(fields: [permissao_id], references: [id])
+// model UsuarioPermissao {
+//   usuario_id   Int
+//   Usuario      Users     @relation(fields: [usuario_id], references: [id])
+//   permissao_id Int
+//   permissao    Permissao @relation(fields: [permissao_id], references: [id])
 
-  @@id([usuario_id, permissao_id])
-  @@map("tbusuariopermissoes")
-}
+//   @@id([usuario_id, permissao_id])
+//   @@map("tbusuariopermissoes")
+// }
 
-model UsuarioPapel {
-  usuario_id Int
-  Usuario    Users @relation(fields: [usuario_id], references: [id])
-  papel_id   Int
-  Papel      Papel @relation(fields: [papel_id], references: [id])
+// model UsuarioPapel {
+//   usuario_id Int
+//   Usuario    Users @relation(fields: [usuario_id], references: [id])
+//   papel_id   Int
+//   Papel      Papel @relation(fields: [papel_id], references: [id])
 
-  @@id([usuario_id, papel_id])
-  @@map("tbusuariopapeis")
-}
+//   @@id([usuario_id, papel_id])
+//   @@map("tbusuariopapeis")
+// }
 
 model Status {
   id              Int              @id @default(autoincrement())
@@ -130,10 +130,10 @@ model Status {
   TipoWebServises TipoWebService[]
   Bases           Bases[]
   Tabelas         Tabelas[]
-  TabelasLigacoes TabelaLigacao[]
+  // TabelasLigacoes TabelaLigacao[]
   WebServices     WebService[]
   TipoBase        TipoBases[]
-  Rotas           Rotas[]
+  // Rotas           Rotas[]
   Colunas         Colunas[]
   WebServiceObj   WebServiceObj[]
 
@@ -223,17 +223,17 @@ model Bases {
   @@map("tbbases")
 }
 
-model Rotas {
-  id         Int     @id
-  nome       String  @db.VarChar(255)
-  rota       String  @db.VarChar(255)
-  parametros String  @db.VarChar(255)
-  metodo     String  @db.VarChar(255)
-  status_id  Int
-  status     Status? @relation(fields: [status_id], references: [id])
+// model Rotas {
+//   id         Int     @id
+//   nome       String  @db.VarChar(255)
+//   rota       String  @db.VarChar(255)
+//   parametros String  @db.VarChar(255)
+//   metodo     String  @db.VarChar(255)
+//   status_id  Int
+//   status     Status? @relation(fields: [status_id], references: [id])
 
-  @@map("tbrotas")
-}
+//   @@map("tbrotas")
+// }
 
 model Tabelas {
   id                     Int             @id @default(autoincrement())
@@ -242,8 +242,8 @@ model Tabelas {
   base                   Bases?          @relation(fields: [base_id], references: [id])
   base_id                Int?
   permissao              Int?
-  TabelaOrigem           TabelaLigacao[] @relation("TabelaOrigem")
-  TabelaDestino          TabelaLigacao[] @relation("TabelaDestino")
+  // TabelaOrigem           TabelaLigacao[] @relation("TabelaOrigem")
+  // TabelaDestino          TabelaLigacao[] @relation("TabelaDestino")
   status_id              Int?
   status                 Status?         @relation(fields: [status_id], references: [id])
   WebServiceObjReference WebServiceObj[]
@@ -273,26 +273,26 @@ model Colunas {
   @@map("tbcolunas")
 }
 
-model TabelaLigacao {
-  tabela_origem     Tabelas @relation(name: "TabelaOrigem", fields: [tabela_origem_id], references: [id])
-  // coluna_origem     Colunas @relation(name: "ColunaOrigem", fields: [coluna_origem_id], references: [id])
-  tabela_destino    Tabelas @relation(name: "TabelaDestino", fields: [tabela_destino_id], references: [id])
-  // coluna_destino    Colunas @relation(name: "ColunaDestino", fields: [coluna_destino_id], references: [id])
-  tabela_origem_id  Int
-  coluna_origem_id  Int
-  tabela_destino_id Int
-  coluna_destino_id Int
-  status_id         Int?
-  status            Status? @relation(fields: [status_id], references: [id])
+// model TabelaLigacao {
+//   tabela_origem     Tabelas @relation(name: "TabelaOrigem", fields: [tabela_origem_id], references: [id])
+//   // coluna_origem     Colunas @relation(name: "ColunaOrigem", fields: [coluna_origem_id], references: [id])
+//   tabela_destino    Tabelas @relation(name: "TabelaDestino", fields: [tabela_destino_id], references: [id])
+//   // coluna_destino    Colunas @relation(name: "ColunaDestino", fields: [coluna_destino_id], references: [id])
+//   tabela_origem_id  Int
+//   coluna_origem_id  Int
+//   tabela_destino_id Int
+//   coluna_destino_id Int
+//   status_id         Int?
+//   status            Status? @relation(fields: [status_id], references: [id])
 
-  @@id([tabela_origem_id, coluna_origem_id, tabela_destino_id, coluna_destino_id])
-  @@map("tbtabelaligacoes")
-}
+//   @@id([tabela_origem_id, coluna_origem_id, tabela_destino_id, coluna_destino_id])
+//   @@map("tbtabelaligacoes")
+// }
 
-model Rotina {
-  id        Int    @id @default(autoincrement())
-  name      String @db.VarChar(255)
-  descricao String @db.VarChar(500)
-  acao      String @db.VarChar(500)
-  metodo    String @db.VarChar(8)
-}
+// model Rotina {
+//   id        Int    @id @default(autoincrement())
+//   name      String @db.VarChar(255)
+//   descricao String @db.VarChar(500)
+//   acao      String @db.VarChar(500)
+//   metodo    String @db.VarChar(8)
+// }

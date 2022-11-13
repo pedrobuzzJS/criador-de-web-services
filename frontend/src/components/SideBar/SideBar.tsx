@@ -17,7 +17,7 @@ import { useLocation } from "react-router-dom";
 import { useAuth } from "../../context/authContex";
 
 export const SideBar: React.FC = () => {
-    const [sideBar, setSideBar] = useState(false);
+    const [sideBar, setSideBar] = useState(true);
     const { menuNome, fetechedMenu } = useMenu();
     const showSideBar = () => setSideBar(!sideBar);
     const { pathname } = useLocation();
@@ -80,6 +80,7 @@ export const SideBar: React.FC = () => {
                                         pai_id={item.pai_id}
                                         filhos={item.filhos ?? item.filhos}
                                         possuifilhos={item.possuifilhos}
+                                        desabilitado={item.desabilitado}
                                         />
                                     )
                                 )

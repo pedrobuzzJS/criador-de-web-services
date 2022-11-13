@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 interface Toggle {
-    isSubMenuOpen?: boolean
+    isSubMenuOpen?: boolean;
 };
 
 export const Container = styled.div<Toggle>`
@@ -15,8 +15,13 @@ export const OpenContainer = styled.div`
     display: block;
 `;
 
-export const LinkContainer = styled(Link)`
-    display: flex;
+interface LinkContainerToggle {
+    desabilitado?: boolean;
+}
+
+export const LinkContainer = styled(Link)<LinkContainerToggle>`
+    display: ${({ desabilitado }) => (desabilitado && desabilitado === true ? 'none' : 'flex')};
+    /* display: flex; */
     color: #e1e9fc;
     justify-content: space-between;
     align-items: center;

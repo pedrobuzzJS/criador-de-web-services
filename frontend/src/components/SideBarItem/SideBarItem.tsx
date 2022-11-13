@@ -10,7 +10,7 @@ import {
     ImgContainer
 } from "./styles";
 
-export const SideBarItem: React.FC<LinkMenu> = ({ id, icone, nome, pai_id, rota, filhos, possuifilhos, ...props }) => {
+export const SideBarItem: React.FC<LinkMenu> = ({ id, icone, nome, pai_id, rota, filhos, possuifilhos, desabilitado, ...props }) => {
     const [ isOpen, setIsOpen ] = useState<boolean>(false);
     const openSubMenuList = useCallback(() => {
         setIsOpen(!isOpen);
@@ -18,8 +18,13 @@ export const SideBarItem: React.FC<LinkMenu> = ({ id, icone, nome, pai_id, rota,
     if (filhos) {
         return (
             <>
-                <Container isSubMenuOpen={isOpen}>
-                    <LinkContainer to={rota || "#"}>
+                <Container
+                    isSubMenuOpen={isOpen}
+                >
+                    <LinkContainer 
+                        to={rota || "#"}
+                        desabilitado={desabilitado}
+                    >
                         <StyledMenuText>
                             <RiIcons.RiDashboardFill />
                             <span>{nome}</span>
@@ -41,6 +46,7 @@ export const SideBarItem: React.FC<LinkMenu> = ({ id, icone, nome, pai_id, rota,
                             possuifilhos={child.possuifilhos}
                             filhos={child.filhos ?? child.filhos}
                             pai_id={child.pai_id}
+                            desabilitado={child.desabilitado}
                         />)
                     }
                 </Container>
@@ -49,7 +55,10 @@ export const SideBarItem: React.FC<LinkMenu> = ({ id, icone, nome, pai_id, rota,
     } else {
         return (
             <OpenContainer>
-                <LinkContainer to={rota || "#"}>
+                <LinkContainer
+                    to={rota || "#"}
+                    desabilitado={desabilitado}
+                >
                     <StyledMenuText>
                         <RiIcons.RiDashboardFill />
                         <span>{nome}</span>

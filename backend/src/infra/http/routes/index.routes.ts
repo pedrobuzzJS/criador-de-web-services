@@ -33,11 +33,11 @@ import ListBasesController from "../../../useCases/baseUseCase/listBase/ListBase
 
 import ListColunaController from "../../../useCases/colunaUseCases/listColuna/ListColunaController";
 
-import ListRotasController from "../../../useCases/rotasUseCases/listRotas/ListRotasController";
+// import ListRotasController from "../../../useCases/rotasUseCases/listRotas/ListRotasController";
 
-import ListCoresController from "../../../useCases/coresUseCases/listCores/ListCoresController";
+// import ListCoresController from "../../../useCases/coresUseCases/listCores/ListCoresController";
 
-import ListAcoesController from "../../../useCases/acoesUseCases/listAcoes/ListAcoesController";
+// import ListAcoesController from "../../../useCases/acoesUseCases/listAcoes/ListAcoesController";
 
 import ListWebServicesController from "../../../useCases/webServiceUseCases/listWebServices/ListWebServicesController";
 import CreateWebServicesController from "../../../useCases/webServiceUseCases/createWebServices/CreateWebServicesController";
@@ -92,11 +92,11 @@ Routes.get("/base", tokenAuthenticate, ListBasesController.handle);
 
 Routes.get("/colunas", tokenAuthenticate, ListColunaController.handle);
 
-Routes.get("/rotas", tokenAuthenticate, ListRotasController.handle);
+// Routes.get("/rotas", tokenAuthenticate, ListRotasController.handle);
 
-Routes.get("/cores", tokenAuthenticate, ListCoresController.handle)
+// Routes.get("/cores", tokenAuthenticate, ListCoresController.handle)
 
-Routes.get("/acoes", tokenAuthenticate, ListAcoesController.handle);
+// Routes.get("/acoes", tokenAuthenticate, ListAcoesController.handle);
 
 Routes.get("/webservices", tokenAuthenticate, ListWebServicesController.handle);
 Routes.post("/webservices", tokenAuthenticate, CreateWebServicesController.handle);

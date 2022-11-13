@@ -1,28 +1,19 @@
 import { Request, Response } from "express";
 import { client } from "../../../infra/prisma/client";
 
-class CreateMenuController {
+class CreateTipoBaseController {
     static async handle(request: Request, response: Response) {
         const { data } = request.body;
         const objJson = JSON.parse(data);
         try {
-            const menu = await client.menus.create({
+            const tipoBase = await client.tipoBases.create({
                 data: {
                     nome: objJson.nome,
-                    parametros: objJson.parametros,
-                    rota: objJson.rota,
                     icone: objJson.icone,
-                    pai_id: Number(objJson.pai_id),
-                    component: objJson.component,
-                    possuifilhos: false,
-                    ordem: Number(objJson.ordem),
-                    desabilitado: false,
-                    // papel: Number(objJson.papel),
-                    // permissao: Number(objJson.permissao),
                     status_id: Number(objJson.status_id),
                 }
             });
-            if (menu) {
+            if (tipoBase) {
                 return response.json(
                     {
                         "msg" : "Successes"
@@ -37,4 +28,4 @@ class CreateMenuController {
     };
 };
 
-export default CreateMenuController;
+export default CreateTipoBaseController;

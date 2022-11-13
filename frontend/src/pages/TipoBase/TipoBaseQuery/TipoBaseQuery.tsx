@@ -65,7 +65,12 @@ export const TipoBaseQuery: React.FC = () => {
     const { data, loadding } = useFetch<TipoBases[]>("tipo-base");
     return (
         <>
-            <DataGrid columns={Campos} data={data} loading={loadding} />
+            <DataGrid
+                columns={Campos}
+                data={data}
+                loading={loadding}
+                pathMantencao="tipo-base"
+            />
         </>
     );
 };

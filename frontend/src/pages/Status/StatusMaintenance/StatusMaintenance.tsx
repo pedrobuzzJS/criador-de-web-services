@@ -15,7 +15,7 @@ export const StatusMaintenance: React.FC = () => {
             id: id
         },
     });
-    const [ inputs, setInputs ] = useState<FormInputs[]>(
+    const inputs: FormInputs[] =
         [
             {
                 id: "id",
@@ -45,8 +45,7 @@ export const StatusMaintenance: React.FC = () => {
                 type: InputType.TEXT,
                 disabled: [Operation.VIEW, Operation.DELETE].includes(Number(op)) ? true : false,   
             },
-        ]
-    );
+        ];
 
     const status = UseStatusStore(state => state.status);
     const addStatus = UseStatusStore(state => state.addStatus)

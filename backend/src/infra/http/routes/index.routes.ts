@@ -28,16 +28,13 @@ import UpdateTipoWebServiceController from "../../../useCases/tipoWebServiceUseC
 import CreateTipoWebServiceController from "../../../useCases/tipoWebServiceUseCases/createTipoWebService/CreateTipoWebServiceController";
 
 import ListTipoBasesController from "../../../useCases/tipoBaseUseCases/listBases/ListTipoBasesController";
+import CreateTipoBaseController from "../../../useCases/tipoBaseUseCases/CreateTipoBase/CreateTipoBaseController";
+import UpdateTipoBaseController from "../../../useCases/tipoBaseUseCases/UpdateTipoBase/UpdateTipoBaseController";
+import DeleteTipoBaseController from "../../../useCases/tipoBaseUseCases/DeleteTipoBase/DeleteTipoBaseController";
 
 import ListBasesController from "../../../useCases/baseUseCase/listBase/ListBaseController";
 
 import ListColunaController from "../../../useCases/colunaUseCases/listColuna/ListColunaController";
-
-// import ListRotasController from "../../../useCases/rotasUseCases/listRotas/ListRotasController";
-
-// import ListCoresController from "../../../useCases/coresUseCases/listCores/ListCoresController";
-
-// import ListAcoesController from "../../../useCases/acoesUseCases/listAcoes/ListAcoesController";
 
 import ListWebServicesController from "../../../useCases/webServiceUseCases/listWebServices/ListWebServicesController";
 import CreateWebServicesController from "../../../useCases/webServiceUseCases/createWebServices/CreateWebServicesController";
@@ -57,8 +54,6 @@ import DeleteWebServiceRoutesController from "../../../useCases/webServiceRoutes
 import ExecuteWebServiceController from "../../../modules/ExecuteWebServiceController";
 
 import ObjToSqlController from "../../../modules/ObjToSqlController";
-
-import { client } from "../../prisma/client";
 
 const Routes = Router();
 
@@ -87,16 +82,13 @@ Routes.put("/tipowebservice", tokenAuthenticate, UpdateTipoWebServiceController.
 Routes.delete("/tipowebservice", tokenAuthenticate, DeleteTipoWebServiceController.handle);
 
 Routes.get("/tipo-base", tokenAuthenticate, ListTipoBasesController.handle);
+Routes.post("/tipo-base", tokenAuthenticate, CreateTipoBaseController.handle);
+Routes.put("/tipo-base", tokenAuthenticate, UpdateTipoBaseController.handle);
+Routes.delete("/tipo-base", tokenAuthenticate, DeleteTipoBaseController.handle);
 
 Routes.get("/base", tokenAuthenticate, ListBasesController.handle);
 
 Routes.get("/colunas", tokenAuthenticate, ListColunaController.handle);
-
-// Routes.get("/rotas", tokenAuthenticate, ListRotasController.handle);
-
-// Routes.get("/cores", tokenAuthenticate, ListCoresController.handle)
-
-// Routes.get("/acoes", tokenAuthenticate, ListAcoesController.handle);
 
 Routes.get("/webservices", tokenAuthenticate, ListWebServicesController.handle);
 Routes.post("/webservices", tokenAuthenticate, CreateWebServicesController.handle);
@@ -118,15 +110,5 @@ Routes.get("/executeoperation", tokenAuthenticate, ExecuteOperation.handle);
 Routes.get("/executewebservice", ExecuteWebServiceController.handle);
 
 Routes.get("/objtosql", ObjToSqlController.handle);
-
-// async function automaticRoute() {
-//     const teste = await client.webServiceRoutes.findMany();
-//     // console.log(teste);
-//     teste.forEach(rota => {
-//         Routes.get("/"+rota.route, ListWebServicesObjController.handle);
-//     });
-// };
-
-// automaticRoute();
 
 export default Routes;

@@ -59,8 +59,8 @@ model Menus {
   possuifilhos Boolean   @default(false)
   ordem        Int?
   desabilitado Boolean   @default(false)
-  papel        Int?
-  permissao    Int?
+  // papel        Int?
+  // permissao    Int?
   status_id    Int
   status       Status?   @relation(fields: [status_id], references: [id])
   created_at   DateTime? @default(now())
@@ -194,9 +194,9 @@ model WebServiceRoutes {
 }
 
 model TipoBases {
-  id        Int     @id
+  id        Int     @id @default(autoincrement())
   nome      String  @db.VarChar(255)
-  icone     String  @db.VarChar(255)
+  icone     String? @db.VarChar(255)
   status_id Int?
   status    Status? @relation(fields: [status_id], references: [id])
 
@@ -215,7 +215,7 @@ model Bases {
   tipobase_id   Int
   url           String    @db.VarChar(255)
   ip            String    @db.VarChar(255)
-  permissao     Int
+  // permissao     Int
   posts         Tabelas[]
   status_id     Int?
   status        Status?   @relation(fields: [status_id], references: [id])
@@ -241,7 +241,7 @@ model Tabelas {
   scheme                 String          @db.VarChar(255)
   base                   Bases?          @relation(fields: [base_id], references: [id])
   base_id                Int?
-  permissao              Int?
+  // permissao              Int?
   // TabelaOrigem           TabelaLigacao[] @relation("TabelaOrigem")
   // TabelaDestino          TabelaLigacao[] @relation("TabelaDestino")
   status_id              Int?
@@ -264,7 +264,7 @@ model Colunas {
   pk                  String? @db.VarChar(255)
   fk                  String? @db.VarChar(255)
   tabela_id           Int
-  permissao           Int?
+  // permissao           Int?
   // ColunaOrigem        TabelaLigacao[] @relation("ColunaOrigem")
   // ColunaDestino       TabelaLigacao[] @relation("ColunaDestino")
   status_id           Int?

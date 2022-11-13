@@ -13,14 +13,12 @@ import { Nav,
 import { SideBarItem } from "../SideBarItem/SideBarItem";
 import { LinkMenu } from "../../@types/menu";
 import { useMenu } from "../../context/menuContext";
-import { useLocation } from "react-router-dom";
 import { useAuth } from "../../context/authContex";
 
 export const SideBar: React.FC = () => {
-    const [sideBar, setSideBar] = useState(true);
+    const [sideBar, setSideBar] = useState(false);
     const { menuNome, fetechedMenu } = useMenu();
     const showSideBar = () => setSideBar(!sideBar);
-    const { pathname } = useLocation();
     const { signOut } = useAuth();
    
     let LinksTratados: LinkMenu[] = [];

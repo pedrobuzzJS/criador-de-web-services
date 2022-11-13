@@ -62,6 +62,7 @@ const AuthRoutes = () => {
                                         <Route path="bases-manutencao/:op/:id" element={<BasesMaintenance />} />
                                         <Route path="tipo-base-consulta" element={<TipoBaseQuery />} />
                                         <Route path="tipo-base-manutencao/:op/:id" element={<TipoBaseMaintenance />} />
+                                        <Route path="tipo-base-manutencao/:op" element={<TipoBaseMaintenance />} />
                                         <Route path="rotas-consulta" element={<RotasQuery />} />
                                         <Route path="rotas-manutencao/:op/:id" element={<RotasMaintenance />} />
                                         <Route path="rotas-manutencao/:op" element={<RotasMaintenance />} />

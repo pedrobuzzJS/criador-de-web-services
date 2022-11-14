@@ -34,7 +34,7 @@ export const StatusMaintenance: React.FC = () => {
                 label: "Nome", 
                 pixels: "250",
                 type: InputType.TEXT,
-                disabled: [Operation.VIEW, Operation.DELETE].includes(Number(op)) ? true : false,   
+                disabled: [Operation.VIEW, Operation.DELETE].includes(Number(op)) ? true : false,
             },
             {
                 id: "descricao",

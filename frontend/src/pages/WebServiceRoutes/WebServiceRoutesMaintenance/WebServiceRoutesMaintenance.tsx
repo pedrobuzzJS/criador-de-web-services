@@ -7,12 +7,13 @@ import api from "../../../services/api";
 import { FormInputs, InputType } from "../../../Utils/FormFields";
 import { Operation } from "../../../Utils/Operations";
 import { useForm } from "../../../context/formContext";
+import { WebServiceRoute } from "../../../@types/webServiceRoutes";
 
 export const WebServiceRoutesMaintenance: React.FC = () => {
     const { op, id } = useParams();
     const { data: webservices } = useFetch<WebServices[]>("webservices");
     const webSericesList = webservices?.map(item => { return { key: (item.id), value: item.nome } });
-    const { data, loadding } = useFetch<any>("webserviceroutes", {
+    const { data, loadding } = useFetch<WebServiceRoute[] | any>("webserviceroutes", {
         params: {
             id: id
         },
@@ -23,6 +24,18 @@ export const WebServiceRoutesMaintenance: React.FC = () => {
     const webServiceHtmlEvent = getEvent();
     
     useEffect( () => {
+        if (data?.[0].webservice_id) {
+            api.get("webservicesobj", {
+                params: {
+                    webservice_id: webServiceHtmlEvent?.target?.value
+                },
+            }).then(
+                response => {
+                    let responseData: any[] = response.data;
+                    setWebServiceObj(responseData?.map(item => { return { key: (item.id), value: item.id.toString() } }));
+                }
+            );
+        };
         if (webServiceHtmlEvent?.target?.value) {
             api.get("webservicesobj", {
                 params: {
@@ -31,11 +44,11 @@ export const WebServiceRoutesMaintenance: React.FC = () => {
             }).then(
                 response => {
                     let responseData: any[] = response.data;
-                    setWebServiceObj(responseData?.map(item => { return { key: (item.id), value: item.id } }));
+                    setWebServiceObj(responseData?.map(item => { return { key: (item.id), value: item.id.toString() } }));
                 }
-            )
-        }
-    }, [webServiceHtmlEvent?.target?.name, webServiceHtmlEvent?.target?.value] );
+            );
+        };
+    }, [data, webServiceHtmlEvent?.target.name, webServiceHtmlEvent?.target?.value] );
 
     const inputs: FormInputs[] = [
         {
@@ -68,16 +81,7 @@ export const WebServiceRoutesMaintenance: React.FC = () => {
             list: webServiceObj,
             disabled: [Operation.VIEW, Operation.DELETE].includes(Number(op)) ? true : false,   
         },
-        {
-            id: "route",
-            name: "route",
-            placeholder: "route",
-            label: "route", 
-            pixels: "250",
-            type: InputType.TEXT,
-            disabled: [Operation.VIEW, Operation.DELETE].includes(Number(op)) ? true : false,   
-        },
-    ]
+    ];
 
     return (
         <FormBuilder

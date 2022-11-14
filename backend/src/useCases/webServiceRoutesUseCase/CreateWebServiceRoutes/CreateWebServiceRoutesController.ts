@@ -10,7 +10,6 @@ export default class CreateWebServiceRoutesController {
                 data: {
                     webservice_id: Number(objJson.webservice_id),
                     werbservoceobj_id: Number(objJson.werbservoceobj_id),
-                    route: objJson.route,
                 }
             });
             if (webServiceRoutes) {

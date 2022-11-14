@@ -10,7 +10,7 @@ async function main() {
 
     const userData: Prisma.UsersCreateInput[] = [
         {
-            name: "Pedro Artur Buzzi Pereira",
+            name: "admin",
             username: "admin",
             email: "admin@admin.com",
             email_verified: false,
@@ -23,24 +23,6 @@ async function main() {
                 create: {
                   nome: "Ativo",
                   descricao: "Ativo"
-                }
-              }
-            }
-        },
-        {
-            name: "Pedro Artur Buzzi Pereira",
-            username: "admin2",
-            email: "admin2@admin.com",
-            email_verified: false,
-            password: passwordHash,
-            status: {
-              connectOrCreate: {
-                where: {
-                  id: 2
-                },
-                create: {
-                  nome: "Inativo",
-                  descricao: "Inativo"
                 }
               }
             }

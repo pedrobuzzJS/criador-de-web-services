@@ -28,12 +28,6 @@ export const WebServiceRoutesQuery: React.FC = () => {
                 type: FieldTypes.TEXT
             },
             {
-                field: "route",
-                title: "route",
-                description: "route",
-                type: FieldTypes.TEXT
-            },
-            {
                 field: "acoes",
                 title: "Acoes",
                 description: "Acoes",

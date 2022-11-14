@@ -20,8 +20,8 @@ export class CreateTableUseCase {
         tables.push(await listtableUseCase.getTable());
         tables = tables[0];
 
-        tables.forEach((table) => {
-            this.creatTables(table);
+        tables.forEach(async (table) => {
+            await this.creatTables(table);
         });
     };
 };

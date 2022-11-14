@@ -13,8 +13,6 @@ export default class UpdateWebServicesController {
                 data: {
                     nome: objJson.nome,
                     descricao: objJson.descricao,
-                    prover: true,
-                    consumir: true,
                     varsao: Number(objJson.varsao),
                     status_id : Number(objJson.status_id),
                 }

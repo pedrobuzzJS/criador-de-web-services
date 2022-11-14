@@ -1,4 +1,4 @@
-import React, { useState, useCallback, Children } from "react";
+import React, { useState, useCallback } from "react";
 import ReactModal from "react-modal";
 
 interface Modal {

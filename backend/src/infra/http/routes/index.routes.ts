@@ -1,7 +1,5 @@
 import { Router } from "express";
 
-import ExecuteOperation from "../../../controller/ExecuteOperation";
-
 import AuthencitateUserController from "../../../useCases/userUseCases/autenticateUser/AutenticateUserController";
 import CreateUserController from "../../../useCases/userUseCases/createUser/CreateUserController";
 import ListUserController from "../../../useCases/userUseCases/listUser/ListUserController";
@@ -104,8 +102,6 @@ Routes.get("/webserviceroutes", tokenAuthenticate, ListWebServiceRoutesControlle
 Routes.post("/webserviceroutes", tokenAuthenticate, CreateWebServiceRoutesController.handle);
 Routes.put("/webserviceroutes", tokenAuthenticate, UpdateWebServiceRoutesController.handle);
 Routes.delete("/webserviceroutes", tokenAuthenticate, DeleteWebServiceRoutesController.handle);
-
-Routes.get("/executeoperation", tokenAuthenticate, ExecuteOperation.handle);
 
 Routes.get("/executewebservice", ExecuteWebServiceController.handle);
 

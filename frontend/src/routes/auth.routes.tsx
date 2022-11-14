@@ -29,9 +29,9 @@ import { WebServicesObjQuery } from "../pages/WebServicesObj/WebServicesObjQuery
 import { MenuProvider } from "../context/menuContext";
 import { WebServiceRoutesQuery } from "../pages/WebServiceRoutes/WebServiceRoutesQuery/WebServiceRoutesQuery";
 import { WebServiceRoutesMaintenance } from "../pages/WebServiceRoutes/WebServiceRoutesMaintenance/WebServiceRoutesMaintenance";
-import { Dashboard } from "../pages/Dashboard/Dashboard";
 import { WebServiceProvider } from "../context/webServiceMountContext";
 import { FormProvider } from "../context/formContext";
+import { Dashboard } from "../pages/Dashboard/Dashboard";
 
 const AuthRoutes = () => {
     return (

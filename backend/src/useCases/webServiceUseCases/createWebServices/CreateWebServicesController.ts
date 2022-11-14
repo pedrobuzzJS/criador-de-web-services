@@ -11,8 +11,6 @@ export default class CreateWebServicesController {
                 data: {
                     nome: objJson.nome,
                     descricao: objJson.descricao,
-                    prover: false,
-                    consumir: true,
                     varsao: Number(objJson.varsao),
                     status_id : Number(objJson.status_id),
                 }

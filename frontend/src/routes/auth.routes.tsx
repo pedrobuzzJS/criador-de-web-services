@@ -36,11 +36,9 @@ import { Dashboard } from "../pages/Dashboard/Dashboard";
 const AuthRoutes = () => {
     return (
         <BrowserRouter>
-            <MenuProvider children={
-                <>
+            <MenuProvider children={<>
                     <SideBar />
-                    <FormProvider children={
-                        <>
+                    <FormProvider children={<>
                             <WebServiceProvider children={
                                 <>
                                     <Routes>
@@ -63,13 +61,6 @@ const AuthRoutes = () => {
                                         <Route path="tipo-base-consulta" element={<TipoBaseQuery />} />
                                         <Route path="tipo-base-manutencao/:op/:id" element={<TipoBaseMaintenance />} />
                                         <Route path="tipo-base-manutencao/:op" element={<TipoBaseMaintenance />} />
-                                        <Route path="rotas-consulta" element={<RotasQuery />} />
-                                        <Route path="rotas-manutencao/:op/:id" element={<RotasMaintenance />} />
-                                        <Route path="rotas-manutencao/:op" element={<RotasMaintenance />} />
-                                        <Route path="cores-consulta" element={<CoresQuery />} />
-                                        <Route path="cores-manutencao/:op/:id" element={<CoresMaintenance />} />
-                                        <Route path="acoes-consulta" element={<AcoesQuery />} />
-                                        <Route path="acoes-manutencao/:op/:id" element={<AcoesMaintenance />} />
                                         <Route path="webservices-consulta" element={<WebServicesQuery />} />
                                         <Route path="webservices-manutencao/:op/:id" element={<WebServicesMaintenance />} />
                                         <Route path="webservices-manutencao/:op" element={<WebServicesMaintenance />} />

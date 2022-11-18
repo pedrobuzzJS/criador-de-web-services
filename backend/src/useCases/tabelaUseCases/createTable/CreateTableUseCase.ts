@@ -7,7 +7,6 @@ export class CreateTableUseCase {
                 nome: data.table_name,
                 scheme: data.table_schema,
                 base_id: 1,
-                // permissao: 1,
                 status_id: 1,
             }
         });

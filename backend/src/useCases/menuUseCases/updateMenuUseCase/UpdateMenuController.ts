@@ -22,8 +22,6 @@ class UpdateMenuController {
                     possuifilhos: true,
                     ordem: Number(objJson.ordem),
                     desabilitado: false,
-                    // papel: Number(objJson.papel),
-                    // permissao: Number(objJson.permissao),
                     status_id: Number(objJson.status_id),
                 }
             });

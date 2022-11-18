@@ -11,9 +11,7 @@ export class ListMenuUseCase {
                 pai_id: true,
                 ordem: true,
                 desabilitado: true,
-                // permissao: true,
                 status_id: true,
-                // papel: true,
                 possuifilhos: true,
                 component: true
             },
@@ -38,9 +36,7 @@ export class ListMenuUseCase {
                 pai_id: true,
                 ordem: true,
                 desabilitado: true,
-                // permissao: true,
                 status_id: true,
-                // papel: true,
                 possuifilhos: true,
                 component: true
             },

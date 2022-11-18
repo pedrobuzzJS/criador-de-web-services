@@ -85,7 +85,6 @@ export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, callBack, 
                         await setBackResponse(error.response.data.message.code);
                         await setShowSnackBar(true);
                     }).finally(
-                        // () => navigate(-1)
                     );
                 } catch (error) {
                     console.log(error);
@@ -102,7 +101,6 @@ export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, callBack, 
                         await setBackResponse(error.response.data.message.code);
                         await setShowSnackBar(true);
                     }).finally(
-                        // () => navigate(-1)
                     );;
                 } catch (error) {
                     console.log(error);
@@ -122,7 +120,6 @@ export const FormBuilder: React.FC<FormProps> = ({  op, data, campos, callBack, 
                         await setBackResponse(error.response.data.message.code);
                         await setShowSnackBar(true);
                     }).finally(
-                        // () => navigate(-1)
                     );
                 } catch (error) {
                     console.log(error);

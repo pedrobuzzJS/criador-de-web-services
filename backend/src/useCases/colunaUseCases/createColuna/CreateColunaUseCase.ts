@@ -17,7 +17,6 @@ export class CreateColunaUseCase {
                     pk: "0",
                     fk: "0",
                     tabela_id: table_id,
-                    // permissao: 1,
                     status_id: 1,
                 }
             });

@@ -29,17 +29,6 @@ export const DataGrid: React.FC<GridProps> = ({ columns, data, loading, pathMant
         return navigate("/"+url);
     }, [navigate]);
 
-    const montaUrlManutencao = useCallback( (btn: string, op: number, keyList: string[]) => {
-        let url = '';
-        url = btn + "-manutencao" + `/${op}`;
-        if (keyList.length) {
-          keyList.forEach(key => {
-            url = url + '/' + key;
-          });
-        }
-        return navigate("/"+url);
-    }, [navigate] );
-
     const buttonInserFormValues = useCallback( (op: number) => {
         let url = pathMantencao + "-manutencao" + `/${op}`;
         return navigate("/"+url);
@@ -76,8 +65,6 @@ export const DataGrid: React.FC<GridProps> = ({ columns, data, loading, pathMant
                 <h1>Carregando</h1> 
                 :
                 <>
-                    {/* <FiltersContainer>
-                    </FiltersContainer> */}
                     <ButtonContainer>
                         <Button
                             buttonDescription="Inserir"

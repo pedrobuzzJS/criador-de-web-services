@@ -9,7 +9,6 @@ interface AuthInterface {
     loginLoaging: boolean;
     signIn: (username: string, password: string) => Promise<void>;
     signOut: () => void;
-    getPermission: (username: string) => Promise<void>;
 };
 
 interface AuthProviderProps extends PropsWithChildren {};
@@ -45,11 +44,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
         return await window.location.replace("/");
     };
 
-    async function getPermission(username: string) {
-        // const AuthController = await new Auth();
-        // const response = await AuthController.getPermissions(username);
-    }
-
     async function signOut() {
         await localStorage.removeItem("USER");
         await localStorage.removeItem("TOKEN");
@@ -64,7 +58,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({children}) => {
             signIn: signIn,
             signOut: signOut,
             loginLoaging: loginLoaging,
-            getPermission: getPermission
         }}>
             {children}
         </AuthContext.Provider>

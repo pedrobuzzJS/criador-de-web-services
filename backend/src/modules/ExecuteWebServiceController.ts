@@ -12,9 +12,11 @@ export default class ExecuteWebServiceController {
         const webServiceObjResult: WebServiceRoutes[] = await listWebServiceRoutesUseCase.getById(Number(id));
         const executeWebServiceController = new ExecuteWebServiceController();
         try {
-            const webServiceObjId = await executeWebServiceController.getSqlComandById(webServiceObjResult[0].werbservoceobj_id);
+            const webServiceObjId = await executeWebServiceController.
+            getSqlComandById(webServiceObjResult[0].werbservoceobj_id);
             try {
-                const webServiceResponse = await client.$queryRawUnsafe(webServiceObjId);
+                const webServiceResponse = await client.
+                $queryRawUnsafe(webServiceObjId);
                 return response.status(200).json(
                     {
                         webServiceResponse

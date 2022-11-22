@@ -13,21 +13,13 @@ export default class ObjToSqlController {
             const obj = await JSON.parse(webServiceObjResult[0]?.obj);
             await objToSqlController.ObjToSql(obj, Number(id));
             if (webServiceObjResult) {
-                return response.status(200).json(
-                    {
-                        webServiceObjResult
-                    }
-                );
+                return response.status(200).json({webServiceObjResult});
             };
         } catch (error) {
-            return response.status(404).json(
-                {
-                    "msg": "Not Found"
-                }
+            return response.status(404).json({"msg": "Not Found"}
             );
         };
     };
-
     async ObjToSql(obj: any, id: number) {
         const tableId = obj.tableId;
         const objJson: any[] = obj.data;

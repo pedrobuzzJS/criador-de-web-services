@@ -5,7 +5,7 @@ interface State {
     addStatus: (status: Status) => void;
 }
 
-const UseStatusStore = zustand<State>((set) => ({
+const UseStatusStore = zustand<State>((set, get) => ({
     status: [],
 
     addStatus: (status: any) => {

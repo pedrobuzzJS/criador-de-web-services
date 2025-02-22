@@ -12,7 +12,7 @@ const Routes = () => {
         );
     };
 
-    return signed ? <AuthRoutes /> : <DefaulfRoutes />;
+    return 1 == 1 ? <AuthRoutes /> : <DefaulfRoutes />;
 };
 
 export default Routes;
